@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ADC Seller Experience — Lisa Nian Liu</title>
+  <meta name="description" content="Case study: ADC Seller Experience — designing a multi-catalog marketplace system for classified government regions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">LISA NIAN LIU</a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://framerusercontent.com/assets/V8zRIeVEyGzj7f5DV7qnIaPkZU.pdf" target="_blank" class="btn-resume">My Resume ↓</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="cs-hero">
+  <div class="container">
+    <div class="case-card-tags mb-4">
+      <span class="tag">Iterative Product Development</span>
+      <span class="tag">Government and Defense</span>
+      <span class="tag">Multi-Catalog Systems</span>
+    </div>
+    <h1 class="display-lg">ADC Seller Experience</h1>
+    <p style="font-size:18px;color:var(--muted);margin-top:12px;max-width:64ch;">Designing a multi-catalog marketplace system for classified government regions — and introducing a new architecture that AWS Marketplace had never shipped before.</p>
+    <!-- Cover image placeholder — replace with a composed screenshot of the final multi-catalog UI -->
+    <div class="cs-cover mt-12" style="background:#0D1117;min-height:420px;display:flex;align-items:center;justify-content:center;">
+      <p style="color:#484F58;font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-align:center;max-width:none;">[ COVER IMAGE PLACEHOLDER ]<br>Recommended: composed view of multi-catalog dropdown, seller registration form, and payment setup screens</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cs-meta-row">
+      <div class="cs-meta-item"><span class="label">Client</span><p>AWS Marketplace (in-house)<br>Intelligence Community / DoD</p></div>
+      <div class="cs-meta-item"><span class="label">My Role</span><p>Senior UX Designer<br>Acting Product Manager</p></div>
+      <div class="cs-meta-item"><span class="label">Scope</span><p>Part of the ADC initiative<br>Seller sub-project (3 parts)</p></div>
+      <div class="cs-meta-item"><span class="label">Impact</span><p>Multi-catalog architecture published in<br>AWS product documentation</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">context.</span></div>
+    <div class="cs-prose">
+      <p>Amazon Dedicated Clouds (ADCs) are private, air-gapped cloud regions for government defense and intelligence services — including AWS Top Secret and AWS Secret regions. These networks have no physical or logical connection to the regular AWS commercial network, and each ADC region is isolated from the others. Accessing them requires appropriate security clearances and takes place inside SCIFs (Sensitive Compartmented Information Facilities).</p>
+      <p>AWS Marketplace had never been deployed into these classified regions before. For the Intelligence Community (ICMP), the existing buying and selling experience was 7 years out of date. For the Department of Defense (DoD) — the largest cloud customer in the world — this wasn't just a feature request. It was a contractual requirement tied to the JWCC/C2E defense contract AWS had signed.</p>
+    </div>
+
+    <!-- context diagram placeholder -->
+    <div class="cs-img-dark" style="min-height:320px;display:flex;align-items:center;justify-content:center;">
+      <p style="color:#484F58;font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-align:center;max-width:none;">[ DIAGRAM PLACEHOLDER ]<br>ADC network architecture: commercial vs. ICMP vs. ESA air-gapped regions</p>
+    </div>
+
+    <div class="cs-prose">
+      <p>The ADC initiative split into 3 sub-projects under one umbrella directive: the buyer experience, the seller experience, and the Private Marketplace experience. I owned all three, acting as both designer and product manager across each one. This case study covers the seller experience.</p>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-card"><span class="label-green">The ICMP need</span><p>The Intelligence Community needed AWS Marketplace's most current buying and selling features. Their current experience was 7 years out of date.</p></div>
+      <div class="insight-card"><span class="label-green">The DoD contract</span><p>SaaS product support in classified LCK and DCA regions was an existing contractual requirement tied to JWCC/C2E.</p></div>
+      <div class="insight-card"><span class="label-green">The architecture gap</span><p>AWS Marketplace only had 1 catalog. ADC required separate catalogs for classified regions — a multi-catalog system that had never existed.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGE -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">challenge.</span></div>
+    <div class="cs-prose">
+      <p>The seller experience is far less advanced than the buyer experience — a largely analog, behind-the-scenes system with minimal progress monitoring built in. To bring ADC product types (AMI, containers, SaaS, machine learning) to classified regions, sellers needed a way to self-service publish ADC listings. Nobody had designed for this before.</p>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-dark" style="min-height:200px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:#484F58;font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-align:center;max-width:none;">[ PLACEHOLDER ]<br>Diagram: existing seller flow vs. new ADC seller flow</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Bridging two teams that had never spoken</h4>
+        <p>The ICMP business analysts (some with security clearances who directly touched the classified systems) and the seller experience engineering teams (supporting old infrastructure with little progress monitoring) had never coordinated before. I became the bridge between them, running recurring meetings with both groups and using my proposed designs as living research artifacts to extract requirements in real time.</p>
+      </div>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-dark" style="min-height:200px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:#484F58;font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-align:center;max-width:none;">[ PLACEHOLDER ]<br>Challenge: no requirements, no PM, no precedent</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Acting as PM with no product support</h4>
+        <p>There was no product manager for this effort. I figured out the gaps, broke down the requirements, and implemented the design changes that bridged them. As I learned bits of requirements from each team, I built and iterated on designs until there was nothing more to uncover.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 1: REGISTRATION -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">part 1 — seller registration for ADC.</span></div>
+    <div class="cs-prose">
+      <p>The standard AWS Marketplace seller registration process requires a seller to register for AWS, register as an AWS Marketplace seller, and list at least 1 product on the commercial marketplace to become an active seller. For ICMP, a seller also needs to already be an active commercial seller, then fill out a separate ICMP seller registration form while simultaneously (offline) meeting with an AWS ICMP business analyst to begin the FOCI approval process. They have 30 days from submission to receive FOCI approval — otherwise, they have to restart.</p>
+      <p>I uncovered these exact requirements through tireless recurring meetings with the ICMP business analyst teams and the seller experience engineering teams. The final result was an updated seller registration form for all users, plus a new version for ADC users.</p>
+    </div>
+
+    <!-- Registration flow placeholder -->
+    <div class="cs-img-full" style="min-height:300px;background:var(--bg-card);display:flex;align-items:center;justify-content:center;">
+      <p style="color:var(--muted);font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Seller registration form — standard flow vs. ADC/ICMP flow comparison</p>
+    </div>
+
+    <div class="cs-title-row">
+      <h4>Updated registration form for all sellers</h4>
+      <p>Before designing the ADC-specific form, I updated the existing commercial seller registration form to be current and consistent. This created a clean baseline to branch from for the ADC version.</p>
+    </div>
+    <div class="cs-img-pair">
+      <div class="cs-img-full" style="min-height:240px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Updated commercial seller registration form</p>
+      </div>
+      <div class="cs-img-full" style="min-height:240px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>New ADC/ICMP seller registration form with FOCI approval step</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 2: MULTI-CATALOG -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">part 2 — multi-catalog architecture.</span></div>
+    <div class="cs-prose">
+      <p>Previously, AWS Marketplace had exactly 1 catalog: the commercial marketplace, where all products live. With ADC, AWS Marketplace needed to create 2+ additional catalogs specifically for ICMP and other governmental regions. The European Union (ESA) was the next catalog to add. This was the first time in AWS Marketplace's history that a multi-catalog system existed.</p>
+      <p>A seller registered for ADC now needed to manage products across both their commercial catalog and 1+ ADC catalogs, with the ability to switch between catalogs inside the seller experience. There is no functionality to copy products or information from one catalog to another due to information privacy requirements — a deliberate and important constraint.</p>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Multi-catalog dropdown: Commercial, ICMP, ESA</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>The catalog switching dropdown</h4>
+        <p>I designed a catalog-switching dropdown based on an existing Marketplace pattern — a deliberate choice, so I could use design precedent to get buy-in through the design approval process more easily. I also spearheaded the naming conventions on this dropdown, making sure the names clearly distinguished each catalog context. Every time a seller navigates to an ADC catalog, a persistent warning popup appears to confirm which catalog they are currently working in.</p>
+      </div>
+    </div>
+
+    <!-- Multi-catalog overview: wide -->
+    <div class="cs-inline-row img-wide">
+      <div class="cs-img-dark" style="min-height:320px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:#484F58;font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Multi-catalog system overview: seller switches between Commercial and ICMP catalogs. Warning popup on ADC catalog entry.</p>
+      </div>
+      <div class="cs-inline-caption" style="margin-top:16px;">
+        <h4>Catalog switching screens</h4>
+        <p>The warning popup that appears on ADC catalog entry was a deliberate design decision. Since there is no way to copy products between catalogs, it's critical that a seller knows exactly where they're listing. I designed this as a persistent, high-visibility alert rather than a dismissible banner.</p>
+      </div>
+    </div>
+
+    <div class="callout"><p>This multi-catalog architecture introduced the foundation for the European Union (ESA) marketplace partition, which launched shortly after. The pattern is now published in AWS Marketplace product documentation.</p></div>
+
+    <!-- Migration with other designer -->
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Collaboration: multi-catalog pages in old style, then migrated into new onboarding style</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Migrating into the new seller registration experience</h4>
+        <p>I worked alongside another designer whose goal was to add new onboarding content to the overall seller registration experience and migrate the existing registration to a new visual style. I first created the multi-catalog pages in the previous style, and the other designer absorbed my work into his workflow. I was present in his design sign-off reviews to support implementation of my multi-catalog work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 3: PAYMENT -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">part 3 — ADC and ESA payment method setup.</span></div>
+    <div class="cs-prose">
+      <p>After being approved to sell on the commercial marketplace, a seller sets up their disbursement methods — how they receive money paid by buyers. With ADC, sellers now needed to set up disbursement methods separately for both the commercial and ADC catalogs. ADC has strict restrictions: only certain currencies and payment methods are allowed. A seller can roll over payment information from their commercial setup into ADC, but not the other way around, and not from ADC to ESA.</p>
+      <p>I worked with the ICMP business team and seller experience engineering teams to document exact use cases, error states, and what was technically possible to implement down to the error message copy level. I designed the updated pages, added the additional elements required, and wrote precise language for each error state.</p>
+    </div>
+
+    <div class="cs-title-row">
+      <h4>ADC payment setup screens</h4>
+      <p>The disbursement setup flow now branches based on which catalog the seller is setting up. ADC catalogs surface specific restriction messaging and limit available currencies and payment method types.</p>
+    </div>
+    <div class="cs-img-pair">
+      <div class="cs-img-full" style="min-height:260px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>ADC disbursement setup — currency and payment method restrictions</p>
+      </div>
+      <div class="cs-img-full" style="min-height:260px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Error states and restriction messaging for ADC payment setup</p>
+      </div>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>ESA catalog payment setup — separate restrictions from ADC</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Absorbing the ESA catalog payment work</h4>
+        <p>No designer was available to take on the ESA catalog version of these payment setup pages. I was already familiar with the subject matter, so I absorbed that scope as well and pushed both the ADC and ESA design work through the approval process together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">results.</span></div>
+    <div class="cs-prose">
+      <p>All 3 parts of the ADC seller experience successfully passed the design approval process and were separately implemented into code. The multi-catalog architecture I introduced became the foundation for the European Union (ESA) marketplace partition, which launched shortly after. The system is now documented in AWS product documentation.</p>
+      <p>Because these features are deployed into air-gapped classified regions, I was not able to view the final implemented feature on an approved user's screen — the designs were handed off to appropriately cleared staff for implementation and verification.</p>
+    </div>
+
+    <!-- Results image placeholder -->
+    <div class="cs-img-full" style="min-height:300px;display:flex;align-items:center;justify-content:center;">
+      <p style="color:var(--muted);font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>AWS Marketplace multi-catalog documentation screenshot (public URL: docs.aws.amazon.com/marketplace/latest/userguide/multi_catalog.html)</p>
+    </div>
+
+    <!-- Beyond: text + image side by side -->
+    <div class="cs-inline-row">
+      <div class="cs-inline-caption">
+        <h4>Beyond the seller experience</h4>
+        <p>The multi-catalog system I introduced also unblocked the EU (ESA) partition from launching quickly after ADC. What started as a seller registration and payment setup effort ended up reshaping the fundamental architecture of how AWS Marketplace organizes and separates its product catalogs.</p>
+      </div>
+      <div class="cs-img-full" style="min-height:200px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Multi-catalog expansion: Commercial, ICMP, ESA, and future partitions</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNINGS -->
+<section class="cs-section" style="padding-bottom:96px;">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">learnings.</span></div>
+    <div class="cs-prose">
+      <ul class="learnings-list">
+        <li><strong>Requirements live in people, not documents.</strong> Neither the ICMP business analysts nor the seller engineering teams had written anything down. The only way to surface requirements was to keep showing up, keep asking, and use my designs as something concrete for both sides to react to.</li>
+        <li><strong>Design precedent is a strategic tool.</strong> Basing the catalog-switching dropdown on an existing Marketplace pattern wasn't a compromise — it was a deliberate choice that accelerated design approval and reduced pushback from a team that already had their hands full.</li>
+        <li><strong>Absorbing adjacent scope protects the whole.</strong> Taking on the ESA payment pages when no one else was available wasn't in my original scope, but leaving them undesigned would have created a gap in an already complex launch. Knowing when to expand and when to hold is its own skill.</li>
+        <li><strong>Some work ships without confirmation.</strong> Not being able to view the final implementation due to clearance restrictions is a genuinely new experience. The designs had to be right before they left my hands — there was no opportunity for feedback from the live environment.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="more-work">
+  <div class="container">
+    <div class="section-rule mb-4"></div>
+    <span class="label" style="display:block;margin-bottom:32px;">more to explore.</span>
+    <div class="work-grid">
+      <a href="pmp-redesign.html" class="case-card">
+        <div class="case-card-img" style="background:#1A3A4A;min-height:180px;display:flex;align-items:center;justify-content:center;">
+          <p style="color:#2A5A6A;font-family:var(--font-mono);font-size:10px;text-align:center;max-width:none;">Preview image</p>
+        </div>
+        <div class="case-card-body">
+          <div class="case-card-tags"><span class="tag">Government</span><span class="tag">Enterprise Admin</span></div>
+          <div class="case-card-title">Private Marketplace Redesign</div>
+          <div class="case-card-arrow">View case study →</div>
+        </div>
+      </a>
+      <a href="data-grants.html" class="case-card">
+        <div class="case-card-img"><img src="https://framerusercontent.com/images/QNqzFDi5oC2ZoJWQPpP3Ec9f2M.png" alt="Data Grants" loading="lazy" /></div>
+        <div class="case-card-body">
+          <div class="case-card-tags"><span class="tag">Data Governance</span><span class="tag">Entitlements</span></div>
+          <div class="case-card-title">Data Exchange Grants</div>
+          <div class="case-card-arrow">View case study →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="label">Lisa Nian Liu · Senior Product Designer</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/lliu29/" target="_blank">LinkedIn</a>
+        <a href="https://framerusercontent.com/assets/V8zRIeVEyGzj7f5DV7qnIaPkZU.pdf" target="_blank">Resume ↓</a>
+        <a href="mailto:lliu29@yahoo.com">lliu29@yahoo.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Private Marketplace Redesign — Lisa Nian Liu</title>
+  <meta name="description" content="Case study: Private Marketplace redesign — a 7-year-old web experience rebuilt from scratch as a Cloudscape-compliant console product." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">LISA NIAN LIU</a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://framerusercontent.com/assets/V8zRIeVEyGzj7f5DV7qnIaPkZU.pdf" target="_blank" class="btn-resume">My Resume ↓</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="cs-hero">
+  <div class="container">
+    <div class="case-card-tags mb-4">
+      <span class="tag">Full Product Redesign</span>
+      <span class="tag">Enterprise Admin</span>
+      <span class="tag">Government</span>
+    </div>
+    <h1 class="display-lg">Private Marketplace Redesign</h1>
+    <p style="font-size:18px;color:var(--muted);margin-top:12px;max-width:64ch;">Rebuilding a 7-year-old web experience from the ground up — migrating it into the AWS console, redesigning every surface to Cloudscape standards, and introducing new patterns that became standards across Marketplace.</p>
+    <div class="cs-cover mt-12" style="background:#F5F4F0;min-height:420px;display:flex;align-items:center;justify-content:center;border:1px solid var(--chrome-border);">
+      <p style="color:var(--muted);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-align:center;max-width:none;">[ COVER IMAGE PLACEHOLDER ]<br>Recommended: composed view of the new admin dashboard, My Private Marketplace landing page, and product grid</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cs-meta-row">
+      <div class="cs-meta-item"><span class="label">Client</span><p>AWS Marketplace (in-house)<br>JWCC / ICMP contract requirement</p></div>
+      <div class="cs-meta-item"><span class="label">My Role</span><p>Senior UX Designer<br>Sole designer on this effort</p></div>
+      <div class="cs-meta-item"><span class="label">Duration</span><p>Nearly 1 year<br>5+ design approval sessions</p></div>
+      <div class="cs-meta-item"><span class="label">Status</span><p>Launched and live in<br>AWS Marketplace console</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">context.</span></div>
+    <div class="cs-prose">
+      <p>Private Marketplace (PMP) lets administrators inside organizations build customized catalogs of pre-approved products from AWS Marketplace. Admins curate what their users can buy, customize the experience with their company's branding, and control access at the organizational unit or account level. End users subscribe to products from within this curated environment, and can request additions that admins must approve.</p>
+      <p>The JWCC/C2E defense contract specifically requires that Intelligence Community (ICMP) users purchase AWS Marketplace products through the PMP experience — since governmental entities only want their users buying pre-approved products. But there was a critical problem: PMP existed only on the website version of AWS Marketplace, and ICMP users working inside SCIFs cannot access the public internet. PMP had to move into the AWS console.</p>
+      <p>Since we had to migrate and rebuild the entire experience anyway, I took this as an opportunity to completely redesign it — the existing experience was stylistically outdated, non-compliant with Cloudscape design standards, and full of poorly built pages that had been implemented without any design oversight.</p>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-card"><span class="label-green">The contract requirement</span><p>ICMP users must buy through PMP. PMP only runs on the public web. ICMP users can't use the public web inside SCIFs.</p></div>
+      <div class="insight-card"><span class="label-green">The state of the product</span><p>7 years old. Not Cloudscape-compliant. Many pages were built by engineering without any design input. Scope was misrepresented as 10-15 pages; the actual scope was 2-3x that.</p></div>
+      <div class="insight-card"><span class="label-green">The opportunity</span><p>Since we were rebuilding it anyway, I redesigned every surface — introducing new page concepts, new navigation, new patterns, and new standards that cascaded across Marketplace.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGE -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">challenge.</span></div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Existing PMP web experience — stylistically outdated, non-Cloudscape</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Understanding a strangely implemented existing product</h4>
+        <p>The team had difficulty explaining how their own product worked. Product and engineering were disorganized, didn't have accurate information, and had implemented things in ways that required significant investigation to understand. I had to push hard to get enough context to make informed design decisions.</p>
+      </div>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-dark" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:#484F58;font-family:var(--font-mono);font-size:10px;letter-spacing:0.08em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Engineering wireframes using incorrect Cloudscape components</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Engineering that didn't understand Cloudscape</h4>
+        <p>The engineering team built their own proposed wireframes before design involvement — using Cloudscape components incorrectly throughout. I had to understand why they made those decisions before I could redesign properly, which meant a significant amount of rework just to understand the starting point. I pushed back consistently and guided them toward correct component usage throughout the project.</p>
+      </div>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Scope mapping: original 10-15 pages vs. actual 30+ pages discovered</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Scope that was 2-3x what I was told</h4>
+        <p>The original scope was framed as a simple 1-to-1 redesign of 10-15 pages. The actual scope was 2-3x that number, including flows that had never had any design input — product and engineering had simply built them on their own. I discovered these gaps progressively and redesigned them from scratch as I found them.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 1: HOMEPAGE AND USER ONBOARDING -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">part 1 — homepage, getting started.</span></div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>New "My Private Marketplace" landing page — new page I introduced</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>A new landing page: "My Private Marketplace"</h4>
+        <p>Previously, a mix of essential information and announcements was crammed onto the dashboard page, causing information overload for new users. I introduced a new page — "My Private Marketplace" — as a dedicated starting point for all users. It serves as the place where admins can post special announcements and users arrive with context before they start browsing. I convinced the team that users needed this starting point, and it became a standard part of the new experience.</p>
+      </div>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>End user getting started experience — redesigned from scratch</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Redesigned end user experience</h4>
+        <p>I rewrote all the verbiage on the main marketing landing homepage, completely redesigned the end user "getting started" page, and designed a new widget to preview what a product looks like when approved for purchase in the PMP environment.</p>
+      </div>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Old branding toolbar vs. new approved-pill approach on products</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Removing the non-compliant branding toolbar</h4>
+        <p>The existing experience had a badly implemented extra toolbar that admins could customize with their company logo and colors. It was not Cloudscape compliant, and there was no way to check WCAG color contrast compliance for the header text against whatever color the admin chose. After many discussions with the team, I determined this entire toolbar was unnecessary and replaced it with a small branded pill on each purchasable product — simple, compliant, and effective.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 2: ADMIN -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">part 2 — admin experience.</span></div>
+    <div class="cs-prose">
+      <p>The admin experience is where most of the complexity lived. I redesigned the left navigation, the main dashboard, multiple wizard flows, and an entire new suite of pages — and wrote all the help panel content and page descriptions for every page, since 95% of existing pages had none.</p>
+    </div>
+
+    <div class="cs-title-row">
+      <h4>Left navigation redesign</h4>
+      <p>I redesigned the left navigation for the entire admin experience, merging some pages and moving others to sit within existing pages. The original navigation had grown organically and no longer reflected how admins actually moved through their tasks.</p>
+    </div>
+    <div class="cs-img-pair">
+      <div class="cs-img-full" style="min-height:260px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Old admin left navigation</p>
+      </div>
+      <div class="cs-img-full" style="min-height:260px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>New admin left navigation — merged and reorganized</p>
+      </div>
+    </div>
+
+    <div class="cs-title-row">
+      <h4>Admin dashboard redesign</h4>
+      <p>I redesigned and cleaned up the main admin dashboard, redesigning the tables to follow all Cloudscape compliance rules with an unusual level of detail. I also refactored the tabbing system in the table, reasoning through why the existing tabs didn't actually work well for how admins needed to find information.</p>
+    </div>
+    <div class="cs-img-pair">
+      <div class="cs-img-full" style="min-height:260px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Old admin dashboard — non-Cloudscape tables, confusing tab structure</p>
+      </div>
+      <div class="cs-img-full" style="min-height:260px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>New admin dashboard — fully Cloudscape-compliant, reorganized tabs</p>
+      </div>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>New suite of pages: hierarchical change tracking system for admins</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>A new suite of pages for change tracking</h4>
+        <p>I designed an entirely new set of pages to track a hierarchical system of changes implemented by admins — something that had never existed in PMP before. Admins needed visibility into what had changed, when, and by whom. I designed this from scratch, including the IA and the individual page designs.</p>
+      </div>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:220px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Redesigned wizard flows — merged where similar, fixed Cloudscape usage</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Revamped wizard flows</h4>
+        <p>I revamped multiple wizard flows to follow Cloudscape guidance precisely, use cleaner language, and work as intended. I also merged certain wizard flows that served similar enough purposes to warrant combination. These flows had originally been implemented without design oversight, and it showed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PART 3: SETTINGS -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">part 3 — settings page and new standard.</span></div>
+
+    <div class="cs-inline-row">
+      <div class="cs-img-full" style="min-height:240px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>New settings page with submenu — scrollable, extensible</p>
+      </div>
+      <div class="cs-inline-caption">
+        <h4>A new settings standard, adopted across Marketplace</h4>
+        <p>I redesigned the PMP settings page and introduced a submenu structure within the page — enabling future scrollability as more settings sections get added over time. This approach to settings architecture was new to Marketplace. It worked so well that I applied the same pattern in my AWS Data Exchange Data Grants work, where it also became the standard for the ADX settings page.</p>
+      </div>
+    </div>
+
+    <!-- Final designs overview: wide -->
+    <div class="cs-inline-row img-wide">
+      <div class="cs-img-full" style="min-height:360px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Full overview: all redesigned PMP surfaces — homepage, My PMP, admin dashboard, product catalog, settings</p>
+      </div>
+      <div class="cs-inline-caption" style="margin-top:16px;">
+        <h4>Complete redesign overview</h4>
+        <p>This is the full scope of what shipped: a new landing page I introduced, a redesigned end user getting started flow, a branding pill replacing the non-compliant toolbar, a reorganized admin navigation, a redesigned dashboard with proper Cloudscape tables, a new change tracking suite of pages, revamped wizard flows, and a new settings architecture. Every page includes help panel content and description verbiage I wrote from scratch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">results.</span></div>
+    <div class="cs-prose">
+      <p>After almost a year of work and 5+ design approval sessions, the entire new Private Marketplace console experience is live. This may have been the biggest design undertaking I have ever completed. The settings submenu pattern I introduced has since been adopted across other AWS Marketplace products.</p>
+      <p>For ICMP users working in SCIFs, Private Marketplace now works. That was the whole point.</p>
+    </div>
+
+    <div class="cs-video">
+      <iframe src="https://www.youtube.com/embed/PLACEHOLDER_PMP_DEMO?iv_load_policy=3&rel=0&modestbranding=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope" allowfullscreen loading="lazy"></iframe>
+    </div>
+
+    <div class="cs-img-full" style="min-height:300px;display:flex;align-items:center;justify-content:center;">
+      <p style="color:var(--muted);font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Final shipped PMP console experience — screenshots or screen recording</p>
+    </div>
+
+    <div class="cs-inline-row">
+      <div class="cs-inline-caption">
+        <h4>Beyond launch</h4>
+        <p>Future improvements I'd advocate for: a formal admin onboarding flow for new PMP administrators; improved branding customization options that are Cloudscape-compliant and WCAG-verifiable; and deeper analytics for admins to understand which products their users are actually using vs. requesting.</p>
+      </div>
+      <div class="cs-img-full" style="min-height:200px;display:flex;align-items:center;justify-content:center;">
+        <p style="color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-align:center;max-width:none;">[ IMAGE PLACEHOLDER ]<br>Deprioritized features and future roadmap items</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNINGS -->
+<section class="cs-section" style="padding-bottom:96px;">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">learnings.</span></div>
+    <div class="cs-prose">
+      <ul class="learnings-list">
+        <li><strong>Scope misrepresentation is a design problem, not just a project problem.</strong> When I discovered the actual scope was 2-3x what I was told, I didn't stop — I mapped everything that existed, identified what needed design, and worked through it. Having a clear view of the total scope, even an uncomfortable one, is the only way to actually plan.</li>
+        <li><strong>Engineering needs design guidance, not just design deliverables.</strong> Pushing back on incorrect Cloudscape usage wasn't optional — if I hadn't, the final product would have been non-compliant and difficult to maintain. Being present and specific in that feedback was part of the job.</li>
+        <li><strong>Introducing a new page takes more than good design rationale.</strong> Getting "My Private Marketplace" accepted required multiple discussions and a clear articulation of the user problem it solved. The best solution doesn't ship just because it's the best solution.</li>
+        <li><strong>Patterns that work in one product can solve problems in another.</strong> The settings submenu I introduced in PMP solved a real information architecture problem. When I encountered a similar problem in Data Grants, I already had the solution. Building reusable patterns is worth the upfront investment.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="more-work">
+  <div class="container">
+    <div class="section-rule mb-4"></div>
+    <span class="label" style="display:block;margin-bottom:32px;">more to explore.</span>
+    <div class="work-grid">
+      <a href="adc-seller.html" class="case-card">
+        <div class="case-card-img" style="background:#0D1117;min-height:180px;display:flex;align-items:center;justify-content:center;">
+          <p style="color:#30363D;font-family:var(--font-mono);font-size:10px;text-align:center;max-width:none;">Preview image</p>
+        </div>
+        <div class="case-card-body">
+          <div class="case-card-tags"><span class="tag">Government</span><span class="tag">Multi-Catalog</span></div>
+          <div class="case-card-title">ADC Seller Experience</div>
+          <div class="case-card-arrow">View case study →</div>
+        </div>
+      </a>
+      <a href="data-grants.html" class="case-card">
+        <div class="case-card-img"><img src="https://framerusercontent.com/images/QNqzFDi5oC2ZoJWQPpP3Ec9f2M.png" alt="Data Grants" loading="lazy" /></div>
+        <div class="case-card-body">
+          <div class="case-card-tags"><span class="tag">Data Governance</span><span class="tag">Entitlements</span></div>
+          <div class="case-card-title">Data Exchange Grants</div>
+          <div class="case-card-arrow">View case study →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="label">Lisa Nian Liu · Senior Product Designer</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/lliu29/" target="_blank">LinkedIn</a>
+        <a href="https://framerusercontent.com/assets/V8zRIeVEyGzj7f5DV7qnIaPkZU.pdf" target="_blank">Resume ↓</a>
+        <a href="mailto:lliu29@yahoo.com">lliu29@yahoo.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Exchange Grants — Lisa Nian Liu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">LISA NIAN LIU</a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="https://framerusercontent.com/assets/V8zRIeVEyGzj7f5DV7qnIaPkZU.pdf" target="_blank" class="btn-resume">My Resume ↓</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="cs-hero">
+  <div class="container">
+    <div class="case-card-tags mb-4">
+      <span class="tag">Iterative Product Development</span><span class="tag">Data Governance</span><span class="tag">Entitlements</span>
+    </div>
+    <h1 class="display-lg">Data Exchange Grants</h1>
+    <p style="font-size:18px;color:var(--muted);margin-top:12px;max-width:64ch;">Share and manage AWS data entitlements with trusted organizations without going through AWS Marketplace monetization.</p>
+    <div style="display:flex;gap:16px;margin-top:28px;flex-wrap:wrap;">
+      <a href="https://youtu.be/j4h_poxlHk4?si=zjgviPfa7N82kvQ7" target="_blank" class="btn-primary">See Demo ↗</a>
+    </div>
+    <div class="cs-cover mt-12">
+      <img src="https://framerusercontent.com/images/QNqzFDi5oC2ZoJWQPpP3Ec9f2M.png" alt="Data Grants cover" loading="eager" />
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="cs-meta-row">
+      <div class="cs-meta-item"><span class="label">Client</span><p>AWS Data Exchange (in-house)</p></div>
+      <div class="cs-meta-item"><span class="label">My Role</span><p>Senior UX Designer</p></div>
+      <div class="cs-meta-item"><span class="label">Duration</span><p>V1: 5 months (Apr–Nov 2023)<br>V2: 3 months (Apr–Nov 2024)</p></div>
+      <div class="cs-meta-item"><span class="label">Launched</span><p>V1: AWS Re:Invent 2023<br>V2: AWS Re:Invent 2024</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXT -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">context.</span></div>
+    <div class="cs-prose">
+      <p>AWS Data Exchange (ADX) is a service that helps AWS customers share and manage data entitlements from other organizations at scale. ADX has the hierarchy, delivery, hosting, and security infrastructure within the AWS suite — a great place to store and manage data.</p>
+      <p>The problem: ADX was originally built to create and deliver monetized data products through AWS Marketplace. That meant customers had to register for Marketplace, set up financial flows, and publicly list at least one product — just to transfer data, even when no money was changing hands.</p>
+    </div>
+    <div class="cs-img-dark">
+      <img src="https://framerusercontent.com/images/wlChZ15ku30KwAwFgSE8wf0L1P8.png" alt="ADX original flow" loading="lazy" />
+    </div>
+    <div class="cs-prose">
+      <p>According to prospective and existing ADX customers, there are 2 major reasons they want to use ADX for delivery without monetizing via AWS Marketplace:</p>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/AYPNBl1WeBrTfEX0ed8LwVNISc.png" alt="Use case 1" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Use case 1: bill outside AWS</h4>
+        <p>Customers want to deliver data via ADX but bill outside AWS. Many already have their own billing system set up and don't want to overhaul it just to use ADX.</p>
+      </div>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/hKx1uSEZPMz1q0FX0FAtvSVBE.png" alt="Use case 2" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Use case 2: internal data sharing</h4>
+        <p>Customers don't want to charge money at all — they're exchanging datasets internally and want to use ADX's hierarchy and infrastructure to organize and transfer data without needing Marketplace.</p>
+      </div>
+    </div>
+    <div class="callout"><p>ADX data grants: a lightweight method of sharing data that runs parallel to the existing ADX/Marketplace data product path — no monetization required.</p></div>
+    <div class="cs-img-dark">
+      <img src="https://framerusercontent.com/images/oO6879dg1zVD1eMoR9YPBbVk9ZU.png" alt="Data Grants overview" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGES -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">challenges.</span></div>
+    <div class="cs-prose">
+      <p>Data Grants was built in 2 projects. V1 (Apr–Nov 2023) was the main effort — multiple new pages plus redesigns of the Entitled Data page and main navigation, launching at Re:Invent 2023. V2 (Apr–Nov 2024) API-fied the experience and improved backend processes, launching at Re:Invent 2024.</p>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/0HqTvirbWCvcZ7TLG5EiFuV4JY.png" alt="Development limitations" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Development limitations</h4>
+        <p>I was designing around ADX's existing architecture, with optimization as a secondary goal. I optimized when I could — including successfully convincing the team to remove an unnecessary product details page for data grants, since there's no monetary context. This cost zero additional engineering time.</p>
+      </div>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/afHkGBGMpvoMhGgMa1sD9F0En1Y.png" alt="AWS design processes" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Navigating AWS's design processes</h4>
+        <p>AWS's size demands a system of checkpoints requiring sign-off from product, design, and engineering leadership at multiple points — each taking 1–2 weeks. For design, UX sign-off and Fit & Finish require special "bar raiser" reviewers. For V1, I launched in November 2023, obtained design bar-raiser approval by September, and applied in July — 2 months before each milestone.</p>
+      </div>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/7mxWMwXvsqgCgQCQeiNXb0LRNk.png" alt="IA differentiation" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>How do we differentiate between new and existing features?</h4>
+        <p>ADX was always synonymous with monetized data products. Adding a parallel, non-monetized path required rethinking the IA at the service level — not just adding a new page.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- V1 REQUIREMENTS -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">V1 — requirements & research.</span></div>
+    <div class="cs-prose">
+      <p>The goal of V1 (6–7 months) was to create the main data grants feature: all new pages, plus modifications to key existing pages and the ADX left navigation. I worked closely with product and development throughout.</p>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/64IzWmhg04VnBt1lDu8kWQVrfxs.png" alt="Initial name TOS" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Initial name: TOS (tech-only shares)</h4>
+        <p>Data Grants started as the "tech-only program" (TOP) — a lightweight specialized path to fast-track data access without the formalities of ADX and Marketplace. We initially planned for mostly programmatic (API-only) access.</p>
+      </div>
+    </div>
+    <div class="cs-inline-row img-wide">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/RpjRPHIiNN3L9uZB1PAglq48L6I.png" alt="Scale of feature" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption" style="margin-top:16px;">
+        <h4>Scale of this feature?</h4>
+        <p>The PM and I weren't sure how big this feature would be. Initially pitched as "lightweight" — are data grants simple enough to live within the Entitled Data page, or do they need their own layer of metadata? On the other hand, this is a reforging of ADX's original product offering. Should data grants exist as their own service? Registering a new AWS service takes a very long time, so that was off the table.</p>
+      </div>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/PEmbs5471W2w1hOgAvO4wjN4A.png" alt="Confirming personas" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Confirming personas and competitors</h4>
+        <p>Generally "data owner" mapped to sender and "data consumer" to receiver, but the existing ADX personas of sellers and buyers weren't an exact match. I also investigated the overlap with AWS Datazone — key differences being that Datazone organizes data by business domains inside a single large organization and is marketed primarily toward internal usage.</p>
+      </div>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/jw5PB2pWOU4ayc79Gb1L874JxA.png" alt="Soft requirements" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Soft requirements</h4>
+        <p>Many requirements weren't confirmed. I designed multiple options for many pages so I could seek clarification by demoing them to users and engineers. Examples I later clarified: 1 share to 1 dataset or many (answer: 1 to 1 only); whether grants need a human-readable name (answer: no, account ID is sufficient); whether ADX needs to link to a contract (answer: no, both parties contract outside AWS).</p>
+      </div>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/TDWeua4i4qyAviBX8tZiwXhNw.png" alt="User interviews" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>User interviews with existing customers</h4>
+        <p>The PM and I co-led 14–15 video calls with existing ADX seller customers. Key findings: most customers need only 1 dataset per 1 share; many have specific billing configurations they can't change; each shared dataset needs metadata about the sending process for audit purposes; the sender always initiates — the receiver never requests.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- V1 DESIGN -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">V1 — design.</span></div>
+    <div class="cs-prose">
+      <p>I designed concurrently alongside research and requirement-gathering, clarifying requirements through quick mockups and user interviews as I went.</p>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/mBGiCfaKuSz02mxc3BrwpxW88.png" alt="Entitled data redesign opportunity" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Entitled Data page: an opportunity to redesign</h4>
+        <p>The original Entitled Data page had 4 nested layers (1 click each), was hardcoded at 280px wide (truncating names), and was not Cloudscape-compliant. Since data grants don't have a subscription layer, I pushed to redesign it as a flat table sorted by datasets — clearing the Cloudscape issue and removing extra clicks at no additional engineering cost.</p>
+      </div>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/JOGfRgMPJs20wrUv7bsgupUXVI.png" alt="Left navigation redesign" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Left navigation: an opportunity to redesign</h4>
+        <p>Adding data grants to the left navigation gave me a chance to rethink the full ordering. Key decisions: separate Data Grants and Data Products into clearly labeled sections; spotlight data access at the top as the most important pages for both personas; reorganize Data Products into persona-specific subsections no longer emphasizing Marketplace purchase phases.</p>
+      </div>
+    </div>
+    <div class="cs-inline-row img-wide">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/31gOEuFHATm7PwLJbXq0YIEGgM.png" alt="Naming workshop" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption" style="margin-top:16px;">
+        <h4>What to name the unit?</h4>
+        <p>We needed a strong verbal identity to differentiate this new feature. "Tech-only shares" was too generic. I brainstormed alternatives and held a workshop with product and engineering to vote. Interestingly, the final name — "data grants" — got zero votes during the workshop but emerged afterward as the best fit.</p>
+      </div>
+    </div>
+
+    <div class="cs-title-row">
+      <h4>V1 wireframes</h4>
+      <p>The scope of V1 included creating and viewing data grants (sent and received), redesigning Entitled Data, and redesigning the left navigation.</p>
+    </div>
+    <div class="cs-img-full">
+      <img src="https://framerusercontent.com/images/KA2f8HlVgqkex05llb8AIy47NF0.png" alt="V1 wireframes overview" loading="lazy" />
+    </div>
+
+    <!-- Create new data grant -->
+    <div class="cs-title-row">
+      <h4>Create new data grant</h4>
+      <p>When a sender lands on the Sent Data Grants page, they see a list of first-time steps and a table of previously created grants. The creation wizard asks them to select the dataset, give it a unique name and description, enter the receiver's AWS account ID, and specify when access ends. Users can track the "in progress" status on both the details page and the main table.</p>
+    </div>
+    <div class="cs-img-pair">
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/xnmIePWxPWiSbJi7pUjmWWsLAI.png" alt="Create data grant A" loading="lazy" /></div>
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/e1pSnUZJesIkEl5kfdfMnI7J8.png" alt="Create data grant B" loading="lazy" /></div>
+    </div>
+
+    <!-- Receive new data grant -->
+    <div class="cs-title-row">
+      <h4>Receive new data grant</h4>
+      <p>When a receiver lands on the Received Data Grants page, they see a table containing all grants shared with them that require action. Once accepted or expired, grants move to a second tab. Upon acceptance, the link to the entitled dataset becomes active — the receiver now has the right to access and use the data.</p>
+    </div>
+    <div class="cs-img-pair">
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/I468HBJccuA1RhHS8h2C1OAU.png" alt="Receive data grant A" loading="lazy" /></div>
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/T93LUjzK71vBRB57i4YZGJCTg40.png" alt="Receive data grant B" loading="lazy" /></div>
+    </div>
+
+    <!-- Entitled data -->
+    <div class="cs-title-row">
+      <h4>Entitled data</h4>
+      <p>The receiver accesses their allowed datasets in the Entitled Data page. For V1, this page was redesigned into a table experience sorted by datasets first, with the AWS Marketplace product or data grant shown in a separate "source" column. For the current version, each data grant only has 1 dataset, so there's no separate source layer — the receiver can access grant details directly from the dataset page.</p>
+    </div>
+    <div class="cs-img-pair">
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/i84p9nbPxizCN8pRYIl49pny05A.png" alt="Entitled data A" loading="lazy" /></div>
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/vq79vRDFEAJpsPIAU023whD9Zcg.png" alt="Entitled data B" loading="lazy" /></div>
+    </div>
+
+    <!-- New navigation -->
+    <div class="cs-title-row">
+      <h4>New navigation</h4>
+      <p>I spotlighted data access and Data Grants in the topmost section, as data grants represent a purer form of data sharing important to both personas. The bottom section contains all Data Product-specific pages, reordered into persona-specific subsections that no longer emphasize the 2 stages of buyer shopping. I also renamed certain pages and subsections to clarify their relevance to AWS Marketplace data products only.</p>
+    </div>
+    <div class="cs-img-pair">
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/EKB0hIqxpSpVGjJmNwSVPJfSws.png" alt="Navigation A" loading="lazy" /></div>
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/B29j7srKJpJRwdrJadf8oo4mUQ.png" alt="Navigation B" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- V2 DESIGN -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">V2 — design.</span></div>
+    <div class="cs-prose">
+      <p>The goal of V2 was to API-fy the data grants feature, fix things we couldn't implement in V1, and add the ability to redistribute a received data grant. In August 2023, the ADX team was dispersed to other service teams. I rejoined temporarily in 2024 to support the V2 launch.</p>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/FleEuX3zedPUHf4Cqb4chQboY.png" alt="Third persona" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>A 3rd persona: the redistributed (secondary) receiver</h4>
+        <p>V2 added a secondary receiver who gains access through AWS License Manager via redistribution from a primary receiver. This secondary receiver gets access through Entitled Data only — they can't view the received grant on the main received grants page, can't see detailed grant information, and can't redistribute further. This also required a new settings page for senders to opt into the License Manager integration.</p>
+      </div>
+    </div>
+    <div class="cs-img-full">
+      <img src="https://framerusercontent.com/images/mYr0Af5jSM0jTLg8oMJrloF9bY.png" alt="V2 wireframes overview" loading="lazy" />
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/EIJyQIV7WPfP6GBW0Cdr4Ys.png" alt="Updates to existing pages" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Updates to existing pages for data sender and receiver</h4>
+        <p>A sender can now allow or disallow redistribution from their primary receiver — I added this to the data grant creation process. A primary receiver can now redistribute their received data grant by going to AWS License Manager from their grant's details page or Entitled Data details page.</p>
+      </div>
+    </div>
+    <div class="cs-inline-row">
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/32pQRFt3WHPUfihgjY1l9oyZpE.png" alt="Instant data grants" loading="lazy" />
+      </div>
+      <div class="cs-inline-caption">
+        <h4>Instant data grants</h4>
+        <p>In V1, it took some time for a data grant to finish creating. In V2, data grant creation is now instantaneous — so a grant no longer needs "in progress" as a status and the Activity History tab for viewing incomplete jobs is no longer needed.</p>
+      </div>
+    </div>
+
+    <!-- Redistribute view -->
+    <div class="cs-title-row">
+      <h4>Redistribute view</h4>
+      <p>For senders, step 2 of the creation wizard now requires an additional selection to allow or disallow redistribution. For receivers who can redistribute, they can navigate to AWS License Manager straight from their received data grant, as long as they've set it up first. Any secondary receivers won't be able to see the original grant details in their Entitled Data view.</p>
+    </div>
+    <div class="cs-img-pair">
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/0oxzV8gj42V1xwnEpGmjZYVDZ4.png" alt="Redistribute A" loading="lazy" /></div>
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/KzeKTU278VIjqHkLSoDJkEanY.png" alt="Redistribute B" loading="lazy" /></div>
+    </div>
+
+    <!-- Settings -->
+    <div class="cs-title-row">
+      <h4>Settings</h4>
+      <p>ADX now requires a settings page to manage the integration with AWS License Manager. A primary receiver gets notified from their received grant's details page to set this up before they can perform the redistribution action.</p>
+    </div>
+    <div class="cs-img-pair">
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/XXQJZirRjKL773T1TeEcJcZnFM.png" alt="Settings A" loading="lazy" /></div>
+      <div class="cs-img-full"><img src="https://framerusercontent.com/images/bTJWxVz1370ASWILxqZ0gDG2y0.png" alt="Settings B" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULT -->
+<section class="cs-section">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">result.</span></div>
+    <div class="cs-prose">
+      <p>Developing data grants fundamentally changed AWS Data Exchange from a supporting layer of AWS Marketplace into its own self-sustaining service. ADX now defines data grants as its primary function, with Marketplace monetization as an optional path.</p>
+    </div>
+    <!-- Videos first -->
+    <div class="cs-video">
+      <iframe src="https://www.youtube.com/embed/j4h_poxlHk4?si=Ch3dsP-uLHU5updE&iv_load_policy=3&rel=0&modestbranding=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="cs-video">
+      <iframe src="https://www.youtube.com/embed/7F2ryjnXO2k?iv_load_policy=3&rel=0&modestbranding=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <!-- Beyond V2: text + image side by side -->
+    <div class="cs-inline-row">
+      <div class="cs-inline-caption">
+        <h4>Beyond V2</h4>
+        <p>Although ADX's team is no longer as robust as before, possible additions for V3 include: grouping of grants in the main table; contracting attached to grants; 1+ datasets per grant with additional grouping layers; a way for data consumers to discover and request datasets; and a possible Snowflake integration so data can be shared directly from Snowflake through ADX.</p>
+      </div>
+      <div class="cs-img-full">
+        <img src="https://framerusercontent.com/images/TAM6MszECAihcjFE6MoRpIwWvw.png" alt="Beyond V2 design priorities" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNINGS -->
+<section class="cs-section" style="padding-bottom:96px;">
+  <div class="container">
+    <div class="cs-section-label"><div class="section-rule"></div><span class="label">learnings.</span></div>
+    <div class="cs-prose">
+      <ul class="learnings-list">
+        <li><strong>Large organizations make big moves with far-reaching consequences.</strong> What started as "add one alternate path to the product" became "the alternate path is now the main product." I couldn't have predicted that from the beginning.</li>
+        <li><strong>Be audacious and take any opportunity to improve the existing experience.</strong> The left nav and Entitled Data pages wouldn't have changed so profoundly if I hadn't insisted it was worth doing.</li>
+        <li><strong>Leadership shakeups produce completely unforeseen results.</strong> The team being dispersed after V1 is part of why V2 almost didn't happen — and why I rejoined to see it through.</li>
+        <li><strong>An incredible team makes a technically dense project worth it.</strong> I had exceptional product and engineering partners, and I jumped at the chance to work with them again on V2.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="more-work">
+  <div class="container">
+    <div class="section-rule mb-4"></div>
+    <span class="label" style="display:block;margin-bottom:32px;">more to explore.</span>
+    <div class="work-grid">
+      <a href="beekeeperai.html" class="case-card">
+        <div class="case-card-img"><img src="https://framerusercontent.com/images/xSLUGmblIkWep6QdHxjWlTs28xo.png" alt="BeekeeperAI" loading="lazy" /></div>
+        <div class="case-card-body">
+          <div class="case-card-tags"><span class="tag">0-1 Product</span><span class="tag">Healthcare</span></div>
+          <div class="case-card-title">BeekeeperAI</div>
+          <div class="case-card-arrow">View case study →</div>
+        </div>
+      </a>
+      <a href="express-private-offers.html" class="case-card">
+        <div class="case-card-img"><img src="https://framerusercontent.com/images/DliS2sywSQPK2wiKL4BgpTmygB4.png" alt="Express Private Offers" loading="lazy" /></div>
+        <div class="case-card-body">
+          <div class="case-card-tags"><span class="tag">Agentic AI</span><span class="tag">Cloud Marketplace</span></div>
+          <div class="case-card-title">Express Private Offers</div>
+          <div class="case-card-arrow">View case study →</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <span class="label">Lisa Nian Liu · Senior Product Designer</span>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/lliu29/" target="_blank">LinkedIn</a>
+        <a href="https://framerusercontent.com/assets/V8zRIeVEyGzj7f5DV7qnIaPkZU.pdf" target="_blank">Resume ↓</a>
+        <a href="mailto:lliu29@yahoo.com">lliu29@yahoo.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
