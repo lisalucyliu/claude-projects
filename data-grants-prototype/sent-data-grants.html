@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sent data grants — AWS Data Exchange</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Data Exchange sent data grants homepage." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="breadcrumb-root"></div>
+
+    <div class="page-header">
+      <h1>Sent data grants</h1>
+      <button class="info-link" data-open-help>Info</button>
+    </div>
+
+    <div id="flash-root" class="flashbar"></div>
+
+    <section class="container creation-steps" data-collapsible>
+      <div class="creation-steps__header" data-collapse-toggle>
+        <span data-icon="chevronDown"></span>
+        <span>Data grant creation steps</span>
+      </div>
+      <div class="creation-steps__body">
+        <div class="creation-steps__step">
+          <div class="creation-steps__icon" data-icon="networkNodes"></div>
+          <div class="creation-steps__text">Step 1. Create an <a href="#" onclick="return false;">owned data set</a> to prepare for sharing.</div>
+        </div>
+        <div class="creation-steps__arrow" data-icon="arrowRight"></div>
+        <div class="creation-steps__step">
+          <div class="creation-steps__icon" data-icon="paperPlane"></div>
+          <div class="creation-steps__text">Step 2. <a href="#" onclick="return false;">Create and send a data grant</a> by specifying the account ID of the receiver and data set.</div>
+        </div>
+        <div class="creation-steps__arrow" data-icon="arrowRight"></div>
+        <div class="creation-steps__step">
+          <div class="creation-steps__icon" data-icon="checkCircleBig"></div>
+          <div class="creation-steps__text">Step 3. The receiver accepts the sent data grant and gains access to the data set.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="tabs" data-tab-group="sent">
+      <button class="tab active" data-tab="grants">Sent data grants</button>
+      <button class="tab" data-tab="activity">Activity history</button>
+    </div>
+
+    <div class="tab-panel active" data-tab-group="sent" data-tab="grants">
+      <div class="table-panel" id="grants-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>Sent data grants <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">Create a data grant for sharing a data set with your receiver.</p>
+          </div>
+          <div class="table-panel__actions">
+            <label class="toggle">
+              <input type="checkbox" id="show-expired-toggle" />
+              <span class="toggle__track"></span>
+              Show expired
+            </label>
+            <button class="btn btn-icon" id="refresh-grants" title="Refresh"><span data-icon="refresh"></span></button>
+            <div class="btn-dropdown">
+              <button class="btn btn-normal" data-dropdown-trigger>Actions</button>
+              <div class="dropdown-menu">
+                <button data-action="view" disabled>View details</button>
+                <button data-action="revoke" disabled>Revoke data grant</button>
+                <button data-action="delete" disabled>Delete data grant</button>
+              </div>
+            </div>
+            <button class="btn btn-primary" id="create-grant-btn">Create data grant</button>
+          </div>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="search-input">
+            <span data-icon="search"></span>
+            <input type="text" placeholder="Search or filter by data grant name or data set name, status, or AWS ID" data-search-input />
+          </div>
+          <div class="pagination" data-pagination></div>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table" id="sent-grants-table">
+            <thead>
+              <tr>
+                <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-grants" /></th>
+                <th data-sort-key="name"><span class="th-inner">Data grant name <span class="sort-icon"></span></span></th>
+                <th data-sort-key="statusLabel"><span class="th-inner">Status <span class="sort-icon"></span></span></th>
+                <th data-sort-key="expirationSort"><span class="th-inner">Expiration date <span class="sort-icon"></span></span></th>
+                <th data-sort-key="receiverAwsId"><span class="th-inner">Receiver AWS ID <span class="sort-icon"></span></span></th>
+                <th data-sort-key="creationSort"><span class="th-inner">Creation date <span class="sort-icon"></span></span></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-tab-group="sent" data-tab="activity">
+      <div class="table-panel" id="activity-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>Jobs <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">Jobs are deleted 90 days after they are created.</p>
+          </div>
+          <div class="table-panel__actions">
+            <button class="btn btn-icon" id="refresh-jobs" title="Refresh"><span data-icon="refresh"></span></button>
+          </div>
+        </div>
+
+        <div class="table-toolbar" style="justify-content:flex-end;">
+          <div class="pagination" data-pagination></div>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table" id="jobs-table">
+            <thead>
+              <tr>
+                <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-jobs" /></th>
+                <th data-sort-key="type"><span class="th-inner">Type <span class="sort-icon"></span></span></th>
+                <th class="no-sort"><span class="th-inner">Details</span></th>
+                <th data-sort-key="stateLabel"><span class="th-inner">State <span class="sort-icon"></span></span></th>
+                <th data-sort-key="createdSort"><span class="th-inner">Time created <span class="sort-icon"></span></span></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.sent.js"></script>
+<script src="page.sent.js"></script>
+</body>
+</html>

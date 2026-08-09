@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Received data grants — AWS Data Exchange</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Data Exchange received data grants homepage." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="breadcrumb-root"></div>
+
+    <div class="page-header">
+      <h1>Received data grants</h1>
+      <button class="info-link" data-open-help>Info</button>
+    </div>
+
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="tabs" data-tab-group="received">
+      <button class="tab active" data-tab="pending">Pending data grants</button>
+      <button class="tab" data-tab="accepted">Accepted and expired data grants</button>
+    </div>
+
+    <div class="tab-panel active" data-tab-group="received" data-tab="pending">
+      <div class="table-panel" id="pending-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>Pending data grants <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">Granted data sets pending acceptance.</p>
+          </div>
+          <div class="table-panel__actions">
+            <button class="btn btn-primary" id="accept-grant-btn" disabled>Accept data grant</button>
+          </div>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="search-input">
+            <span data-icon="search"></span>
+            <input type="text" placeholder="Search or filter by data grant name or data set name, type, delivery method" data-search-input />
+          </div>
+          <div class="pagination" data-pagination></div>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table" id="pending-grants-table">
+            <thead>
+              <tr>
+                <th class="radio-col no-sort"></th>
+                <th data-sort-key="name"><span class="th-inner">Data grant name <span class="sort-icon"></span></span></th>
+                <th data-sort-key="statusLabel"><span class="th-inner">Status <span class="sort-icon"></span></span></th>
+                <th data-sort-key="startSort"><span class="th-inner">Start date <span class="sort-icon"></span></span></th>
+                <th data-sort-key="expirationSort"><span class="th-inner">Expiration date <span class="sort-icon"></span></span></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-tab-group="received" data-tab="accepted">
+      <div class="table-panel" id="accepted-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>Accepted and expired data grants <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">Data sets that have been granted to me that I have accepted or are expired.</p>
+          </div>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="search-input">
+            <span data-icon="search"></span>
+            <input type="text" placeholder="Search or filter by data grant name" data-search-input />
+          </div>
+          <div class="pagination" data-pagination></div>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table" id="accepted-grants-table">
+            <thead>
+              <tr>
+                <th data-sort-key="name"><span class="th-inner">Data grant name <span class="sort-icon"></span></span></th>
+                <th data-sort-key="statusLabel"><span class="th-inner">Status <span class="sort-icon"></span></span></th>
+                <th data-sort-key="startSort"><span class="th-inner">Start date <span class="sort-icon"></span></span></th>
+                <th data-sort-key="expirationSort"><span class="th-inner">Expiration date <span class="sort-icon"></span></span></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.received.js"></script>
+<script src="page.received.js"></script>
+</body>
+</html>
