@@ -1,7 +1,7 @@
 /* Inline SVG icon set — no external requests, mirrors Cloudscape's outline icon style */
 const Icons = {
-  /* Simplified AWS wordmark: orange "aws" with the smile-arrow swoosh. */
-  awsLogo: `<svg width="46" height="18" viewBox="0 0 46 18" fill="none"><text x="0" y="13" font-family="Arial, sans-serif" font-weight="700" font-size="15" font-style="italic" fill="#FF9900" letter-spacing="-0.5">aws</text><path d="M1 16.5c8 3.5 30 3.5 44 -2.5" stroke="#FF9900" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M41.5 12.3 45 14l-2.3 3.2" stroke="#FF9900" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>`,
+  /* AWS wordmark: upright bold "aws" with the smile-arrow swoosh underneath. */
+  awsLogo: `<svg width="56" height="24" viewBox="0 0 56 24" fill="none"><text x="2" y="17" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="18" fill="#FF9900">aws</text><path d="M3 20.5c11 3.5 37 3.5 48-2.5" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M47.5 16.5 51.5 18.3 49 22" stroke="#FF9900" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>`,
 
   grid: `<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="0.5" y="0.5" width="4.5" height="4.5" rx="1"/><rect x="6.75" y="0.5" width="4.5" height="4.5" rx="1"/><rect x="13" y="0.5" width="4.5" height="4.5" rx="1"/><rect x="0.5" y="6.75" width="4.5" height="4.5" rx="1"/><rect x="6.75" y="6.75" width="4.5" height="4.5" rx="1"/><rect x="13" y="6.75" width="4.5" height="4.5" rx="1"/><rect x="0.5" y="13" width="4.5" height="4.5" rx="1"/><rect x="6.75" y="13" width="4.5" height="4.5" rx="1"/><rect x="13" y="13" width="4.5" height="4.5" rx="1"/></svg>`,
 
@@ -11,9 +11,9 @@ const Icons = {
 
   search: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.25"/><path d="M11 11l3.5 3.5" stroke-linecap="round"/></svg>`,
 
-  bell: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 13.5h10l-1.2-2A6 6 0 0 1 12 8V7a3 3 0 0 0-6 0v1a6 6 0 0 1-.8 3.5L4 13.5Z" stroke-linejoin="round"/><path d="M7.2 15.5a1.8 1.8 0 0 0 3.6 0" stroke-linecap="round"/></svg>`,
+  bell: `<svg width="20" height="20" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 13.5h10l-1.2-2A6 6 0 0 1 12 8V7a3 3 0 0 0-6 0v1a6 6 0 0 1-.8 3.5L4 13.5Z" stroke-linejoin="round"/><path d="M7.2 15.5a1.8 1.8 0 0 0 3.6 0" stroke-linecap="round"/></svg>`,
 
-  help: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="9" cy="9" r="7"/><path d="M6.8 7a2.2 2.2 0 1 1 3.2 2c-.7.5-1 .9-1 1.7" stroke-linecap="round"/><circle cx="9" cy="12.8" r=".2" fill="currentColor" stroke="none"/></svg>`,
+  help: `<svg width="20" height="20" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="7"/><path d="M6.8 7a2.2 2.2 0 1 1 3.2 2c-.7.5-1 .9-1 1.7" stroke-linecap="round"/><circle cx="9" cy="12.8" r=".2" fill="currentColor" stroke="none"/></svg>`,
 
   gear: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="9" cy="9" r="2.6"/><path d="M9 2.5v1.6M9 13.9v1.6M15.5 9h-1.6M4.1 9H2.5M13.4 4.6l-1.1 1.1M5.7 12.3l-1.1 1.1M13.4 13.4l-1.1-1.1M5.7 5.7 4.6 4.6" stroke-linecap="round"/></svg>`,
 

@@ -193,8 +193,8 @@ svg {
 }
 
 .top-header__icon-btn {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -207,7 +207,7 @@ svg {
 
 .top-header__divider {
   width: 1px;
-  height: 18px;
+  height: 20px;
   background: #424650;
   margin: 0 var(--space-s);
   flex-shrink: 0;
@@ -241,7 +241,7 @@ svg {
   gap: var(--space-s);
   padding: 0 var(--space-l);
   background: var(--color-bg-container);
-  border-bottom: 1px solid var(--color-border-divider);
+  border-bottom: 1px solid var(--color-border-strong);
 }
 
 .toolbar__menu-toggle {
@@ -330,7 +330,7 @@ svg {
 }
 
 .side-nav__title {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-text-heading);
 }
@@ -381,7 +381,9 @@ svg {
 .side-nav__items {
   list-style: none;
   margin: 0;
-  padding: 0;
+  /* Indents item text to land under the section header's text (after its
+     chevron+gap), rather than flush with the chevron itself. */
+  padding: 0 0 0 12px;
 }
 
 .side-nav__items li {
@@ -409,15 +411,13 @@ svg {
   font-weight: 700;
 }
 
+/* Cloudscape's own guidance explicitly says not to use a badge for "new
+   page" labels — plain bold text only. Verified against
+   cloudscape.design/patterns/general/announcing-new-features/. */
 .side-nav__badge {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
-  color: var(--color-green);
-  background: var(--color-green-tint);
-  border: 1px solid var(--color-green-border);
-  border-radius: var(--radius-badge);
-  padding: 0 6px;
-  line-height: 16px;
+  color: var(--color-blue);
 }
 
 .side-nav__divider {
