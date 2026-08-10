@@ -245,13 +245,76 @@ svg {
   background: var(--color-bg-header-hover);
 }
 
+/* ============ TOOLBAR (breadcrumb panel) ============
+   Cloudscape's AppLayout renders a full-bleed strip directly under the top
+   header — menu toggle + breadcrumbs on the left, a global info trigger on
+   the right — with its own bottom border. The side nav's vertical border
+   begins at that strip's bottom edge, not at the very top, which is what
+   produces the perpendicular join between the two borders. Verified against
+   cloudscape.design/examples/react/table.html. */
+
+.toolbar {
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  padding: 0 var(--space-l);
+  background: var(--color-bg-container);
+  border-bottom: 1px solid var(--color-border-divider);
+}
+
+.toolbar__menu-toggle {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-input);
+  border: none;
+  background: transparent;
+  color: var(--color-text-body);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.toolbar__menu-toggle:hover {
+  background: var(--color-bg-layout);
+}
+
+.toolbar__spacer {
+  flex: 1;
+}
+
+.toolbar__info-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-input);
+  border: none;
+  background: transparent;
+  color: var(--color-text-body-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.toolbar__info-btn:hover {
+  background: var(--color-bg-layout);
+}
+
 /* ============ APP LAYOUT ============ */
 
 .app-layout {
   display: flex;
   align-items: stretch;
-  min-height: calc(100vh - 56px);
+  min-height: calc(100vh - 56px - 48px);
   position: relative;
+}
+
+.app-layout.nav-collapsed .side-nav {
+  display: none;
 }
 
 /* ============ SIDE NAV ============ */
@@ -260,7 +323,7 @@ svg {
   width: 280px;
   flex-shrink: 0;
   background: var(--color-bg-container);
-  border-right: 1px solid var(--color-border-divider);
+  border-right: 1px solid var(--color-border-strong);
   padding: var(--space-l) var(--space-l) var(--space-xxl);
 }
 
@@ -395,7 +458,6 @@ svg {
   gap: 6px;
   font-size: 12px;
   color: var(--color-text-body-secondary);
-  margin-bottom: var(--space-l);
 }
 
 .breadcrumb a {
@@ -866,7 +928,7 @@ table.data-table {
   color: var(--color-text-body-secondary);
   font-weight: 700;
   text-align: left;
-  padding: 10px var(--space-m);
+  padding: 9px 20px;
   border-bottom: 1px solid var(--color-border-divider);
   white-space: nowrap;
   cursor: pointer;
@@ -894,10 +956,24 @@ table.data-table {
 }
 
 .data-table tbody td {
-  padding: 12px var(--space-m);
+  padding: 9px 20px;
   border-bottom: 1px solid var(--color-border-divider);
   color: var(--color-text-body);
   vertical-align: middle;
+  white-space: nowrap;
+}
+
+.data-table th.checkbox-col,
+.data-table th.radio-col,
+.data-table td.checkbox-col,
+.data-table td.radio-col {
+  padding-left: 20px;
+  padding-right: 2px;
+}
+
+.data-table tbody td.wrap-col {
+  white-space: normal;
+  max-width: 320px;
 }
 
 .data-table tbody tr:last-child td {

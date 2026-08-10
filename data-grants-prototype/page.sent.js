@@ -8,8 +8,7 @@ function stateHtml(state, label) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  mountChrome("sent");
-  document.getElementById("breadcrumb-root").innerHTML = renderBreadcrumb("Sent data grants");
+  mountChrome("sent", "Sent data grants");
   hydrateIcons();
   initSharedUI();
 
@@ -49,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     rowHtml: (row) => `
       <tr data-row-id="${row.id}" class="${selectedGrantIds.has(row.id) ? "selected" : ""}">
         <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" ${selectedGrantIds.has(row.id) ? "checked" : ""} /></td>
-        <td><a href="#" onclick="return false;">${escapeHtml(row.name)}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.name)}</a></td>
         <td>${statusHtml(row.status, row.statusLabel)}</td>
         <td>${row.expiration}</td>
         <td>${row.receiverAwsId}</td>
@@ -117,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <tr data-row-id="${row.id}">
         <td class="checkbox-col"><input type="checkbox" class="job-check" data-id="${row.id}" /></td>
         <td>${row.type}</td>
-        <td>${row.details}</td>
+        <td><span class="truncate">${row.details}</span></td>
         <td>${stateHtml(row.state, row.stateLabel)}</td>
         <td>${row.created}</td>
       </tr>

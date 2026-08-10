@@ -4,6 +4,8 @@ const Icons = {
 
   grid: `<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="10.5" y="1" width="6" height="6" rx="1"/><rect x="1" y="10.5" width="6" height="6" rx="1"/><rect x="10.5" y="10.5" width="6" height="6" rx="1"/></svg>`,
 
+  hamburger: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5h14M2 9h14M2 13.5h14" stroke-linecap="round"/></svg>`,
+
   search: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.25"/><path d="M11 11l3.5 3.5" stroke-linecap="round"/></svg>`,
 
   bell: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 13.5h10l-1.2-2A6 6 0 0 1 12 8V7a3 3 0 0 0-6 0v1a6 6 0 0 1-.8 3.5L4 13.5Z" stroke-linejoin="round"/><path d="M7.2 15.5a1.8 1.8 0 0 0 3.6 0" stroke-linecap="round"/></svg>`,

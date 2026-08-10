@@ -1,8 +1,7 @@
 /* Page wiring for received-data-grants.html */
 
 document.addEventListener("DOMContentLoaded", () => {
-  mountChrome("received");
-  document.getElementById("breadcrumb-root").innerHTML = renderBreadcrumb("Received data grants");
+  mountChrome("received", "Received data grants");
   hydrateIcons();
   initSharedUI();
 
@@ -39,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     rowHtml: (row) => `
       <tr data-row-id="${row.id}" class="${selectedPendingId === row.id ? "selected" : ""}">
         <td class="radio-col"><input type="radio" name="pending-select" class="row-radio" data-id="${row.id}" ${selectedPendingId === row.id ? "checked" : ""} /></td>
-        <td><a href="#" onclick="return false;">${escapeHtml(row.name)}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.name)}</a></td>
         <td>${statusHtml(row.status, row.statusLabel)}</td>
         <td>${row.start}</td>
         <td>${row.expiration}</td>
@@ -68,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyHtml: `<div class="empty-state">No accepted or expired data grants</div>`,
     rowHtml: (row) => `
       <tr data-row-id="${row.id}">
-        <td><a href="#" onclick="return false;">${escapeHtml(row.name)}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.name)}</a></td>
         <td>${statusHtml(row.status, row.statusLabel)}</td>
         <td>${row.start}</td>
         <td>${row.expiration}</td>

@@ -101,6 +101,19 @@ function renderBreadcrumb(current) {
   `;
 }
 
+/* Full-bleed strip under the top header: nav toggle + breadcrumbs + global
+   info trigger, matching Cloudscape's AppLayout toolbar. */
+function renderToolbar(breadcrumbCurrent) {
+  return `
+    <div class="toolbar">
+      <button class="toolbar__menu-toggle" id="toolbar-menu-toggle" title="Toggle navigation">${Icons.hamburger}</button>
+      ${renderBreadcrumb(breadcrumbCurrent)}
+      <div class="toolbar__spacer"></div>
+      <button class="toolbar__info-btn" data-open-help title="Info">${Icons.info}</button>
+    </div>
+  `;
+}
+
 function renderFooter() {
   return `
     <footer class="app-footer">
@@ -115,9 +128,17 @@ function renderFooter() {
   `;
 }
 
-function mountChrome(activeKey) {
+function mountChrome(activeKey, breadcrumbCurrent) {
   document.getElementById("header-root").innerHTML = renderTopHeader();
+  document.getElementById("toolbar-root").innerHTML = renderToolbar(breadcrumbCurrent);
   document.getElementById("sidenav-root").innerHTML = renderSideNav(activeKey);
   const footerRoot = document.getElementById("footer-root");
   if (footerRoot) footerRoot.innerHTML = renderFooter();
+
+  const appLayout = document.querySelector(".app-layout");
+  const menuToggle = document.getElementById("toolbar-menu-toggle");
+  const navClose = document.querySelector(".side-nav__close");
+  const toggleNav = () => appLayout.classList.toggle("nav-collapsed");
+  menuToggle.addEventListener("click", toggleNav);
+  if (navClose) navClose.addEventListener("click", toggleNav);
 }
