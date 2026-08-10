@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const grantName = `test object ${createCounter++}`;
     const flashRoot = document.getElementById("flash-root");
     const inProgressFlash = showFlash(flashRoot, {
-      type: "info",
+      type: "in-progress",
       message: `Your creation of data grant '${grantName}' is currently in progress and may take some time. You can safely navigate away from this page and check back later.`,
     });
 

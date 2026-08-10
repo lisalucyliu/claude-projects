@@ -244,13 +244,24 @@ class DataTable {
   }
 }
 
-function showFlash(containerEl, { type = "info", message, autoDismiss = 0 }) {
+const FLASH_ICONS = {
+  info: Icons.flashInfo,
+  success: Icons.flashSuccess,
+  error: Icons.flashError,
+  warning: Icons.flashWarning,
+  "in-progress": `<span class="spin">${Icons.statusProcessing}</span>`,
+};
+
+function showFlash(containerEl, { type = "info", message, autoDismiss = 0, action = null }) {
   const flash = document.createElement("div");
   flash.className = `flash flash--${type}`;
-  const icon = type === "success" ? Icons.statusAccepted : `<span class="spin">${Icons.statusProcessing}</span>`;
-  flash.innerHTML = `${icon}<div class="flash__content">${message}</div><button class="flash__dismiss">${Icons.close}</button>`;
+  const actionHtml = action ? `<button class="flash__action">${action.label}</button>` : "";
+  flash.innerHTML = `${FLASH_ICONS[type] || FLASH_ICONS.info}<div class="flash__content">${message}</div>${actionHtml}<button class="flash__dismiss">${Icons.flashDismiss}</button>`;
   containerEl.prepend(flash);
   flash.querySelector(".flash__dismiss").addEventListener("click", () => flash.remove());
+  if (action) {
+    flash.querySelector(".flash__action").addEventListener("click", action.onClick);
+  }
   if (autoDismiss) {
     setTimeout(() => flash.remove(), autoDismiss);
   }

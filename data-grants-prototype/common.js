@@ -135,7 +135,10 @@ function mountChrome(activeKey, breadcrumbCurrent) {
   const appLayout = document.querySelector(".app-layout");
   const menuToggle = document.getElementById("toolbar-menu-toggle");
   const navClose = document.querySelector(".side-nav__close");
-  const toggleNav = () => appLayout.classList.toggle("nav-collapsed");
+  const toggleNav = () => {
+    const collapsed = appLayout.classList.toggle("nav-collapsed");
+    menuToggle.classList.toggle("is-collapsed", collapsed);
+  };
   menuToggle.addEventListener("click", toggleNav);
   if (navClose) navClose.addEventListener("click", toggleNav);
 }

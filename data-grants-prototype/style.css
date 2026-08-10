@@ -105,6 +105,7 @@ button {
 
 svg {
   display: block;
+  flex-shrink: 0;
 }
 
 /* ============ TOP HEADER ============
@@ -195,6 +196,8 @@ svg {
 .top-header__icon-btn {
   width: 20px;
   height: 20px;
+  min-width: 20px;
+  min-height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -203,6 +206,11 @@ svg {
   background: transparent;
   border: none;
   flex-shrink: 0;
+}
+
+.top-header__icon-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .top-header__divider {
@@ -257,6 +265,11 @@ svg {
   flex-shrink: 0;
 }
 
+/* Four states, verified against reference screenshots:
+   nav open + no hover  -> filled AWS-blue circle, white icon
+   nav open + hover     -> darker blue circle
+   nav closed + no hover -> no circle, dark icon
+   nav closed + hover    -> grey circle, dark icon */
 .toolbar__menu-circle {
   width: 30px;
   height: 30px;
@@ -270,6 +283,15 @@ svg {
 
 .toolbar__menu-toggle:hover .toolbar__menu-circle {
   background: var(--color-blue-dark);
+}
+
+.toolbar__menu-toggle.is-collapsed .toolbar__menu-circle {
+  background: transparent;
+  color: var(--color-text-body);
+}
+
+.toolbar__menu-toggle.is-collapsed:hover .toolbar__menu-circle {
+  background: var(--color-border-divider);
 }
 
 .toolbar__spacer {
@@ -418,6 +440,8 @@ svg {
   font-size: 12px;
   font-weight: 700;
   color: var(--color-blue);
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
 }
 
 .side-nav__divider {
@@ -444,7 +468,7 @@ svg {
 .main-content {
   flex: 1;
   min-width: 0;
-  padding: var(--space-xl) var(--space-xxl) var(--space-xxl);
+  padding: 20px;
 }
 
 .breadcrumb {
@@ -482,7 +506,7 @@ svg {
 }
 
 .page-header h1 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--color-text-heading);
   margin: 0;
@@ -588,10 +612,13 @@ svg {
 
 /* ============ TABS ============ */
 
+/* Verified against cloudscape.design/components/tabs/: 16px/700 label text,
+   tight "7px 4px 7px 3px" padding, and a full-width #c6c6cd bottom rule
+   (not the much lighter divider token, which read as "missing"). */
 .tabs {
   display: flex;
-  gap: var(--space-xl);
-  border-bottom: 1px solid var(--color-border-divider);
+  gap: 16px;
+  border-bottom: 1px solid var(--color-border-strong);
   margin-bottom: var(--space-l);
 }
 
@@ -600,16 +627,15 @@ svg {
   border: none;
   cursor: pointer;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--color-text-body-secondary);
-  padding: var(--space-s) 2px var(--space-m);
+  padding: 7px 4px 7px 3px;
   border-bottom: 3px solid transparent;
   margin-bottom: -1px;
 }
 
 .tab.active {
   color: var(--color-text-heading);
-  font-weight: 700;
   border-bottom-color: var(--color-blue);
 }
 
@@ -994,12 +1020,46 @@ table.data-table {
   width: 36px;
 }
 
-.data-table input[type="checkbox"],
+/* Custom checkbox matching cloudscape.design/components/checkbox/ exactly:
+   16x16, rx 3, 1px #8c8c94 stroke unchecked; solid AWS-blue + white
+   checkmark when checked. Native control hidden via appearance:none. */
+.data-table input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  border-radius: 3px;
+  border: 1px solid #8c8c94;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.data-table input[type="checkbox"]:checked {
+  background: var(--color-blue);
+  border-color: var(--color-blue);
+}
+
+.data-table input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 1.5px;
+  width: 5px;
+  height: 9px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(40deg);
+}
+
 .data-table input[type="radio"] {
   width: 16px;
   height: 16px;
   accent-color: var(--color-blue);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .data-table .empty-row td {
@@ -1067,30 +1127,51 @@ table.data-table {
   margin-bottom: var(--space-m);
 }
 
+/* Verified against cloudscape.design/components/flashbar/: 12px radius,
+   "8px 16px" padding, white icon/text on info/success/error, but dark
+   text+icon on the yellow warning variant for contrast. */
 .flash {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: var(--space-s);
-  padding: var(--space-m) var(--space-l);
-  border-radius: var(--radius-input);
-  color: #fff;
+  padding: 8px 16px;
+  border-radius: 12px;
+  color: #f9f9fa;
   font-size: 14px;
   margin-bottom: var(--space-s);
+  min-height: 32px;
 }
 
 .flash svg {
   flex-shrink: 0;
-  margin-top: 1px;
 }
 
 .flash__content {
   flex: 1;
 }
 
+.flash__action {
+  height: 32px;
+  padding: 0 20px;
+  border-radius: var(--radius-button);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  background: transparent;
+  border: 2px solid currentColor;
+  color: inherit;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.flash__action:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 .flash__dismiss {
   background: none;
   border: none;
-  color: #fff;
+  color: inherit;
   cursor: pointer;
   opacity: 0.85;
   flex-shrink: 0;
@@ -1102,11 +1183,24 @@ table.data-table {
 }
 
 .flash--info {
-  background: #006ce0;
+  background: var(--color-blue);
 }
 
 .flash--success {
-  background: #00802f;
+  background: var(--color-green);
+}
+
+.flash--error {
+  background: var(--color-red);
+}
+
+.flash--warning {
+  background: #ffe347;
+  color: #0f141a;
+}
+
+.flash--in-progress {
+  background: var(--color-blue);
 }
 
 /* ============ HELP PANEL (right side drawer) ============ */
