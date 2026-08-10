@@ -338,6 +338,8 @@ svg {
 
 .side-nav {
   width: 280px;
+  height: 100%;
+  box-sizing: border-box;
   flex-shrink: 0;
   background: var(--color-bg-container);
   border-right: 1px solid var(--color-border-strong);
@@ -581,12 +583,12 @@ svg {
 
 .creation-steps__step {
   flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   gap: var(--space-s);
-  max-width: 260px;
 }
 
 .creation-steps__icon {
@@ -752,25 +754,29 @@ svg {
   border: 2px solid transparent;
 }
 
+/* Manual-refresh button: 32px circle, blue border + blue icon on white —
+   verified against cloudscape.design/patterns/general/loading-and-refreshing/ */
 .btn-icon {
   width: 32px;
   height: 32px;
   padding: 0;
   justify-content: center;
-  border-radius: var(--radius-input);
-  border: 2px solid var(--color-border-strong);
+  border-radius: 50%;
+  border: 2px solid var(--color-blue);
   background: var(--color-bg-container);
-  color: var(--color-text-body);
+  color: var(--color-blue);
 }
 
 .btn-icon:hover {
   background: var(--color-bg-layout);
 }
 
+/* Normal/secondary button border is AWS blue, not grey — verified against
+   the "with action buttons" table example on cloudscape.design. */
 .btn-normal {
   background: var(--color-bg-container);
-  border-color: var(--color-border-strong);
-  color: var(--color-text-link);
+  border-color: var(--color-blue);
+  color: var(--color-blue);
 }
 
 .btn-normal:hover {
@@ -973,13 +979,7 @@ table.data-table {
 }
 
 .data-table thead th svg {
-  opacity: 0.55;
   flex-shrink: 0;
-}
-
-.data-table thead th.sorted svg {
-  opacity: 1;
-  color: var(--color-blue);
 }
 
 .data-table tbody td {
@@ -994,8 +994,8 @@ table.data-table {
 .data-table th.radio-col,
 .data-table td.checkbox-col,
 .data-table td.radio-col {
-  padding-left: 20px;
-  padding-right: 2px;
+  padding: 1px;
+  text-align: center;
 }
 
 .data-table tbody td.wrap-col {
@@ -1011,13 +1011,29 @@ table.data-table {
   background: var(--color-bg-row-hover);
 }
 
+/* Selected row: verified against cloudscape.design/components/table/ — every
+   cell gets a 2px blue top/bottom border, and the first/last cell also get
+   the matching left/right edge, forming a complete outline around the row. */
 .data-table tbody tr.selected {
   background: var(--color-bg-row-selected);
 }
 
+.data-table tbody tr.selected td {
+  border-top: 2px solid var(--color-blue);
+  border-bottom: 2px solid var(--color-blue);
+}
+
+.data-table tbody tr.selected td:first-child {
+  border-left: 2px solid var(--color-blue);
+}
+
+.data-table tbody tr.selected td:last-child {
+  border-right: 2px solid var(--color-blue);
+}
+
 .data-table .checkbox-col,
 .data-table .radio-col {
-  width: 36px;
+  width: 40px;
 }
 
 /* Custom checkbox matching cloudscape.design/components/checkbox/ exactly:
@@ -1089,7 +1105,7 @@ table.data-table {
 }
 
 .status--pending {
-  color: var(--color-text-body-secondary);
+  color: var(--color-grey-text);
 }
 
 .status--accepted {

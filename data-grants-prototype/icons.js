@@ -36,19 +36,21 @@ const Icons = {
 
   settingsTable: `<svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="7.5" cy="7.5" r="2.2"/><path d="M7.5 1.7v1.3M7.5 12v1.3M13.3 7.5H12M3 7.5H1.7M11.2 3.8l-.9.9M4.7 10.3l-.9.9M11.2 11.2l-.9-.9M4.7 4.7l-.9-.9" stroke-linecap="round"/></svg>`,
 
-  sort: `<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1.5 8.5 5h-5L6 1.5Z"/><path d="M6 10.5 3.5 7h5L6 10.5Z"/></svg>`,
+  /* Sort triangles — verified against cloudscape.design/components/table/:
+     unsorted is a muted down-triangle; active sort is the same shape
+     (down = descending, up = ascending) filled dark. */
+  sortNeutral: `<svg width="16" height="16" viewBox="0 0 16 16" fill="#c6c6cd"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
+  sortAsc: `<svg width="16" height="16" viewBox="0 0 16 16" fill="#0f141a"><path d="m8 5 4 6H4l4-6Z"/></svg>`,
+  sortDesc: `<svg width="16" height="16" viewBox="0 0 16 16" fill="#0f141a"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
 
-  sortAsc: `<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1.5 8.5 5h-5L6 1.5Z"/><path d="M6 10.5 3.5 7h5L6 10.5Z" opacity=".3"/></svg>`,
-
-  sortDesc: `<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><path d="M6 1.5 8.5 5h-5L6 1.5Z" opacity=".3"/><path d="M6 10.5 3.5 7h5L6 10.5Z"/></svg>`,
-
-  statusPending: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="7" cy="7" r="6"/><path d="M7 3.8V7l2.3 1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-
-  statusAccepted: `<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><circle cx="7" cy="7" r="7"/><path d="M4 7.2 6.1 9.3 10.2 5" stroke="white" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-
-  statusWarning: `<svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M7 1.2 13.3 12H.7L7 1.2Z"/><path d="M7 5.3v3" stroke="white" stroke-width="1.3" stroke-linecap="round"/><circle cx="7" cy="10.1" r=".2" fill="white"/></svg>`,
-
+  /* Status-indicator icons — verified against cloudscape.design/components/status-indicator/ */
+  statusPending: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="7"/><path d="M8 4v5H4" stroke-linejoin="round"/></svg>`,
+  statusAccepted: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="7"/><path d="M4.5 7.5 7 10l4-5" stroke-linejoin="round"/></svg>`,
+  statusWarning: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 5v4M8 10v2M6.52 1.88l-5.33 9.76c-.13.23-.19.5-.19.76 0 .88.71 1.59 1.59 1.59H13.4c.88 0 1.59-.71 1.59-1.59 0-.27-.07-.53-.19-.76L9.48 1.88C9.18 1.34 8.62 1 8 1s-1.18.34-1.48.88Z" stroke-linejoin="round"/></svg>`,
   statusProcessing: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12.5 7A5.5 5.5 0 1 1 10.6 3" stroke-linecap="round"/></svg>`,
+
+  /* Manual-refresh icon — verified against cloudscape.design/patterns/general/loading-and-refreshing/ */
+  refreshCircular: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M15 0v5l-5-.04" stroke-linejoin="round"/><path d="M15 8c0 3.87-3.13 7-7 7s-7-3.13-7-7 3.13-7 7-7c2.79 0 5.2 1.63 6.33 4"/></svg>`,
 
   networkNodes: `<svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="15" width="6" height="6" rx="1"/><rect x="15" y="6" width="6" height="6" rx="1"/><rect x="15" y="24" width="6" height="6" rx="1"/><rect x="26" y="15" width="6" height="6" rx="1"/><path d="M10 18h5M21 18h5M18 12v4M18 20v4" stroke-linecap="round"/></svg>`,
 

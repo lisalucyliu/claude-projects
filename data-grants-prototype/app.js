@@ -166,7 +166,7 @@ class DataTable {
       th.classList.toggle("sorted", key === this.sortKey);
       if (iconEl) {
         if (key !== this.sortKey) {
-          iconEl.innerHTML = Icons.sort;
+          iconEl.innerHTML = Icons.sortNeutral;
         } else {
           iconEl.innerHTML = this.sortDir === 1 ? Icons.sortAsc : Icons.sortDesc;
         }
