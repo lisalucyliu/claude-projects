@@ -1,10 +1,13 @@
 /* Inline SVG icon set — no external requests, mirrors Cloudscape's outline icon style */
 const Icons = {
-  awsLogo: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="4" fill="#FF9900"/><path d="M8 12h12M8 16h8" stroke="#161D26" stroke-width="2" stroke-linecap="round"/><path d="M8 20c3 2 9 2 12 0" stroke="#161D26" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>`,
+  /* Simplified AWS wordmark: orange "aws" with the smile-arrow swoosh. */
+  awsLogo: `<svg width="46" height="18" viewBox="0 0 46 18" fill="none"><text x="0" y="13" font-family="Arial, sans-serif" font-weight="700" font-size="15" font-style="italic" fill="#FF9900" letter-spacing="-0.5">aws</text><path d="M1 16.5c8 3.5 30 3.5 44 -2.5" stroke="#FF9900" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M41.5 12.3 45 14l-2.3 3.2" stroke="#FF9900" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>`,
 
-  grid: `<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="1" y="1" width="6" height="6" rx="1"/><rect x="10.5" y="1" width="6" height="6" rx="1"/><rect x="1" y="10.5" width="6" height="6" rx="1"/><rect x="10.5" y="10.5" width="6" height="6" rx="1"/></svg>`,
+  grid: `<svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor"><rect x="0.5" y="0.5" width="4.5" height="4.5" rx="1"/><rect x="6.75" y="0.5" width="4.5" height="4.5" rx="1"/><rect x="13" y="0.5" width="4.5" height="4.5" rx="1"/><rect x="0.5" y="6.75" width="4.5" height="4.5" rx="1"/><rect x="6.75" y="6.75" width="4.5" height="4.5" rx="1"/><rect x="13" y="6.75" width="4.5" height="4.5" rx="1"/><rect x="0.5" y="13" width="4.5" height="4.5" rx="1"/><rect x="6.75" y="13" width="4.5" height="4.5" rx="1"/><rect x="13" y="13" width="4.5" height="4.5" rx="1"/></svg>`,
 
-  hamburger: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5h14M2 9h14M2 13.5h14" stroke-linecap="round"/></svg>`,
+  hamburger: `<svg width="16" height="16" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4.5h14M2 9h14M2 13.5h14" stroke-linecap="round"/></svg>`,
+
+  chevronLeftNav: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8.5 3 5 7l3.5 4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 
   search: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.25"/><path d="M11 11l3.5 3.5" stroke-linecap="round"/></svg>`,
 

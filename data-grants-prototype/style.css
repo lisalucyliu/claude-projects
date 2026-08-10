@@ -107,16 +107,19 @@ svg {
   display: block;
 }
 
-/* ============ TOP HEADER ============ */
+/* ============ TOP HEADER ============
+   42px tall, per explicit spec: logo, 9-square Services icon, wide search
+   box (5-6px vertical margin), then icon/divider/icon/divider/region/
+   divider/user. */
 
 .top-header {
-  height: 56px;
+  height: 42px;
   background: var(--color-bg-header);
   color: var(--color-text-inverted);
   display: flex;
   align-items: center;
-  gap: var(--space-m);
-  padding: 0 var(--space-l);
+  gap: var(--space-s);
+  padding: 0 var(--space-m);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -125,11 +128,8 @@ svg {
 .top-header__logo {
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--color-text-inverted);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .top-header__logo svg {
@@ -145,6 +145,7 @@ svg {
   cursor: pointer;
   padding: 6px 8px;
   border-radius: 4px;
+  flex-shrink: 0;
 }
 
 .top-header__services:hover {
@@ -153,14 +154,14 @@ svg {
 
 .top-header__search {
   flex: 1;
-  max-width: 620px;
   display: flex;
   align-items: center;
   background: #0f141a;
   border: 1px solid #424650;
   border-radius: 4px;
   padding: 0 var(--space-s);
-  height: 32px;
+  height: 31px;
+  margin: 5px 0;
   color: var(--color-text-inverted-secondary);
   gap: var(--space-xs);
 }
@@ -188,45 +189,28 @@ svg {
 }
 
 .top-header__spacer {
-  flex: 1;
-}
-
-.top-header__icons {
-  display: flex;
-  align-items: center;
-  gap: 2px;
+  flex: 0 0 var(--space-s);
 }
 
 .top-header__icon-btn {
-  width: 32px;
-  height: 32px;
+  width: 18px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
   cursor: pointer;
   color: var(--color-text-inverted);
   background: transparent;
   border: none;
-}
-
-.top-header__icon-btn:hover {
-  background: var(--color-bg-header-hover);
+  flex-shrink: 0;
 }
 
 .top-header__divider {
   width: 1px;
-  height: 24px;
+  height: 18px;
   background: #424650;
-  margin: 0 var(--space-xs);
-}
-
-.top-header__account {
-  display: flex;
-  align-items: center;
-  gap: var(--space-s);
-  font-size: 13px;
-  padding: 0 var(--space-xs);
+  margin: 0 var(--space-s);
+  flex-shrink: 0;
 }
 
 .top-header__region,
@@ -235,14 +219,10 @@ svg {
   align-items: center;
   gap: 4px;
   cursor: pointer;
-  padding: 6px 8px;
-  border-radius: 4px;
+  color: var(--color-text-inverted);
+  font-size: 13px;
   white-space: nowrap;
-}
-
-.top-header__region:hover,
-.top-header__user:hover {
-  background: var(--color-bg-header-hover);
+  flex-shrink: 0;
 }
 
 /* ============ TOOLBAR (breadcrumb panel) ============
@@ -254,7 +234,7 @@ svg {
    cloudscape.design/examples/react/table.html. */
 
 .toolbar {
-  height: 48px;
+  height: 42px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -265,21 +245,31 @@ svg {
 }
 
 .toolbar__menu-toggle {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-input);
   border: none;
   background: transparent;
-  color: var(--color-text-body);
   cursor: pointer;
   flex-shrink: 0;
 }
 
-.toolbar__menu-toggle:hover {
-  background: var(--color-bg-layout);
+.toolbar__menu-circle {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-blue);
+  color: #fff;
+}
+
+.toolbar__menu-toggle:hover .toolbar__menu-circle {
+  background: var(--color-blue-dark);
 }
 
 .toolbar__spacer {
@@ -309,7 +299,7 @@ svg {
 .app-layout {
   display: flex;
   align-items: stretch;
-  min-height: calc(100vh - 56px - 48px);
+  min-height: calc(100vh - 42px - 42px);
   position: relative;
 }
 
@@ -317,14 +307,19 @@ svg {
   display: none;
 }
 
-/* ============ SIDE NAV ============ */
+/* ============ SIDE NAV ============
+   Spacing verified pixel-for-pixel against cloudscape.design/examples/react/
+   table.html: nav content inset 20px left / 16px right, nav links sit flush
+   with zero gap between them (28px row height from 4px/8px padding alone),
+   ~8px between the last item of one section and the next section's header,
+   and section headers are 16px/400 weight, not bold. */
 
 .side-nav {
   width: 280px;
   flex-shrink: 0;
   background: var(--color-bg-container);
   border-right: 1px solid var(--color-border-strong);
-  padding: var(--space-l) var(--space-l) var(--space-xxl);
+  padding: var(--space-l) 16px var(--space-xxl) 20px;
 }
 
 .side-nav__header {
@@ -355,18 +350,18 @@ svg {
 }
 
 .side-nav__section {
-  margin-top: var(--space-s);
+  margin-top: 8px;
 }
 
 .side-nav__section-title {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 400;
+  font-size: 16px;
   color: var(--color-text-heading);
   cursor: pointer;
-  padding: var(--space-xs) 0;
+  padding: 5px 0;
   user-select: none;
 }
 
@@ -385,8 +380,8 @@ svg {
 
 .side-nav__items {
   list-style: none;
-  margin: 2px 0 0;
-  padding: 0 0 0 22px;
+  margin: 0;
+  padding: 0;
 }
 
 .side-nav__items li {
@@ -397,11 +392,11 @@ svg {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 7px 8px;
+  padding: 4px 8px;
   border-radius: 8px;
   color: var(--color-text-body-secondary);
   font-size: 14px;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 .side-nav__link:hover {
@@ -435,7 +430,7 @@ svg {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 7px 0;
+  padding: 4px 0;
   color: var(--color-text-link);
   font-size: 14px;
 }
@@ -456,21 +451,27 @@ svg {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
-  color: var(--color-text-body-secondary);
+  font-size: 14px;
 }
 
 .breadcrumb a {
   color: var(--color-text-link);
-  font-size: 12px;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-text-link-hover);
 }
 
 .breadcrumb .sep {
   color: var(--color-text-body-tertiary);
+  display: flex;
 }
 
 .breadcrumb .current {
-  color: var(--color-text-body-secondary);
+  color: var(--color-grey-text);
+  font-weight: 700;
 }
 
 .page-header {

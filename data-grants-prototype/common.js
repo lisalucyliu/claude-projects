@@ -11,16 +11,13 @@ function renderTopHeader() {
         <span class="top-header__shortcut">Alt+S</span>
       </div>
       <div class="top-header__spacer"></div>
-      <div class="top-header__icons">
-        <button class="top-header__icon-btn" title="Notifications">${Icons.bell}</button>
-        <button class="top-header__icon-btn" title="Help">${Icons.help}</button>
-        <button class="top-header__icon-btn" title="Settings">${Icons.gear}</button>
-      </div>
+      <button class="top-header__icon-btn" title="Notifications">${Icons.bell}</button>
       <div class="top-header__divider"></div>
-      <div class="top-header__account">
-        <span class="top-header__region">N. Virginia ${Icons.chevronDownSmall}</span>
-        <span class="top-header__user">MyRole/AWSUser @ 0123-4567-8901 ${Icons.chevronDownSmall}</span>
-      </div>
+      <button class="top-header__icon-btn" title="Help">${Icons.help}</button>
+      <div class="top-header__divider"></div>
+      <span class="top-header__region">N. Virginia ${Icons.chevronDownSmall}</span>
+      <div class="top-header__divider"></div>
+      <span class="top-header__user">MyRole/AWSUser @ 0123-4567-8901 ${Icons.chevronDownSmall}</span>
     </header>
   `;
 }
@@ -81,7 +78,7 @@ function renderSideNav(activeKey) {
     <nav class="side-nav">
       <div class="side-nav__header">
         <span class="side-nav__title">AWS Data Exchange</span>
-        <button class="side-nav__close" title="Collapse navigation">${Icons.close}</button>
+        <button class="side-nav__close" title="Collapse navigation">${Icons.chevronLeftNav}</button>
       </div>
       ${sections}
       <hr class="side-nav__divider" />
@@ -106,7 +103,7 @@ function renderBreadcrumb(current) {
 function renderToolbar(breadcrumbCurrent) {
   return `
     <div class="toolbar">
-      <button class="toolbar__menu-toggle" id="toolbar-menu-toggle" title="Toggle navigation">${Icons.hamburger}</button>
+      <button class="toolbar__menu-toggle" id="toolbar-menu-toggle" title="Toggle navigation"><span class="toolbar__menu-circle">${Icons.hamburger}</span></button>
       ${renderBreadcrumb(breadcrumbCurrent)}
       <div class="toolbar__spacer"></div>
       <button class="toolbar__info-btn" data-open-help title="Info">${Icons.info}</button>
