@@ -12,7 +12,13 @@
   --color-text-inverted: #f9f9fa;
   --color-text-inverted-secondary: #c6c6cd;
 
-  --color-bg-layout: #f9f9fa;
+  /* Verified 2026-08 against cloudscape.design/examples/react/table.html and
+     dashboard.html via computed-style inspection of the live site: the page
+     canvas and full-page table sections share the same near-white #fcfcfd —
+     there is no grey-canvas/white-card split. Only "default" variant
+     Containers (e.g. dashboard widgets) are pure white with a visible
+     #c6c6cd border and 16px radius; full-page table sections have none. */
+  --color-bg-layout: #fcfcfd;
   --color-bg-container: #ffffff;
   --color-bg-header: #161d26;
   --color-bg-header-hover: #232b36;
@@ -24,6 +30,7 @@
   --color-border: #dedee3;
   --color-border-strong: #c6c6cd;
   --color-border-divider: #ebebf0;
+  --color-container-border: #c6c6cd;
 
   --color-blue: #006ce0;
   --color-blue-dark: #004a9e;
@@ -43,7 +50,12 @@
 
   --color-grey-text: #656871;
 
-  --font-family: "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif;
+  /* "Amazon Ember" is AWS's internal console font and isn't served by the
+     public cloudscape.design site itself — it ships Open Sans as the real
+     typeface. Listed first here as a progressive enhancement for anyone
+     with it installed locally; the fallback chain matches the live site
+     exactly so rendered output is identical for everyone else. */
+  --font-family: "Amazon Ember", "Open Sans", "Helvetica Neue", Roboto, Arial, sans-serif;
 
   --radius-button: 20px;
   --radius-input: 8px;
@@ -429,10 +441,14 @@ svg {
 
 /* ============ CONTAINER / CREATION STEPS ============ */
 
+/* Cloudscape's "default"-variant Container: solid white, visible 1px
+   #c6c6cd border, 16px radius, no shadow — verified against a dashboard
+   widget on the live site. Used here only for the supplementary creation
+   steps callout, not for primary full-page table sections (see below). */
 .container {
   background: var(--color-bg-container);
-  border: 1px solid var(--color-border-divider);
-  border-radius: var(--radius-input);
+  border: 1px solid var(--color-container-border);
+  border-radius: var(--radius-panel);
   margin-bottom: var(--space-l);
 }
 
@@ -544,11 +560,14 @@ svg {
 
 /* ============ TABLE PANEL ============ */
 
+/* Verified on the live "table view" / "table property filter" demos: the
+   primary full-page table section carries no border, background fill, or
+   shadow of its own — it sits flush on the page canvas (both #fcfcfd) and
+   is separated purely by whitespace and the table's own row hairlines. */
 .table-panel {
-  background: var(--color-bg-container);
-  border: 1px solid var(--color-border-divider);
-  border-radius: var(--radius-input);
-  padding: var(--space-l);
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 .table-panel__header {
@@ -649,7 +668,7 @@ svg {
   height: 32px;
   padding: 0;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: var(--radius-input);
   border: 2px solid var(--color-border-strong);
   background: var(--color-bg-container);
   color: var(--color-text-body);
@@ -829,12 +848,11 @@ svg {
   background: var(--color-bg-layout);
 }
 
-/* Table */
+/* Table — no wrapping border/radius: on the live full-page table demos the
+   table sits directly on the page canvas, structured only by row hairlines. */
 
 .table-scroll {
   overflow-x: auto;
-  border: 1px solid var(--color-border-divider);
-  border-radius: var(--radius-input);
 }
 
 table.data-table {
