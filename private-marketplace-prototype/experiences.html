@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Experiences — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Private Marketplace experiences page." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header">
+      <h1>Experiences</h1>
+      <button class="info-link" data-open-help>Info</button>
+    </div>
+    <p class="page-subtitle">A governed subsection of AWS Marketplace that contains a list of approved products with custom branding applied.</p>
+
+    <div class="tabs" data-tab-group="experiences">
+      <button class="tab active" data-tab="active">Active experiences</button>
+      <button class="tab" data-tab="archived">Archived experiences</button>
+    </div>
+
+    <div class="tab-panel active" data-tab-group="experiences" data-tab="active">
+      <div class="table-panel" id="active-exp-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>Active experiences <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">Experiences that reflect updates and can govern accounts in your organization.</p>
+          </div>
+          <div class="table-panel__actions">
+            <button class="btn btn-normal" id="view-details-btn" disabled>View details</button>
+            <button class="btn btn-normal" id="archive-exp-btn" disabled>Archive experience</button>
+            <button class="btn btn-primary" id="create-experience-btn">Create experience</button>
+          </div>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="search-input">
+            <span data-icon="search"></span>
+            <input type="text" placeholder="Search active experiences" data-search-input />
+          </div>
+          <div class="pagination" data-pagination></div>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table" id="active-exp-table">
+            <thead>
+              <tr>
+                <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-active-exp" /></th>
+                <th data-sort-key="name"><span class="th-inner">Name <span class="sort-icon"></span></span></th>
+                <th data-sort-key="statusLabel"><span class="th-inner">Status <span class="sort-icon"></span></span></th>
+                <th data-sort-key="modifiedSort"><span class="th-inner">Last modified date <span class="sort-icon"></span></span></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-tab-group="experiences" data-tab="archived">
+      <div class="table-panel" id="archived-exp-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>Archived experiences <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">Experiences that have been archived and no longer govern accounts.</p>
+          </div>
+        </div>
+        <div class="table-toolbar" style="justify-content:flex-end;">
+          <div class="pagination" data-pagination></div>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table" id="archived-exp-table">
+            <thead>
+              <tr>
+                <th class="no-sort">Name</th>
+                <th class="no-sort">Status</th>
+                <th class="no-sort">Last modified date</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.experiences.js"></script>
+<script src="page.experiences.js"></script>
+</body>
+</html>

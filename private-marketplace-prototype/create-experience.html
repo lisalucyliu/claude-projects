@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create new Private Marketplace experience — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Private Marketplace new-experience wizard." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header">
+      <h1 id="wizard-title">Experience details</h1>
+      <button class="info-link" data-open-help>Info</button>
+    </div>
+    <p class="page-subtitle" id="wizard-subtitle">Define initial details for your private marketplace experience.</p>
+
+    <div class="wizard-layout">
+      <nav class="wizard-nav" id="wizard-nav"></nav>
+
+      <div class="wizard-content">
+        <!-- Step 1 -->
+        <div class="wizard-panel active" data-step="1">
+          <section class="container">
+            <div style="padding:20px;">
+              <h2 style="margin:0 0 4px;font-size:18px;">Private marketplace experience details</h2>
+              <p class="page-subtitle" style="margin-bottom:20px;">This is the internal name and description used by administrators to keep track of this experience. End users will not see these fields.</p>
+
+              <div class="form-field">
+                <label for="f-name">Name</label>
+                <p class="form-field__hint">The experience name is searchable and should include easily identifiable terms.</p>
+                <input type="text" id="f-name" value="" placeholder="e.g. ES Developer Experience" />
+                <p class="form-field__help">50 character maximum length. Valid characters are a-z, A-Z, 0-9, _ (underscore) and - (hyphen).</p>
+              </div>
+
+              <div class="form-field">
+                <label for="f-description">Description - <em>optional</em></label>
+                <p class="form-field__hint">If adding links, make sure they are accessible from the AWS dedicated cloud used by you and your users.</p>
+                <textarea id="f-description" placeholder="Add a description"></textarea>
+                <p class="form-field__help">1000 character maximum length.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="container">
+            <div style="padding:20px;">
+              <h2 style="margin:0 0 20px;font-size:18px;">Status and requests</h2>
+
+              <div class="form-field">
+                <label>Experience status</label>
+                <p class="form-field__hint">Choose whether or not the changes you make to your experience are live and visible to your end users.</p>
+                <div class="form-radio-group">
+                  <label class="form-radio"><input type="radio" name="exp-status" value="live" checked /> Live</label>
+                  <label class="form-radio"><input type="radio" name="exp-status" value="notlive" /> Not Live</label>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label>Admin mode</label>
+                <p class="form-field__hint">Choose whether or not the experience is editable by admins.</p>
+                <div class="form-radio-group">
+                  <label class="form-radio"><input type="radio" name="admin-mode" value="active" checked /> Active experience</label>
+                  <label class="form-radio" style="color:var(--color-text-body-tertiary);"><input type="radio" name="admin-mode" value="archived" disabled /> Archived experience</label>
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label>Software requests</label>
+                <p class="form-field__hint">Choose whether or not your end users can create software requests.</p>
+                <div class="form-radio-group">
+                  <label class="form-radio"><input type="radio" name="software-requests" value="available" checked /> Software requests available</label>
+                  <label class="form-radio"><input type="radio" name="software-requests" value="unavailable" /> Software requests unavailable</label>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="container">
+            <div style="padding:20px;">
+              <div class="page-header" style="margin-bottom:16px;">
+                <h2 style="margin:0;font-size:18px;">Tags - <em>optional</em></h2>
+                <button class="info-link" data-open-help>Info</button>
+              </div>
+              <div id="tags-list"></div>
+              <button class="btn btn-normal" id="add-tag-btn">Add new tag</button>
+              <p class="form-field__help" id="tags-remaining">You can add up to 50 more tags.</p>
+            </div>
+          </section>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="wizard-panel" data-step="2">
+          <section class="container">
+            <div style="padding:20px;">
+              <div class="page-header" style="margin-bottom:4px;">
+                <h2 style="margin:0;font-size:18px;">Organizational units and accounts <span id="w-org-count">(0)</span></h2>
+                <button class="info-link" data-open-help>Info</button>
+              </div>
+              <p class="page-subtitle">View a hierarchy of organizational units and accounts that you can associate with private marketplace experiences.</p>
+
+              <div class="table-toolbar">
+                <div class="search-input" style="max-width:400px;">
+                  <span data-icon="search"></span>
+                  <input type="text" placeholder="Find AWS account or OU by their exact ID" />
+                </div>
+                <div class="pagination">
+                  <button class="page-btn current">1</button>
+                </div>
+              </div>
+
+              <div class="table-scroll">
+                <table class="data-table" id="w-org-table">
+                  <thead>
+                    <tr>
+                      <th class="checkbox-col no-sort"></th>
+                      <th class="no-sort">Audience name</th>
+                      <th class="no-sort">ID</th>
+                      <th class="no-sort">Governing experience</th>
+                      <th class="no-sort">Relationship</th>
+                    </tr>
+                  </thead>
+                  <tbody id="w-org-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="wizard-panel" data-step="3">
+          <section class="container">
+            <div style="padding:20px;">
+              <h2 style="margin:0 0 4px;font-size:18px;">Add products method</h2>
+              <p class="page-subtitle">Choose products from the entire available catalog or choose to bulk add all products from an existing experience's catalog.</p>
+              <div class="radio-tile-group">
+                <label class="radio-tile selected" id="tile-separately">
+                  <input type="radio" name="product-method" value="separately" checked />
+                  <div>
+                    <div class="radio-tile__title">Add products separately</div>
+                    <div class="radio-tile__desc">Select 1 or more products to add to your new experience.</div>
+                  </div>
+                </label>
+                <label class="radio-tile" id="tile-bulk">
+                  <input type="radio" name="product-method" value="bulk" />
+                  <div>
+                    <div class="radio-tile__title">Bulk add all products from an existing experience's catalog</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <div id="method-separately">
+            <section class="container">
+              <div style="padding:20px;" id="all-products-root">
+                <div class="page-header-row">
+                  <h2 style="margin:0;font-size:18px;">All AWS Marketplace products <span class="table-panel__count" data-count>(0)</span></h2>
+                  <button class="btn btn-normal" id="select-all-products-btn">Select all</button>
+                </div>
+                <div class="table-toolbar">
+                  <div class="search-input"><span data-icon="search"></span><input type="text" placeholder="Search available products" data-search-input /></div>
+                  <div class="pagination" data-pagination></div>
+                </div>
+                <div class="table-scroll">
+                  <table class="data-table" id="w-all-products-table">
+                    <thead><tr>
+                      <th class="checkbox-col no-sort"></th>
+                      <th class="no-sort">Product</th>
+                      <th class="no-sort">Vendor</th>
+                      <th class="no-sort">Approved in</th>
+                    </tr></thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+            <section class="container">
+              <div style="padding:20px;" id="selected-products-root">
+                <div class="page-header-row">
+                  <h2 style="margin:0;font-size:18px;">Selected products <span class="table-panel__count" data-count>(0)</span></h2>
+                  <button class="btn btn-normal" id="remove-selected-products-btn">Remove</button>
+                </div>
+                <div class="table-scroll">
+                  <table class="data-table" id="w-selected-products-table">
+                    <thead><tr>
+                      <th class="checkbox-col no-sort"></th>
+                      <th class="no-sort">Product</th>
+                      <th class="no-sort">Vendor</th>
+                      <th class="no-sort">Approved in</th>
+                    </tr></thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div id="method-bulk" style="display:none;">
+            <section class="container">
+              <div style="padding:20px;" id="bulk-root">
+                <h2 style="margin:0 0 4px;font-size:18px;">Available experiences <span class="table-panel__count" data-count>(0)</span></h2>
+                <p class="page-subtitle">Select an experience from which to bulk add all products. This process will take a few minutes.</p>
+                <div class="table-toolbar">
+                  <div class="search-input"><span data-icon="search"></span><input type="text" placeholder="Search experience by name or ID." /></div>
+                  <div class="pagination" data-pagination></div>
+                </div>
+                <div class="table-scroll">
+                  <table class="data-table" id="w-bulk-table">
+                    <thead><tr>
+                      <th class="radio-col no-sort"></th>
+                      <th class="no-sort">Name</th>
+                      <th class="no-sort">Status</th>
+                    </tr></thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="wizard-panel" data-step="4">
+          <section class="container">
+            <div style="padding:20px;">
+              <h2 style="margin:0 0 20px;font-size:18px;">Experience branding details</h2>
+              <div class="form-field">
+                <label for="f-brand-name">Name</label>
+                <p class="form-field__hint">The experience name should be searchable and include easily identifiable terms.</p>
+                <input type="text" id="f-brand-name" placeholder="e.g. My Company Marketplace" />
+                <p class="form-field__help">50 character maximum length.</p>
+              </div>
+              <div class="form-field">
+                <label for="f-brand-description">Description - <em>optional</em></label>
+                <p class="form-field__hint">If adding links, make sure they are accessible from the AWS dedicated cloud used by you and your users..</p>
+                <textarea id="f-brand-description" placeholder="Add a description end users will see"></textarea>
+                <p class="form-field__help">255 character maximum length.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="wizard-panel" data-step="5">
+          <p class="page-subtitle">Add 1 or more products to your experience. This step is optional.</p>
+          <div id="review-content"></div>
+        </div>
+
+        <div class="wizard-footer">
+          <button class="link-btn" id="wizard-cancel">Cancel</button>
+          <button class="btn btn-normal" id="wizard-prev" style="display:none;">Previous</button>
+          <button class="btn btn-primary" id="wizard-next">Next</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.experiences.js"></script>
+<script src="data.wizard.js"></script>
+<script src="page.create-experience.js"></script>
+</body>
+</html>

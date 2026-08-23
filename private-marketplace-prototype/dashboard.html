@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Private Marketplace admin dashboard." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header-row">
+      <div class="page-header">
+        <h1>Dashboard</h1>
+        <button class="info-link" data-open-help>Info</button>
+      </div>
+      <div class="page-header__actions">
+        <button class="btn btn-normal" id="view-requests-btn">View requests <span data-icon="externalLink"></span></button>
+        <button class="btn btn-primary" id="bulk-update-btn">Bulk update products</button>
+      </div>
+    </div>
+    <p class="page-subtitle">Summary of your organization's products in your experiences, including approved, declined/blocked, and all AWS Marketplace products.</p>
+
+    <section class="container info-card">
+      <div class="info-card__header">
+        <h2>Governance details</h2>
+        <button class="info-link" data-open-help>Info</button>
+      </div>
+      <dl class="info-card__grid">
+        <div class="info-card__field">
+          <dt>Management account ID</dt>
+          <dd>123456789012</dd>
+        </div>
+        <div class="info-card__field">
+          <dt>Default private marketplace</dt>
+          <dd><a href="experiences.html">ES Developer Experience <span data-icon="externalLink"></span></a></dd>
+        </div>
+        <div class="info-card__field">
+          <dt>Management account email</dt>
+          <dd>shawnyu@amazon.com</dd>
+        </div>
+        <div class="info-card__field">
+          <dt>Number of live experiences</dt>
+          <dd>2</dd>
+        </div>
+      </dl>
+    </section>
+
+    <div class="tabs" data-tab-group="dashboard">
+      <button class="tab active" data-tab="approved">Approved products</button>
+      <button class="tab" data-tab="declined">Declined/blocked products</button>
+      <button class="tab" data-tab="all">All AWS Marketplace products</button>
+    </div>
+
+    <div class="tab-panel active" data-tab-group="dashboard" data-tab="approved">
+      <div class="table-panel" id="approved-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>Approved products <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">List of approved products in your Private Marketplace.</p>
+          </div>
+          <div class="table-panel__actions">
+            <button class="btn btn-icon" id="refresh-approved" title="Refresh"><span data-icon="refreshCircular"></span></button>
+            <button class="btn btn-normal" id="remove-approved-btn" disabled>Remove</button>
+          </div>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="search-input">
+            <span data-icon="search"></span>
+            <input type="text" placeholder="Find resources" data-search-input />
+          </div>
+          <div class="pagination" data-pagination></div>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table" id="approved-table">
+            <thead>
+              <tr>
+                <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-approved" /></th>
+                <th data-sort-key="product"><span class="th-inner">Product <span data-icon="externalLink"></span> <span class="sort-icon"></span></span></th>
+                <th data-sort-key="vendor"><span class="th-inner">Vendor <span data-icon="externalLink"></span> <span class="sort-icon"></span></span></th>
+                <th data-sort-key="approvedIn"><span class="th-inner">Approved in <span data-icon="externalLink"></span> <span class="sort-icon"></span></span></th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-tab-group="dashboard" data-tab="declined">
+      <div class="table-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>Declined/blocked products <span class="table-panel__count">(0)</span></h2>
+            <p class="table-panel__subtitle">Products that have been declined or blocked from your Private Marketplace.</p>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="checkbox-col no-sort"></th>
+                <th class="no-sort">Product</th>
+                <th class="no-sort">Vendor</th>
+                <th class="no-sort">Reason</th>
+              </tr>
+            </thead>
+            <tbody><tr class="empty-row"><td colspan="4"><div class="empty-state">No declined or blocked products</div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-panel" data-tab-group="dashboard" data-tab="all">
+      <div class="table-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>All AWS Marketplace products <span class="table-panel__count">(0)</span></h2>
+            <p class="table-panel__subtitle">Every product currently available on AWS Marketplace.</p>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th class="checkbox-col no-sort"></th>
+                <th class="no-sort">Product</th>
+                <th class="no-sort">Vendor</th>
+                <th class="no-sort">Category</th>
+              </tr>
+            </thead>
+            <tbody><tr class="empty-row"><td colspan="4"><div class="empty-state">No products to display</div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.dashboard.js"></script>
+<script src="page.dashboard.js"></script>
+</body>
+</html>

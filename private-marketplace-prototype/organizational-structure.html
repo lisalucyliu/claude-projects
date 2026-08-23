@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Organizational structure — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Private Marketplace organizational structure page." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header-row">
+      <div class="page-header">
+        <h1>Organization structure <span class="table-panel__count" id="org-count">(0)</span></h1>
+        <button class="info-link" data-open-help>Info</button>
+      </div>
+      <div class="page-header__actions">
+        <div class="btn-dropdown">
+          <button class="btn btn-normal" data-dropdown-trigger>Actions</button>
+          <div class="dropdown-menu">
+            <button data-action="edit" disabled>Edit association</button>
+            <button data-action="remove" disabled>Remove association</button>
+          </div>
+        </div>
+        <button class="btn btn-primary" id="create-association-btn">Create association</button>
+      </div>
+    </div>
+    <p class="page-subtitle">View a hierarchy of organizational units and accounts that you can associate with private marketplace experiences.</p>
+
+    <div class="table-toolbar">
+      <div class="search-input" style="max-width:520px;">
+        <span data-icon="search"></span>
+        <input type="text" placeholder="Find AWS account or OU by their exact ID" data-org-search />
+      </div>
+      <div class="search-input" style="max-width:180px; flex:0 0 180px;">
+        <span>All types</span>
+        <span data-icon="chevronDownSmall" style="margin-left:auto;"></span>
+      </div>
+      <div class="pagination">
+        <button class="page-btn" disabled><span data-icon="chevronLeft"></span></button>
+        <button class="page-btn current">1</button>
+        <button class="page-btn"><span data-icon="chevronRight"></span></button>
+        <button class="page-settings"><span data-icon="settingsTable"></span></button>
+      </div>
+    </div>
+
+    <div class="table-scroll">
+      <table class="data-table" id="org-table">
+        <thead>
+          <tr>
+            <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-org" /></th>
+            <th data-sort-key="name"><span class="th-inner">Audience name <span class="sort-icon"></span></span></th>
+            <th data-sort-key="accountId"><span class="th-inner">ID <span class="sort-icon"></span></span></th>
+            <th data-sort-key="experience"><span class="th-inner">Governing experience <span data-icon="externalLink"></span> <span class="sort-icon"></span></span></th>
+            <th data-sort-key="relationship"><span class="th-inner">Relationship <span class="sort-icon"></span></span></th>
+          </tr>
+        </thead>
+        <tbody id="org-tbody"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.org-structure.js"></script>
+<script src="page.org-structure.js"></script>
+</body>
+</html>
