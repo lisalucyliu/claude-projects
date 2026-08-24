@@ -1159,39 +1159,30 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   flex-shrink: 0;
 }
 
+/* Glyphs are the exact <polyline> shapes cloudscape.design's own checkbox
+   SVG draws in its 16x16 viewBox (points="3.5,8 7,11 12,4" checked;
+   "3.5,8 12.5,8" indeterminate) — reproduced as a background-image so they
+   paint from the input's border-box (its full visible 16x16 footprint),
+   the same coordinate space Cloudscape's own SVG uses, rather than the
+   14x14 content-box a ::after pseudo-element would be confined to. That
+   mismatch was the root cause of the checkmark looking oversized and
+   vertically off-center. Ported from private-marketplace-prototype's
+   identical fix. */
 .data-table input[type="checkbox"]:checked {
-  background: var(--color-blue);
+  background: var(--color-blue)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpolyline points='3.5,8 7,11 12,4' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E")
+    no-repeat center / 16px 16px;
   border-color: var(--color-blue);
-}
-
-.data-table input[type="checkbox"]:checked::after {
-  content: "";
-  position: absolute;
-  left: 4px;
-  top: 0.5px;
-  width: 5px;
-  height: 9px;
-  border-right: 2px solid #fff;
-  border-bottom: 2px solid #fff;
-  transform: rotate(40deg);
 }
 
 /* Header "select all" checkbox when some but not all rows are selected —
    set via JS (input.indeterminate = true), matching the live Cloudscape
    table's minus-glyph treatment instead of an empty or fully-checked box. */
 .data-table input[type="checkbox"]:indeterminate {
-  background: var(--color-blue);
+  background: var(--color-blue)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpolyline points='3.5,8 12.5,8' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E")
+    no-repeat center / 16px 16px;
   border-color: var(--color-blue);
-}
-
-.data-table input[type="checkbox"]:indeterminate::after {
-  content: "";
-  position: absolute;
-  left: 3px;
-  top: 6.5px;
-  width: 8px;
-  height: 2px;
-  background: #fff;
 }
 
 .data-table input[type="radio"] {
