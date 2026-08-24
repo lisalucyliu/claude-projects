@@ -259,6 +259,7 @@ function renderOrgTree() {
     });
     draw();
   });
+  wireTablePreferences(document.querySelector("#w-org-table").closest(".container").querySelector(".page-settings"), null, document.getElementById("w-org-table"));
   draw();
 }
 

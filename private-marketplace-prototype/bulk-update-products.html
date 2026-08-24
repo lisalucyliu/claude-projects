@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bulk update products — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Private Marketplace bulk update products wizard." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header">
+      <h1 id="wizard-title">Select AWS Marketplace products</h1>
+      <button class="info-link" data-open-help>Info</button>
+    </div>
+    <p class="page-subtitle" id="wizard-subtitle">Search for and select 1 or more AWS products to add to 1 or more experiences. Alternatively, you can <a href="experiences.html">view individual experiences</a> to add or remove from individual experiences.</p>
+
+    <div class="wizard-layout">
+      <nav class="wizard-nav" id="wizard-nav"></nav>
+
+      <div class="wizard-content">
+        <!-- Step 1: Select AWS Marketplace products -->
+        <div class="wizard-panel active" data-step="1">
+          <section class="container">
+            <div style="padding:20px;">
+              <h2 style="margin:0 0 4px;font-size:18px;">Update method</h2>
+              <p class="page-subtitle" style="margin-bottom:20px;">Choose to add or remove products from experiences. You can choose 1 or more products.</p>
+              <div class="radio-tile-group">
+                <label class="radio-tile selected" id="tile-add">
+                  <input type="radio" name="update-method" value="add" checked />
+                  <div>
+                    <div class="radio-tile__title">Add 1 or more products</div>
+                  </div>
+                </label>
+                <label class="radio-tile" id="tile-remove">
+                  <input type="radio" name="update-method" value="remove" />
+                  <div>
+                    <div class="radio-tile__title">Remove 1 or more products</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <section class="container">
+            <div style="padding:20px;" id="all-products-root">
+              <div class="page-header-row">
+                <h2 style="margin:0;font-size:18px;">All AWS Marketplace products <span class="table-panel__count" data-count>(0)</span></h2>
+                <button class="btn btn-normal" id="select-all-products-btn">Select all</button>
+              </div>
+              <div class="table-toolbar">
+                <div class="search-input"><span data-icon="search"></span><input type="text" placeholder="Search available products" data-search-input /></div>
+                <div class="table-toolbar__controls">
+                  <div class="pagination" data-pagination></div>
+                  <button class="page-settings"><span data-icon="settingsTable"></span></button>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table class="data-table" id="bulk-all-products-table">
+                  <thead><tr>
+                    <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-bulk-products" /></th>
+                    <th class="no-sort">Product</th>
+                    <th class="no-sort">Vendor</th>
+                    <th class="no-sort">Approved in</th>
+                  </tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+            <hr class="side-nav__divider" style="margin:0;" />
+            <div style="padding:20px;" id="selected-products-root">
+              <div class="page-header-row">
+                <h2 style="margin:0;font-size:18px;">Selected products <span class="table-panel__count" data-count>(0)</span></h2>
+                <div class="table-panel__actions">
+                  <button class="btn btn-normal" id="remove-selected-products-btn" disabled>Remove</button>
+                  <button class="btn btn-normal" id="select-all-selected-products-btn">Select all</button>
+                </div>
+              </div>
+              <div class="table-toolbar">
+                <div class="search-input"><span data-icon="search"></span><input type="text" placeholder="Search selected products" data-search-input /></div>
+                <div class="table-toolbar__controls">
+                  <div class="pagination" data-pagination></div>
+                  <button class="page-settings"><span data-icon="settingsTable"></span></button>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table class="data-table" id="bulk-selected-products-table">
+                  <thead><tr>
+                    <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-bulk-selected-products" /></th>
+                    <th class="no-sort">Product</th>
+                    <th class="no-sort">Vendor</th>
+                    <th class="no-sort">Approved in</th>
+                  </tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- Step 2: Select experiences -->
+        <div class="wizard-panel" data-step="2">
+          <section class="container">
+            <div style="padding:20px;" id="all-experiences-root">
+              <div class="page-header-row">
+                <h2 style="margin:0;font-size:18px;">Available experiences <span class="table-panel__count" data-count>(0)</span></h2>
+                <button class="btn btn-normal" id="select-all-experiences-btn">Select all</button>
+              </div>
+              <div class="table-toolbar">
+                <div class="search-input"><span data-icon="search"></span><input type="text" placeholder="Search available experiences" data-search-input /></div>
+                <div class="table-toolbar__controls">
+                  <div class="pagination" data-pagination></div>
+                  <button class="page-settings"><span data-icon="settingsTable"></span></button>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table class="data-table" id="bulk-all-experiences-table">
+                  <thead><tr>
+                    <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-bulk-experiences" /></th>
+                    <th class="no-sort">Experiences <span data-icon="externalLink"></span></th>
+                    <th class="no-sort">No. of audiences</th>
+                    <th class="no-sort">Status</th>
+                  </tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+            <hr class="side-nav__divider" style="margin:0;" />
+            <div style="padding:20px;" id="selected-experiences-root">
+              <div class="page-header-row">
+                <h2 style="margin:0;font-size:18px;">Selected experiences <span class="table-panel__count" data-count>(0)</span></h2>
+                <div class="table-panel__actions">
+                  <button class="btn btn-normal" id="remove-selected-experiences-btn" disabled>Remove</button>
+                  <button class="btn btn-normal" id="select-all-selected-experiences-btn">Select all</button>
+                </div>
+              </div>
+              <div class="table-toolbar">
+                <div class="search-input"><span data-icon="search"></span><input type="text" placeholder="Search selected experiences" data-search-input /></div>
+                <div class="table-toolbar__controls">
+                  <div class="pagination" data-pagination></div>
+                  <button class="page-settings"><span data-icon="settingsTable"></span></button>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table class="data-table" id="bulk-selected-experiences-table">
+                  <thead><tr>
+                    <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-bulk-selected-experiences" /></th>
+                    <th class="no-sort">Experiences <span data-icon="externalLink"></span></th>
+                    <th class="no-sort">No. of audiences</th>
+                    <th class="no-sort">Status</th>
+                  </tr></thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+          <div id="step2-validation" style="display:none;"></div>
+        </div>
+
+        <!-- Step 3: Review -->
+        <div class="wizard-panel" data-step="3">
+          <div id="bulk-review-content"></div>
+        </div>
+
+        <div class="wizard-footer">
+          <button class="link-btn" id="wizard-cancel">Cancel</button>
+          <button class="btn btn-normal" id="wizard-prev" style="display:none;">Previous</button>
+          <button class="btn btn-primary" id="wizard-next">Continue</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.wizard.js"></script>
+<script src="data.bulk-update.js"></script>
+<script src="page.bulk-update-products.js"></script>
+</body>
+</html>

@@ -130,6 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
     render();
   });
 
+  wireTablePreferences(document.querySelector(".page-settings"), null, document.getElementById("org-table"));
+
   document.querySelectorAll(".dropdown-menu [data-action]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const labels = { edit: "Association updated", remove: "Association removed" };

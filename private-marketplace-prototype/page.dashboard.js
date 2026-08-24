@@ -23,9 +23,22 @@ document.addEventListener("DOMContentLoaded", () => {
     `
   );
 
-  // The success flash only appears once a bulk action actually completes
-  // (see bulk-update-btn below) — not unconditionally on page load.
+  // The success flash only appears once a bulk action actually completes —
+  // the bulk-update-products.html wizard hands the result off via
+  // sessionStorage (each page load re-parses this script fresh, so it can't
+  // ride along in memory across navigation) and this page consumes it once.
   const flashRoot = document.getElementById("flash-root");
+  const bulkResultRaw = sessionStorage.getItem("pmp-bulk-update-result");
+  if (bulkResultRaw) {
+    sessionStorage.removeItem("pmp-bulk-update-result");
+    const result = JSON.parse(bulkResultRaw);
+    const verb = result.method === "add" ? "added to" : "removed from";
+    showFlash(flashRoot, {
+      type: "success",
+      message: `<strong>Bulk ${result.method} product process started successfully</strong><br>${result.productCount} product${result.productCount === 1 ? "" : "s"} ${result.productCount === 1 ? "is" : "are"} being ${verb} ${result.experienceCount} experience${result.experienceCount === 1 ? "" : "s"}`,
+      action: { label: "View change set", onClick: () => {} },
+    });
+  }
 
   const selectedApprovedIds = new Set();
   const selectAllApproved = document.getElementById("select-all-approved");
@@ -75,20 +88,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("refresh-approved").addEventListener("click", () => table.render());
-
-  document.getElementById("bulk-update-btn").addEventListener("click", () => {
-    const inProgress = showFlash(flashRoot, {
-      type: "in-progress",
-      message: "Bulk update product process started. This may take a few minutes.",
-    });
-    setTimeout(() => {
-      inProgress.remove();
-      showFlash(flashRoot, {
-        type: "success",
-        message: `<strong>Bulk add product process started successfully</strong><br>2 products are being added to 2 experiences`,
-        action: { label: "View change set", onClick: () => {} },
-        autoDismiss: 6000,
-      });
-    }, 3000);
-  });
 });

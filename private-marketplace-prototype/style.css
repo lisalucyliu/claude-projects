@@ -1901,3 +1901,274 @@ table.data-table {
 .review-card dd:last-child {
   margin-bottom: 0;
 }
+
+/* ---- Inline validation alert (verified against
+   cloudscape.design/components/alert/?example=error: 2px solid #db0000
+   border, #fff5f5 fill, 12px radius, red icon, near-black body text) ---- */
+
+.inline-alert {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  padding: 8px var(--space-m);
+  border-radius: 12px;
+  font-size: 14px;
+  color: var(--color-text-body);
+  margin-top: var(--space-m);
+}
+
+.inline-alert svg {
+  flex-shrink: 0;
+}
+
+.inline-alert--error {
+  background: var(--color-red-tint);
+  border: 2px solid var(--color-red);
+}
+
+.inline-alert--error svg {
+  color: var(--color-red);
+}
+
+/* ---- Toggle switch (e.g. table preferences column visibility) ---- */
+
+.toggle-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-text-body);
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.toggle-switch__track {
+  width: 34px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--color-border-strong);
+  position: relative;
+  transition: background 0.15s ease;
+  flex-shrink: 0;
+}
+
+.toggle-switch__track::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.15s ease;
+}
+
+.toggle-switch input:checked + .toggle-switch__track {
+  background: var(--color-blue);
+}
+
+.toggle-switch input:checked + .toggle-switch__track::after {
+  transform: translateX(16px);
+}
+
+/* ---- Table preferences modal (cloudscape.design/components/collection-preferences/) ---- */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 20, 26, 0.3);
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.prefs-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.97);
+  width: 820px;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
+  background: var(--color-bg-container);
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(15, 20, 26, 0.3);
+  z-index: 301;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.prefs-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.prefs-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-l);
+  border-bottom: 1px solid var(--color-border-divider);
+  flex-shrink: 0;
+}
+
+.prefs-modal__header h2 {
+  font-size: 20px;
+  margin: 0;
+  color: var(--color-text-heading);
+}
+
+.prefs-modal__body {
+  display: flex;
+  gap: var(--space-xxl);
+  padding: var(--space-l);
+  overflow-y: auto;
+}
+
+.prefs-modal__col {
+  flex: 1;
+  min-width: 0;
+}
+
+.prefs-modal__col h3 {
+  font-size: 16px;
+  margin: 0 0 var(--space-m);
+  color: var(--color-text-heading);
+}
+
+.prefs-modal__hint {
+  font-size: 12px;
+  color: var(--color-text-body-secondary);
+  margin: -8px 0 var(--space-s);
+}
+
+.prefs-modal__divider {
+  width: 1px;
+  background: var(--color-border-divider);
+  flex-shrink: 0;
+}
+
+.prefs-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: var(--space-m);
+  cursor: pointer;
+}
+
+.prefs-checkbox input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 1px 0 0;
+  border-radius: 3px;
+  border: 1px solid #8c8c94;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.prefs-checkbox input[type="checkbox"]:checked {
+  background: var(--color-blue);
+  border-color: var(--color-blue);
+}
+
+.prefs-checkbox input[type="checkbox"]:checked::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 0.5px;
+  width: 5px;
+  height: 9px;
+  border-right: 2px solid #fff;
+  border-bottom: 2px solid #fff;
+  transform: rotate(40deg);
+}
+
+.prefs-checkbox__title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+
+.prefs-checkbox__desc {
+  font-size: 12px;
+  color: var(--color-text-body-secondary);
+  margin-top: 2px;
+}
+
+.prefs-col-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--color-border-divider);
+  font-size: 14px;
+  color: var(--color-text-body);
+}
+
+.prefs-col-row__handle {
+  color: var(--color-text-body-tertiary);
+  cursor: grab;
+  flex-shrink: 0;
+  display: flex;
+}
+
+.prefs-col-row__label {
+  flex: 1;
+}
+
+.prefs-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-m);
+  padding: var(--space-l);
+  border-top: 1px solid var(--color-border-divider);
+  flex-shrink: 0;
+}
+
+/* ---- Table preference modifiers, applied by the preferences modal ---- */
+
+.data-table.wrap-lines td {
+  white-space: normal;
+}
+
+.data-table.striped tbody tr:not(.selected):nth-child(even) {
+  background: var(--color-bg-layout);
+}
+
+.data-table.compact th,
+.data-table.compact td {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.data-table.hide-col-1 > thead > tr > :nth-child(1),
+.data-table.hide-col-1 > tbody > tr > :nth-child(1) { display: none; }
+.data-table.hide-col-2 > thead > tr > :nth-child(2),
+.data-table.hide-col-2 > tbody > tr > :nth-child(2) { display: none; }
+.data-table.hide-col-3 > thead > tr > :nth-child(3),
+.data-table.hide-col-3 > tbody > tr > :nth-child(3) { display: none; }
+.data-table.hide-col-4 > thead > tr > :nth-child(4),
+.data-table.hide-col-4 > tbody > tr > :nth-child(4) { display: none; }
+.data-table.hide-col-5 > thead > tr > :nth-child(5),
+.data-table.hide-col-5 > tbody > tr > :nth-child(5) { display: none; }
+.data-table.hide-col-6 > thead > tr > :nth-child(6),
+.data-table.hide-col-6 > tbody > tr > :nth-child(6) { display: none; }

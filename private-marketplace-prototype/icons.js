@@ -12,6 +12,8 @@ const Icons = {
 
   search: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="5.25"/><path d="M11 11l3.5 3.5" stroke-linecap="round"/></svg>`,
 
+  dragHandle: `<svg width="10" height="16" viewBox="0 0 10 16" fill="currentColor"><circle cx="2" cy="2" r="1.3"/><circle cx="8" cy="2" r="1.3"/><circle cx="2" cy="8" r="1.3"/><circle cx="8" cy="8" r="1.3"/><circle cx="2" cy="14" r="1.3"/><circle cx="8" cy="14" r="1.3"/></svg>`,
+
   bell: `<svg width="20" height="20" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 13.5h10l-1.2-2A6 6 0 0 1 12 8V7a3 3 0 0 0-6 0v1a6 6 0 0 1-.8 3.5L4 13.5Z" stroke-linejoin="round"/><path d="M7.2 15.5a1.8 1.8 0 0 0 3.6 0" stroke-linecap="round"/></svg>`,
 
   help: `<svg width="20" height="20" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="9" r="7"/><path d="M6.8 7a2.2 2.2 0 1 1 3.2 2c-.7.5-1 .9-1 1.7" stroke-linecap="round"/><circle cx="9" cy="12.8" r=".2" fill="currentColor" stroke="none"/></svg>`,
