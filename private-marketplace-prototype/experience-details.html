@@ -86,7 +86,7 @@
           <h2>Tags <span id="detail-tags-count" style="font-weight:400;color:var(--color-text-body-secondary);"></span></h2>
           <button class="btn btn-normal" id="edit-tags-btn">Edit</button>
         </div>
-        <table class="data-table" id="tags-table">
+        <table class="data-table simple" id="tags-table">
           <thead>
             <tr>
               <th>Key</th>
@@ -114,7 +114,7 @@
           </div>
         </div>
         <div class="table-scroll">
-          <table class="data-table">
+          <table class="data-table simple">
             <thead>
               <tr>
                 <th>Audience name</th>
@@ -131,6 +131,7 @@
 
     <!-- Products -->
     <div class="tab-panel" data-tab-group="exp-details" data-tab="products">
+      <section class="container" style="padding:20px;">
       <div class="table-panel" id="managed-products-panel">
         <div class="table-panel__header">
           <div class="table-panel__title-group">
@@ -166,7 +167,9 @@
           </table>
         </div>
       </div>
+      </section>
 
+      <section class="container" style="padding:20px;">
       <div class="table-panel" id="all-products-panel">
         <div class="table-panel__header">
           <div class="table-panel__title-group">
@@ -203,6 +206,7 @@
           </table>
         </div>
       </div>
+      </section>
     </div>
 
     <!-- Branding settings -->

@@ -707,12 +707,16 @@ svg {
 /* ============ TABS ============ */
 
 /* Verified against cloudscape.design/components/tabs/: 16px/700 label text,
-   tight "7px 4px 7px 3px" padding, and a full-width #c6c6cd bottom rule
-   (not the much lighter divider token, which read as "missing"). */
+   tight "7px 4px 7px 3px" padding, and a full-width #c6c6cd bottom rule.
+   Cloudscape's own computed value is exactly 1px, but on our pages the
+   tabs sit on an open white canvas with no adjacent card border to give
+   the eye contrast, so the same 1px/#c6c6cd line reads as effectively
+   invisible — bumped to 2px (same color) so it reliably reads as a
+   divider without going dark enough to look like a bold rule. */
 .tabs {
   display: flex;
   gap: 16px;
-  border-bottom: 1px solid var(--color-border-strong);
+  border-bottom: 2px solid var(--color-border-strong);
   margin-bottom: var(--space-l);
 }
 
@@ -725,7 +729,7 @@ svg {
   color: var(--color-text-body-secondary);
   padding: 7px 4px 7px 3px;
   border-bottom: 3px solid transparent;
-  margin-bottom: -1px;
+  margin-bottom: -2px;
 }
 
 .tab.active {
@@ -1178,6 +1182,16 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 .data-table td.radio-col {
   padding: 1px;
   text-align: center;
+}
+
+/* Verified against cloudscape.design/components/table/?example=simple:
+   a table with no selection column has its first column's cell edge
+   (not just its text) land flush with the card's own title above it —
+   apply .simple to any <table class="data-table"> that has no checkbox-
+   or radio-col. */
+.data-table.simple thead th:first-child,
+.data-table.simple tbody td:first-child {
+  padding-left: 0;
 }
 
 .data-table tbody td.wrap-col {
