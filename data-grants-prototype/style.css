@@ -967,8 +967,14 @@ svg {
   font-weight: 700;
 }
 
+/* Divider drawn as a ::before rather than a border on the button itself —
+   the button's own border-radius:20px pill shape would clip a real
+   border-left into a curved sliver instead of a straight line. Verified
+   pixel-for-pixel against cloudscape.design/examples/react/table.html.
+   Ported from private-marketplace-prototype's identical fix. */
 .page-settings {
-  margin-left: 20px;
+  position: relative;
+  margin-left: 17px;
   width: 28px;
   height: 32px;
   border: none;
@@ -979,6 +985,16 @@ svg {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.page-settings::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: -1px;
+  bottom: -1px;
+  width: 1px;
+  background: var(--color-border-strong);
 }
 
 .page-settings:hover {

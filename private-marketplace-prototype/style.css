@@ -1049,8 +1049,17 @@ svg {
   font-weight: 700;
 }
 
+/* Divider drawn as a ::before rather than a border on the button itself —
+   the button's own border-radius:20px pill shape would clip a real
+   border-left into a curved sliver instead of a straight line. Verified
+   pixel-for-pixel against cloudscape.design/examples/react/table.html:
+   the divider is 1px solid var(--color-border-strong) (their computed
+   rgb(198,198,205), not the lighter --color-border-divider token), sits
+   exactly 8px after the pagination group, 8px before the button, and
+   extends 1px above/below the button's own 32px height. */
 .page-settings {
-  margin-left: 20px;
+  position: relative;
+  margin-left: 17px;
   width: 28px;
   height: 32px;
   border: none;
@@ -1061,6 +1070,16 @@ svg {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.page-settings::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: -1px;
+  bottom: -1px;
+  width: 1px;
+  background: var(--color-border-strong);
 }
 
 .page-settings:hover {
@@ -1890,11 +1909,24 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   box-shadow: 0 0 0 3px var(--color-bg-container), 0 0 0 5px var(--color-blue), 0 0 0 7px var(--color-bg-container);
 }
 
+/* 10px, not 7px: the active step's circle has a box-shadow halo that
+   extends 7px beyond its own edge (vs. 4px for complete/incomplete
+   steps) — at a 7px margin that halo touched the connector with zero
+   clearance, while other steps kept a visible 3px gap, making the active
+   step look more cramped. 10px gives complete/incomplete steps a uniform
+   6px of clear space (10 - 4px halo). */
 .wizard-nav__connector {
   width: 2px;
   flex: 1;
   background: var(--color-border-strong);
-  margin: 7px 0;
+  margin: 10px 0;
+}
+
+/* The connector directly below the active circle needs a taller top
+   margin to clear that circle's larger 7px halo by the same 6px as
+   everywhere else (13 - 7px halo = 6px, matching 10 - 4px above). */
+.wizard-nav__step.active .wizard-nav__connector {
+  margin-top: 13px;
 }
 
 .wizard-nav__text {
