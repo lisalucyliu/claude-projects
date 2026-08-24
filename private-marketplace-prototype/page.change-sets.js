@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     countEl.textContent = `(${CHANGE_SETS.length})`;
 
     if (filtered.length === 0) {
-      tbody.innerHTML = `<tr class="empty-row"><td colspan="7"><div class="empty-state">No matching change sets</div></td></tr>`;
+      tbody.innerHTML = `<tr class="empty-row"><td colspan="6"><div class="empty-state">No matching change sets</div></td></tr>`;
       renderPagination();
       return;
     }
@@ -58,8 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const setRow = `
           <tr data-row-id="${cs.id}" class="${selectedKind === "set" && selectedId === cs.id ? "selected selected--top selected--bottom" : ""}">
             <td class="radio-col"><input type="radio" name="cs-radio" class="row-radio" data-kind="set" data-id="${cs.id}" ${selectedKind === "set" && selectedId === cs.id ? "checked" : ""} /></td>
-            <td>${toggle}</td>
-            <td><a href="change-set-details.html?id=${cs.id}" class="truncate">${label}</a></td>
+            <td style="padding-left:2px;">
+              <div class="tree-cell">
+                ${toggle}
+                <a href="change-set-details.html?id=${cs.id}" class="truncate">${label}</a>
+              </div>
+            </td>
             <td>${cs.changes.length}</td>
             <td>${statusHtml(cs.status, cs.statusLabel)}</td>
             <td>${cs.startTime}</td>
@@ -72,8 +76,12 @@ document.addEventListener("DOMContentLoaded", () => {
             (change) => `
           <tr data-row-id="${change.id}" class="${selectedKind === "change" && selectedId === change.id ? "selected selected--top selected--bottom" : ""}">
             <td class="radio-col"><input type="radio" name="cs-radio" class="row-radio" data-kind="change" data-id="${change.id}" ${selectedKind === "change" && selectedId === change.id ? "checked" : ""} /></td>
-            <td></td>
-            <td style="padding-left:44px;"><a href="change-details.html?id=${change.id}" class="truncate">${change.changeType}</a></td>
+            <td style="padding-left:22px;">
+              <div class="tree-cell">
+                <span class="tree-toggle-spacer"></span>
+                <a href="change-details.html?id=${change.id}" class="truncate">${change.changeType}</a>
+              </div>
+            </td>
             <td>-</td>
             <td>-</td>
             <td>-</td>

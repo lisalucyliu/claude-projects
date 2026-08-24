@@ -32,40 +32,47 @@
       <div class="info-card__header">
         <h2>Change set details</h2>
       </div>
-      <dl class="info-card__grid">
-        <div class="info-card__field">
-          <dt>Status</dt>
-          <dd id="cs-status"></dd>
-        </div>
-        <div class="info-card__field">
-          <dt>ARN</dt>
-          <dd class="copy-row">
-            <button class="copy-btn" id="copy-arn" title="Copy ARN"><span data-icon="copy"></span></button>
-            <span class="copy-row__text" id="cs-arn"></span>
-          </dd>
-        </div>
-        <div class="info-card__field">
-          <dt>Start time</dt>
-          <dd id="cs-start"></dd>
-        </div>
-        <div class="info-card__field" id="cs-error-code-field">
-          <dt>Error code</dt>
-          <dd id="cs-error-code"></dd>
-        </div>
-        <div class="info-card__field">
-          <dt>Change set ID</dt>
-          <dd id="cs-id"></dd>
-        </div>
-        <div class="info-card__field" style="grid-row: span 1;"></div>
-        <div class="info-card__field">
-          <dt>End time</dt>
-          <dd id="cs-end"></dd>
-        </div>
-        <div class="info-card__field" id="cs-error-desc-field">
-          <dt>Error description</dt>
-          <dd id="cs-error-desc"></dd>
-        </div>
-      </dl>
+      <div class="info-card__columns">
+        <dl class="info-card__column">
+          <div class="info-card__field">
+            <dt>Status</dt>
+            <dd id="cs-status"></dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Change set ID</dt>
+            <dd id="cs-id"></dd>
+          </div>
+        </dl>
+        <dl class="info-card__column">
+          <div class="info-card__field">
+            <dt>ARN</dt>
+            <dd class="copy-row">
+              <button class="copy-btn" id="copy-arn" title="Copy ARN"><span data-icon="copy"></span></button>
+              <span class="copy-row__text" id="cs-arn"></span>
+            </dd>
+          </div>
+        </dl>
+        <dl class="info-card__column">
+          <div class="info-card__field">
+            <dt>Start time</dt>
+            <dd id="cs-start"></dd>
+          </div>
+          <div class="info-card__field">
+            <dt>End time</dt>
+            <dd id="cs-end"></dd>
+          </div>
+        </dl>
+        <dl class="info-card__column" id="cs-error-column">
+          <div class="info-card__field" id="cs-error-code-field">
+            <dt>Error code</dt>
+            <dd id="cs-error-code"></dd>
+          </div>
+          <div class="info-card__field" id="cs-error-desc-field">
+            <dt>Error description</dt>
+            <dd id="cs-error-desc"></dd>
+          </div>
+        </dl>
+      </div>
     </section>
 
     <div class="table-panel" id="changes-panel">

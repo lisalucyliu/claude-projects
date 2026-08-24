@@ -1704,6 +1704,25 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   gap: var(--space-l) var(--space-xxl);
 }
 
+/* An alternative to .info-card__grid for cards whose fields group into
+   independent vertical stacks side by side (e.g. Change set details:
+   Status+ID, ARN alone, Start+End time, Error code+description) rather
+   than a single left-to-right/top-to-bottom grid — each .info-card__column
+   is its own <dl>, so a long-wrapping value in one column never shoves
+   fields in the next column out of alignment. */
+.info-card__columns {
+  display: flex;
+  gap: var(--space-xxl);
+}
+
+.info-card__column {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+}
+
 .info-card__field dt {
   font-size: 14px;
   font-weight: 700;

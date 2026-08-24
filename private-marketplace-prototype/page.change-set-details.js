@@ -29,8 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("cs-end").textContent = cs.endTime || "-";
 
   const hasError = cs.status === "error";
-  document.getElementById("cs-error-code-field").style.display = hasError ? "" : "none";
-  document.getElementById("cs-error-desc-field").style.display = hasError ? "" : "none";
+  document.getElementById("cs-error-column").style.display = hasError ? "" : "none";
   if (hasError) {
     document.getElementById("cs-error-code").textContent = cs.errorCode;
     document.getElementById("cs-error-desc").textContent = cs.errorDescription;
