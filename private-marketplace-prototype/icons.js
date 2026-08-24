@@ -34,7 +34,9 @@ const Icons = {
 
   refresh: `<svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12.8 7.5A5.3 5.3 0 1 1 11 3.6" stroke-linecap="round"/><path d="M12.8 2.8v3.3h-3.3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 
-  settingsTable: `<svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="7.5" cy="7.5" r="2.2"/><path d="M7.5 1.7v1.3M7.5 12v1.3M13.3 7.5H12M3 7.5H1.7M11.2 3.8l-.9.9M4.7 10.3l-.9.9M11.2 11.2l-.9-.9M4.7 4.7l-.9-.9" stroke-linecap="round"/></svg>`,
+  /* Exact path from cloudscape.design/components/icon/?example=settings
+     (name="settings") — the real gear glyph, not an approximation. */
+  settingsTable: `<svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6.11 1.729c.07-.42.44-.729.86-.729h2.02c.43 0 .79.31.86.729l.17.999c.05.29.24.529.5.679.06.03.11.06.17.1.25.15.56.2.84.1l.95-.35c.4-.15.85 0 1.07.38l1.01 1.747c.21.37.13.839-.2 1.108l-.78.64c-.23.189-.34.479-.33.768v.2c0 .29.11.579.33.769l.78.639c.33.27.42.739.2 1.108l-1.01 1.748c-.21.37-.66.529-1.06.38l-.95-.35a.966.966 0 0 0-.84.1c-.06.03-.11.07-.17.1-.26.14-.45.389-.5.679l-.17.998A.878.878 0 0 1 9 15H6.98a.87.87 0 0 1-.86-.729l-.17-.998a.988.988 0 0 0-.5-.68c-.06-.03-.11-.06-.17-.1a.996.996 0 0 0-.84-.1l-.95.35c-.4.15-.85 0-1.06-.38l-1.01-1.747a.873.873 0 0 1 .2-1.108l.78-.64c.23-.189.34-.479.33-.768v-.2c0-.3-.11-.579-.33-.769l-.78-.639a.861.861 0 0 1-.2-1.108l1.01-1.748c.21-.37.66-.529 1.07-.38l.95.35c.28.1.58.06.84-.1.06-.03.11-.07.17-.1.26-.14.45-.379.5-.678l.15-1Z" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 8c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2Z" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 
   /* Sort triangles — verified against cloudscape.design/components/table/:
      unsorted is a muted down-triangle; active sort is the same shape
@@ -75,7 +77,12 @@ const Icons = {
      the same status-indicator family as statusAccepted/statusWarning. */
   statusStopped: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="7"/><path d="M5 8h6" stroke-linecap="round"/></svg>`,
 
-  folder: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1.5 4.2c0-.6.5-1.1 1.1-1.1H6l1.3 1.6h6.1c.6 0 1.1.5 1.1 1.1v6.9c0 .6-.5 1.1-1.1 1.1H2.6c-.6 0-1.1-.5-1.1-1.1V4.2Z" stroke-linejoin="round"/></svg>`,
+  /* Exact paths from cloudscape.design/foundation/visual-foundation/iconography/
+     (name="folder" / name="folder-open") — collapsed tree rows use the
+     closed glyph, expanded rows use the open one. */
+  folder: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M15 5v9H2V2h6l1 2h5c.55 0 1 .45 1 1Z" stroke-linejoin="round"/></svg>`,
+
+  folderOpen: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 14h8l-3-7H1l2 7h3Z" stroke-linejoin="round"/><path d="M2 7V2h6l1 2h5c.55 0 1 .45 1 1v8c0 .55-.45 1-1 1h-1" stroke-linejoin="round"/></svg>`,
 
   account: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="4.6" r="2.4"/><path d="M2 12.5c.7-2.6 2.7-4 5-4s4.3 1.4 5 4" stroke-linecap="round"/></svg>`,
 

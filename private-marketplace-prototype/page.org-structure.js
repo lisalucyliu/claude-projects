@@ -20,8 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <li><strong>Inherited</strong> — this OU or account governs by inheriting its parent's association.</li>
     </ul>
     <div class="help-panel__links">
-      <h3>Learn more</h3>
-      <a href="https://docs.aws.amazon.com/marketplace/latest/buyerguide/private-marketplace.html" target="_blank" rel="noopener">Working with Private Marketplace ${Icons.externalLink}</a>
+      <h3>Learn more&nbsp;${Icons.externalLink}</h3>
+      <a href="https://docs.aws.amazon.com/marketplace/latest/buyerguide/private-marketplace.html" target="_blank" rel="noopener">Working with Private Marketplace</a>
     </div>
     `
   );
@@ -48,7 +48,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function render() {
     const rows = ORG_NODES.filter((n) => (searchText ? matchesSearch(n) : isVisible(n)));
-    countEl.textContent = selectedIds.size > 0 ? `(${selectedIds.size}/${ORG_NODES.length})` : `(${ORG_NODES.length})`;
+    // The source Figma wireframe shows this count as "N+" (there may be more
+    // OUs/accounts than are currently expanded/visible) — keep the "+" in
+    // both the plain and selected/total forms.
+    countEl.textContent = selectedIds.size > 0 ? `(${selectedIds.size}/${ORG_NODES.length}+)` : `(${ORG_NODES.length}+)`;
 
     if (rows.length === 0) {
       tbody.innerHTML = `<tr class="empty-row"><td colspan="5"><div class="empty-state">No matching organizational units or accounts</div></td></tr>`;
@@ -59,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tbody.innerHTML = rows
       .map((node, i) => {
         const disabled = node.relationship === "Inherited";
-        const icon = node.type === "account" ? Icons.account : Icons.folder;
+        const icon = node.type === "account" ? Icons.account : node.expanded ? Icons.folderOpen : Icons.folder;
         const toggle = node.hasChildren
           ? `<button class="tree-toggle${node.expanded ? " expanded" : ""}" data-toggle="${node.id}">${Icons.treeToggle}</button>`
           : `<span class="tree-toggle-spacer"></span>`;

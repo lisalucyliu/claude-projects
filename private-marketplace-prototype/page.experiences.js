@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
     <h3>Experiences</h3>
     <p>An experience is a governed subsection of AWS Marketplace containing a curated, custom-branded catalog of approved products. Associate an experience with organizational units or accounts to control what your users can discover and request.</p>
     <div class="help-panel__links">
-      <h3>Learn more</h3>
-      <a href="https://docs.aws.amazon.com/marketplace/latest/buyerguide/private-marketplace.html" target="_blank" rel="noopener">Working with Private Marketplace ${Icons.externalLink}</a>
+      <h3>Learn more&nbsp;${Icons.externalLink}</h3>
+      <a href="https://docs.aws.amazon.com/marketplace/latest/buyerguide/private-marketplace.html" target="_blank" rel="noopener">Working with Private Marketplace</a>
     </div>
     `
   );

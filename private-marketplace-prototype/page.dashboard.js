@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     <h3>Governance details</h3>
     <p>Shows the management account for your organization and the default experience new accounts are governed by.</p>
     <div class="help-panel__links">
-      <h3>Learn more</h3>
-      <a href="https://aws.amazon.com/marketplace/features/private-marketplace" target="_blank" rel="noopener">About AWS Private Marketplace ${Icons.externalLink}</a>
+      <h3>Learn more&nbsp;${Icons.externalLink}</h3>
+      <a href="https://aws.amazon.com/marketplace/features/private-marketplace" target="_blank" rel="noopener">About AWS Private Marketplace</a>
     </div>
     `
   );

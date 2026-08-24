@@ -104,8 +104,15 @@ button {
   font-family: inherit;
 }
 
+/* inline-block (not block): inside a flex container this behaves
+   identically to block (flex items ignore their own inline/block distinction),
+   but it also lets an icon flow correctly inline within prose text — e.g. an
+   external-link icon glued to the end of a link — without wrapping onto its
+   own line the way a block-level child always would. Verified against every
+   existing flex-based icon usage in this file with no regressions. */
 svg {
-  display: block;
+  display: inline-block;
+  vertical-align: -2px;
   flex-shrink: 0;
 }
 
@@ -1433,9 +1440,7 @@ table.data-table {
 }
 
 .help-panel__links a {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  display: block;
   margin-bottom: var(--space-xs);
 }
 
@@ -1485,8 +1490,13 @@ table.data-table {
 
 /* ============ PRIVATE MARKETPLACE ADDITIONS ============ */
 
+/* Verified against cloudscape.design/patterns/general/service-navigation/
+   side-navigation/#nesting-with-expandable-link-groups: only items NESTED
+   under an expandable group indent (handled by plain .side-nav__items
+   above); top-level flat items sit flush with the nav title and section
+   headers — no extra indent. */
 .side-nav__items--flat {
-  padding: 0 0 0 12px;
+  padding: 0;
 }
 
 /* ---- Page header with action buttons ---- */
@@ -1562,15 +1572,6 @@ table.data-table {
    two never split across a line wrap. */
 .info-card__field dd a {
   text-decoration: underline;
-}
-
-/* The global `svg { display: block; }` reset (used everywhere else for
-   flex-laid-out icon+text pairs) forces a line break when an icon sits
-   inline inside flowing link text instead — override back to inline here
-   so the icon flows with the text instead of wrapping onto its own line. */
-.info-card__field dd a svg {
-  display: inline-block;
-  vertical-align: -2px;
 }
 
 /* ---- Org structure tree table ---- */

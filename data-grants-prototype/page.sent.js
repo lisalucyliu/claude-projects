@@ -24,9 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <li>The recipient accepts the data grant to gain access to the underlying data set.</li>
     </ul>
     <div class="help-panel__links">
-      <h3>Learn more</h3>
-      <a href="https://docs.aws.amazon.com/data-exchange/latest/userguide/creating-data-grants.html" target="_blank" rel="noopener">Creating data grants ${Icons.externalLink}</a>
-      <a href="https://docs.aws.amazon.com/data-exchange/latest/userguide/what-is.html" target="_blank" rel="noopener">AWS Data Exchange user guide ${Icons.externalLink}</a>
+      <h3>Learn more&nbsp;${Icons.externalLink}</h3>
+      <a href="https://docs.aws.amazon.com/data-exchange/latest/userguide/creating-data-grants.html" target="_blank" rel="noopener">Creating data grants</a>
+      <a href="https://docs.aws.amazon.com/data-exchange/latest/userguide/what-is.html" target="_blank" rel="noopener">AWS Data Exchange user guide</a>
     </div>
     `
   );
