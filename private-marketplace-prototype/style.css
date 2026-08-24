@@ -397,8 +397,13 @@ svg {
   background: var(--color-bg-layout);
 }
 
+/* Zero top margin — verified against cloudscape.design's own reference:
+   there is no explicit gap between the last flat item and the next
+   expandable group's header row; every row in the nav (flat, header, or
+   nested) is a uniform 28px tall with nothing but that height carrying
+   the rhythm. */
 .side-nav__section {
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 /* The chevron (collapse toggle) and the group label (a real link to the
@@ -418,7 +423,10 @@ svg {
 
 .side-nav__section-toggle {
   position: absolute;
-  left: -18px;
+  /* Icon's right edge sits 5px before the link text's own start (which is
+     already inset 8px by the link's own padding) — verified pixel-for-
+     pixel against cloudscape.design's expandable-link-group toggle. */
+  left: -13px;
   top: 50%;
   transform: translateY(-50%);
   width: 16px;

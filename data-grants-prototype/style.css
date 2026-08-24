@@ -383,14 +383,21 @@ svg {
   background: var(--color-bg-layout);
 }
 
+/* Zero top margin — verified against cloudscape.design's own reference:
+   there is no explicit gap between one section's last item and the next
+   section's header row; every row in the nav is a uniform 28px tall and
+   that height alone carries the rhythm. Ported from the
+   private-marketplace-prototype's identical fix. */
 .side-nav__section {
-  margin-top: 8px;
+  margin-top: 0;
 }
 
 .side-nav__section-title {
   display: flex;
   align-items: center;
-  gap: 6px;
+  /* Icon-to-text gap verified pixel-for-pixel against cloudscape.design's
+     expandable-link-group toggle. */
+  gap: 5px;
   font-weight: 400;
   font-size: 16px;
   color: var(--color-text-heading);

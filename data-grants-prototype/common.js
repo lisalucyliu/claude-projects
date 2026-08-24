@@ -69,7 +69,7 @@ function renderSideNav(activeKey) {
       .join("");
     return `
       <div class="side-nav__section" data-collapsible>
-        <div class="side-nav__section-title" data-collapse-toggle>${Icons.chevronDown}<span>${section.title}</span></div>
+        <div class="side-nav__section-title" data-collapse-toggle>${Icons.triangleDown}<span>${section.title}</span></div>
         <ul class="side-nav__items">${items}</ul>
       </div>
     `;

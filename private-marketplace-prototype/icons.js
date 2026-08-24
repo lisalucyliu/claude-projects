@@ -26,7 +26,7 @@ const Icons = {
      (verified via devtools on cloudscape.design/patterns/general/
      service-navigation/side-navigation/): a solid downward triangle,
      not an outlined chevron. */
-  triangleDown: `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
+  triangleDown: `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
 
   chevronDownSmall: `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3.5 5 6.5l3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 
