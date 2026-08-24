@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Edit branding settings — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype for editing an AWS Private Marketplace experience's branding settings." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header">
+      <h1>Edit Branding settings</h1>
+      <button class="info-link" data-open-help>Info</button>
+    </div>
+    <p class="page-subtitle">Customize the name and description of your AWS Private Marketplace experience for your end users on their 'My Private Marketplace' page.</p>
+
+    <section class="container">
+      <div style="padding:20px;">
+        <h2 style="margin:0 0 20px;font-size:18px;">Experience branding details</h2>
+
+        <div class="form-field">
+          <label for="f-brand-name">Name</label>
+          <p class="form-field__hint">The experience name should be searchable and include easily identifiable terms.</p>
+          <input type="text" id="f-brand-name" />
+          <p class="form-field__help">50 character maximum length.</p>
+        </div>
+
+        <div class="form-field">
+          <label for="f-brand-description">Description - <em>optional</em></label>
+          <p class="form-field__hint">If adding links, make sure they are accessible from the AWS dedicated cloud used by you and your users.</p>
+          <textarea id="f-brand-description"></textarea>
+          <p class="form-field__help">255 character maximum length.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="wizard-footer">
+      <button class="link-btn" id="cancel-btn">Cancel</button>
+      <button class="btn btn-primary" id="save-btn">Save changes</button>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.experiences.js"></script>
+<script src="data.experience-details.js"></script>
+<script src="page.edit-branding-settings.js"></script>
+</body>
+</html>

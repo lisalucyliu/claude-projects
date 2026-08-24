@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Change details — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of an AWS Private Marketplace individual change's detail page." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header">
+      <h1 id="change-heading">Change details</h1>
+      <button class="info-link" data-open-help>Info</button>
+    </div>
+    <p class="page-subtitle">View details about an individual change.</p>
+
+    <section class="container info-card">
+      <div class="info-card__header">
+        <h2>Change details</h2>
+      </div>
+      <dl class="info-card__grid">
+        <div class="info-card__field">
+          <dt>Change type</dt>
+          <dd id="change-type"></dd>
+        </div>
+        <div class="info-card__field">
+          <dt>Entity identifier</dt>
+          <dd id="change-entity-id"></dd>
+        </div>
+        <div class="info-card__field">
+          <dt>Status</dt>
+          <dd id="change-status"></dd>
+        </div>
+        <div class="info-card__field">
+          <dt>Error code</dt>
+          <dd id="change-error-code"></dd>
+        </div>
+      </dl>
+      <pre class="code-block" id="change-json" style="margin-top:20px;"></pre>
+    </section>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.change-sets.js"></script>
+<script src="page.change-details.js"></script>
+</body>
+</html>

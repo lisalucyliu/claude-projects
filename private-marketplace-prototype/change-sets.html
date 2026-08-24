@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Change sets — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Private Marketplace change sets page." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="table-panel" id="change-sets-panel">
+      <div class="table-panel__header">
+        <div class="table-panel__title-group">
+          <h2>Change sets <span class="table-panel__count" id="cs-count">(0)</span> <button class="info-link" data-open-help>Info</button></h2>
+          <p class="table-panel__subtitle">Track ongoing and past processes happening in Private Marketplace by change set or individual change.</p>
+        </div>
+        <div class="table-panel__actions">
+          <button class="btn btn-icon" id="refresh-cs" title="Refresh"><span data-icon="refreshCircular"></span></button>
+          <button class="btn btn-normal" id="view-cs-details-btn" disabled>View details</button>
+        </div>
+      </div>
+
+      <div class="table-toolbar">
+        <div class="search-input" style="flex:2;">
+          <span data-icon="search"></span>
+          <input type="text" placeholder="Search by change set ID or change type" id="cs-search" />
+        </div>
+        <div class="btn-dropdown" id="cs-status-filter">
+          <button class="btn btn-normal" data-dropdown-trigger>Filter by status <span data-icon="chevronDownSmall"></span></button>
+          <div class="dropdown-menu">
+            <button data-status-filter="">All statuses</button>
+            <button data-status-filter="inprogress">In progress</button>
+            <button data-status-filter="error">Error</button>
+            <button data-status-filter="succeeded">Succeeded</button>
+            <button data-status-filter="cancelled">Cancelled</button>
+          </div>
+        </div>
+        <div class="table-toolbar__controls">
+          <div class="pagination" id="cs-pagination"></div>
+          <button class="page-settings" title="Preferences"><span data-icon="settingsTable"></span></button>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th class="radio-col"></th>
+              <th></th>
+              <th>Change type</th>
+              <th># of changes</th>
+              <th>Status</th>
+              <th>Start time</th>
+              <th>End time</th>
+            </tr>
+          </thead>
+          <tbody id="cs-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.change-sets.js"></script>
+<script src="page.change-sets.js"></script>
+</body>
+</html>

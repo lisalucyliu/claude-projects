@@ -42,7 +42,7 @@ const NAV_PMP_GROUP = {
     { key: "dashboard", label: "Dashboard", href: "dashboard.html" },
     { key: "org-structure", label: "Organizational structure", href: "organizational-structure.html" },
     { key: "experiences", label: "Experiences", href: "experiences.html" },
-    { key: "change-sets", label: "Change sets", href: "#" },
+    { key: "change-sets", label: "Change sets", href: "change-sets.html" },
   ],
 };
 

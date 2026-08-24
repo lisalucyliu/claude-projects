@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Experience details — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of an AWS Private Marketplace experience's detail page." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header">
+      <h1 id="exp-name-heading">Experience</h1>
+      <button class="info-link" data-open-help>Info</button>
+    </div>
+
+    <div class="tabs" data-tab-group="exp-details">
+      <button class="tab active" data-tab="details">Details</button>
+      <button class="tab" data-tab="audience">Associated audience</button>
+      <button class="tab" data-tab="products">Products</button>
+      <button class="tab" data-tab="branding">Branding settings</button>
+    </div>
+
+    <!-- Details -->
+    <div class="tab-panel active" data-tab-group="exp-details" data-tab="details">
+      <section class="container info-card">
+        <div class="info-card__header info-card__header--actions">
+          <h2>Details</h2>
+          <button class="btn btn-normal" id="edit-details-btn">Edit</button>
+        </div>
+        <dl class="info-card__grid">
+          <div class="info-card__field">
+            <dt>Name</dt>
+            <dd id="detail-name"></dd>
+          </div>
+          <div class="info-card__field">
+            <dt>ID</dt>
+            <dd id="detail-id"></dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Description</dt>
+            <dd id="detail-description"></dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Owner account ID</dt>
+            <dd id="detail-owner"></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="container info-card">
+        <div class="info-card__header info-card__header--actions">
+          <h2>Status and requests</h2>
+          <button class="btn btn-normal" id="edit-status-btn">Edit</button>
+        </div>
+        <dl class="info-card__grid">
+          <div class="info-card__field">
+            <dt>Status</dt>
+            <dd id="detail-status"></dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Admin mode</dt>
+            <dd id="detail-admin-mode"></dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Product requests</dt>
+            <dd id="detail-product-requests"></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="container info-card">
+        <div class="info-card__header info-card__header--actions">
+          <h2>Tags <span id="detail-tags-count" style="font-weight:400;color:var(--color-text-body-secondary);"></span></h2>
+          <button class="btn btn-normal" id="edit-tags-btn">Edit</button>
+        </div>
+        <table class="data-table" id="tags-table">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </div>
+
+    <!-- Associated audience -->
+    <div class="tab-panel" data-tab-group="exp-details" data-tab="audience">
+      <div class="table-panel" id="audience-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>Associated audience <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">Organizational units and accounts governed by this experience.</p>
+          </div>
+        </div>
+        <div class="table-toolbar">
+          <div class="search-input">
+            <span data-icon="search"></span>
+            <input type="text" placeholder="Find AWS account or OU" data-search-input />
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Audience name</th>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Relationship</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Products -->
+    <div class="tab-panel" data-tab-group="exp-details" data-tab="products">
+      <div class="table-panel" id="managed-products-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>Managed products <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">List of products currently approved for this experience.</p>
+          </div>
+          <div class="table-panel__actions">
+            <button class="btn btn-icon" id="refresh-managed-products" title="Refresh"><span data-icon="refreshCircular"></span></button>
+            <button class="btn btn-normal" id="remove-managed-products-btn" disabled>Remove product(s) access</button>
+            <a class="btn btn-primary" href="dashboard.html">Add approved product(s)</a>
+          </div>
+        </div>
+        <div class="table-toolbar">
+          <div class="search-input">
+            <span data-icon="search"></span>
+            <input type="text" placeholder="Search approved and declined products" data-search-input />
+          </div>
+          <div class="table-toolbar__controls">
+            <div class="pagination" data-pagination></div>
+            <button class="page-settings" title="Preferences"><span data-icon="settingsTable"></span></button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table" id="managed-products-table">
+            <thead>
+              <tr>
+                <th class="checkbox-col"><input type="checkbox" id="select-all-managed-products" /></th>
+                <th>Product</th>
+                <th>Vendor</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="table-panel" id="all-products-panel">
+        <div class="table-panel__header">
+          <div class="table-panel__title-group">
+            <h2>All AWS Marketplace products <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">List of approved products in your Private Marketplace.</p>
+          </div>
+          <div class="table-panel__actions">
+            <button class="btn btn-icon" id="refresh-all-products" title="Refresh"><span data-icon="refreshCircular"></span></button>
+            <button class="btn btn-normal" id="add-products-btn" disabled>Add</button>
+            <button class="btn btn-normal" id="remove-products-btn" disabled>Remove</button>
+          </div>
+        </div>
+        <div class="table-toolbar">
+          <div class="search-input">
+            <span data-icon="search"></span>
+            <input type="text" placeholder="Search" data-search-input />
+          </div>
+          <div class="table-toolbar__controls">
+            <div class="pagination" data-pagination></div>
+            <button class="page-settings" title="Preferences"><span data-icon="settingsTable"></span></button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table class="data-table" id="all-products-table">
+            <thead>
+              <tr>
+                <th class="checkbox-col"><input type="checkbox" id="select-all-all-products" /></th>
+                <th>Product</th>
+                <th>Vendor</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Branding settings -->
+    <div class="tab-panel" data-tab-group="exp-details" data-tab="branding">
+      <section class="container info-card">
+        <div class="info-card__header info-card__header--actions">
+          <h2>Branding settings</h2>
+          <button class="btn btn-normal" id="edit-branding-btn">Edit</button>
+        </div>
+        <p class="page-subtitle" style="margin-top:-8px;">Customize the name and description of your AWS Private Marketplace experience for your end users on their 'My Private Marketplace' page.</p>
+        <dl class="info-card__grid">
+          <div class="info-card__field">
+            <dt>Name</dt>
+            <dd id="detail-brand-name"></dd>
+          </div>
+          <div class="info-card__field" style="grid-column: 1 / -1;">
+            <dt>Description</dt>
+            <dd id="detail-brand-description"></dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.experiences.js"></script>
+<script src="data.experience-details.js"></script>
+<script src="data.wizard.js"></script>
+<script src="page.experience-details.js"></script>
+</body>
+</html>

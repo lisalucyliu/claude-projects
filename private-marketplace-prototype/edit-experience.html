@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Edit — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype for editing an AWS Private Marketplace experience." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header">
+      <h1>Edit</h1>
+      <button class="info-link" data-open-help>Info</button>
+    </div>
+
+    <section class="container">
+      <div style="padding:20px;">
+        <h2 style="margin:0 0 4px;font-size:18px;">Experience details</h2>
+        <p class="page-subtitle" style="margin-bottom:20px;">This is the internal name and description used by administrators to keep track of this experience. End users will not see these fields.</p>
+
+        <div class="form-field">
+          <label for="f-name">Name</label>
+          <p class="form-field__hint">The experience name is searchable and should include easily identifiable terms.</p>
+          <input type="text" id="f-name" />
+          <p class="form-field__help">50 character maximum length. Valid characters are a-z, A-Z, 0-9, _ (underscore) and - (hyphen).</p>
+        </div>
+
+        <div class="form-field">
+          <label for="f-description">Description - <em>optional</em></label>
+          <p class="form-field__hint">If you add links, make sure they are accessible from the AWS dedicated cloud used by you and your users.</p>
+          <textarea id="f-description"></textarea>
+          <p class="form-field__help">1000 characters maximum length.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div style="padding:20px;">
+        <h2 style="margin:0 0 20px;font-size:18px;">Status and requests</h2>
+
+        <div class="form-field">
+          <label>Experience status</label>
+          <p class="form-field__hint">Choose whether or not the changes you make to your experience are live and visible to your end users.</p>
+          <div class="form-radio-group">
+            <label class="form-radio"><input type="radio" name="exp-status" value="live" /> Live</label>
+            <label class="form-radio"><input type="radio" name="exp-status" value="notlive" /> Not Live</label>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>Admin mode</label>
+          <p class="form-field__hint">Choose whether or not the experience is editable by admins.</p>
+          <div class="form-radio-group">
+            <label class="form-radio"><input type="radio" name="admin-mode" value="active" checked /> Active experience</label>
+            <label class="form-radio"><input type="radio" name="admin-mode" value="archived" /> Archived experience</label>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label>Product requests</label>
+          <p class="form-field__hint">Choose whether or not your end users can create product requests.</p>
+          <div class="form-radio-group">
+            <label class="form-radio"><input type="radio" name="product-requests" value="available" /> Product requests available</label>
+            <label class="form-radio"><input type="radio" name="product-requests" value="unavailable" /> Product requests unavailable</label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div style="padding:20px;">
+        <div class="page-header" style="margin-bottom:16px;">
+          <h2 style="margin:0;font-size:18px;">Tags - <em>optional</em></h2>
+          <button class="info-link" data-open-help>Info</button>
+        </div>
+        <div id="tags-list"></div>
+        <button class="btn btn-normal" id="add-tag-btn">Add new tag</button>
+        <p class="form-field__help" id="tags-remaining"></p>
+      </div>
+    </section>
+
+    <div class="wizard-footer">
+      <button class="link-btn" id="cancel-btn">Cancel</button>
+      <button class="btn btn-primary" id="save-btn">Save changes</button>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.experiences.js"></script>
+<script src="data.experience-details.js"></script>
+<script src="page.edit-experience.js"></script>
+</body>
+</html>

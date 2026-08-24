@@ -1347,6 +1347,18 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   color: var(--color-green);
 }
 
+.status--error {
+  color: var(--color-red);
+}
+
+.status--cancelled {
+  color: var(--color-grey-text);
+}
+
+.status--inprogress {
+  color: var(--color-grey-text);
+}
+
 .spin {
   animation: spin 1.2s linear infinite;
 }
@@ -2058,6 +2070,15 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   color: var(--color-red);
 }
 
+.inline-alert--warning {
+  background: var(--color-amber-tint);
+  border: 2px solid var(--color-amber-icon);
+}
+
+.inline-alert--warning svg {
+  color: var(--color-amber-icon);
+}
+
 /* ---- Toggle switch (e.g. table preferences column visibility) ---- */
 
 .toggle-switch {
@@ -2508,4 +2529,137 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
     flex: 1 1 auto;
     width: 100%;
   }
+}
+
+/* ============ EXPERIENCE / CHANGE SET DETAIL PAGES ============ */
+
+/* An .info-card__header with a trailing action button (e.g. "Edit")
+   pushed to the far right, instead of the plain h2+info-link layout. */
+.info-card__header--actions {
+  justify-content: space-between;
+}
+
+/* ---- Destructive-action confirm modal (Archive experience, etc.) ----
+   Reuses .modal-overlay; sized narrower than .prefs-modal to match
+   Cloudscape's own confirm-dialog proportions. */
+.confirm-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.97);
+  width: 600px;
+  max-width: calc(100vw - 40px);
+  max-height: calc(100vh - 40px);
+  background: var(--color-bg-container);
+  border-radius: 12px;
+  box-shadow: 0 8px 40px rgba(15, 20, 26, 0.3);
+  z-index: 301;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.confirm-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.confirm-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-l);
+  border-bottom: 1px solid var(--color-border-divider);
+  flex-shrink: 0;
+}
+
+.confirm-modal__header h2 {
+  font-size: 20px;
+  margin: 0;
+  color: var(--color-text-heading);
+}
+
+.confirm-modal__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-body-secondary);
+  display: flex;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.confirm-modal__close:hover {
+  background: var(--color-bg-layout);
+}
+
+.confirm-modal__body {
+  padding: var(--space-l);
+  overflow-y: auto;
+}
+
+.confirm-modal__body p {
+  margin: 0 0 var(--space-m);
+}
+
+.confirm-modal__body label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin-bottom: 8px;
+}
+
+.confirm-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-m);
+  padding: var(--space-l);
+  border-top: 1px solid var(--color-border-divider);
+  flex-shrink: 0;
+}
+
+/* ---- ARN / ID row with a copy-to-clipboard button ---- */
+.copy-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.copy-row__text {
+  word-break: break-all;
+}
+
+.copy-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-link);
+  display: flex;
+  padding: 2px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.copy-btn:hover {
+  background: var(--color-bg-layout);
+}
+
+/* ---- JSON/code viewer (Change details) ---- */
+.code-block {
+  background: var(--color-bg-layout);
+  border: 1px solid var(--color-border-divider);
+  border-radius: var(--radius-input);
+  padding: var(--space-m);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-body);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
 }

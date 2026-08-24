@@ -15,6 +15,10 @@ function statusHtml(status, label) {
     expired: Icons.statusWarning,
     live: Icons.statusAccepted,
     notlive: Icons.statusStopped,
+    inprogress: Icons.statusPending,
+    error: Icons.statusError,
+    succeeded: Icons.statusAccepted,
+    cancelled: Icons.statusStopped,
   };
   return `<span class="status status--${status}">${iconMap[status]}${label}</span>`;
 }

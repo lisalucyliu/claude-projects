@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     rowHtml: (row, i, list) => `
       <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => selectedActiveIds.has(r.id))}">
         <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" ${selectedActiveIds.has(row.id) ? "checked" : ""} /></td>
-        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.name)}</a></td>
+        <td><a href="experience-details.html?id=${row.id}" class="truncate">${escapeHtml(row.name)}</a></td>
         <td>${statusHtml(row.status, row.statusLabel)}</td>
         <td>${row.lastModified}</td>
       </tr>
@@ -82,8 +82,39 @@ document.addEventListener("DOMContentLoaded", () => {
     activeTable.render();
   });
 
+  // ---- Archive confirmation modal (Cloudscape "type to confirm" pattern:
+  // the destructive action stays disabled until the user types "confirm"). ----
+  const archiveOverlay = document.getElementById("archive-modal-overlay");
+  const archiveModal = document.getElementById("archive-modal");
+  const archiveConfirmInput = document.getElementById("archive-confirm-input");
+  const archiveConfirmBtn = document.getElementById("archive-modal-confirm");
+
+  function openArchiveModal() {
+    document.getElementById("archive-modal-count").textContent = `${selectedActiveIds.size} experience(s)`;
+    archiveConfirmInput.value = "";
+    archiveConfirmBtn.disabled = true;
+    archiveOverlay.classList.add("open");
+    archiveModal.classList.add("open");
+    archiveConfirmInput.focus();
+  }
+  function closeArchiveModal() {
+    archiveOverlay.classList.remove("open");
+    archiveModal.classList.remove("open");
+  }
+
+  archiveConfirmInput.addEventListener("input", () => {
+    archiveConfirmBtn.disabled = archiveConfirmInput.value.trim().toLowerCase() !== "confirm";
+  });
+  archiveOverlay.addEventListener("click", closeArchiveModal);
+  document.getElementById("archive-modal-close").addEventListener("click", closeArchiveModal);
+  document.getElementById("archive-modal-cancel").addEventListener("click", closeArchiveModal);
+
   document.getElementById("archive-exp-btn").addEventListener("click", () => {
     if (selectedActiveIds.size === 0) return;
+    openArchiveModal();
+  });
+
+  archiveConfirmBtn.addEventListener("click", () => {
     const moved = ACTIVE_EXPERIENCES.filter((e) => selectedActiveIds.has(e.id));
     moved.forEach((e) => {
       const idx = ACTIVE_EXPERIENCES.indexOf(e);
@@ -94,11 +125,13 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedActiveIds.clear();
     activeTable.setData(ACTIVE_EXPERIENCES);
     archivedTable.setData(ARCHIVED_EXPERIENCES);
+    closeArchiveModal();
     showFlash(document.getElementById("flash-root"), { type: "success", message, autoDismiss: 4000 });
   });
 
   document.getElementById("view-details-btn").addEventListener("click", () => {
-    showFlash(document.getElementById("flash-root"), { type: "info", message: "Experience details view is not part of this prototype yet.", autoDismiss: 4000 });
+    const id = [...selectedActiveIds][0];
+    if (id) window.location.href = `experience-details.html?id=${id}`;
   });
 
   // Clicking "Create experience" launches the 5-step wizard.
@@ -117,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
     emptyHtml: `<div class="empty-state">No archived experiences</div>`,
     rowHtml: (row) => `
       <tr data-row-id="${row.id}">
-        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.name)}</a></td>
+        <td><a href="experience-details.html?id=${row.id}" class="truncate">${escapeHtml(row.name)}</a></td>
         <td>${statusHtml(row.status, row.statusLabel)}</td>
         <td>${row.lastModified}</td>
       </tr>
