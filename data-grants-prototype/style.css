@@ -862,11 +862,17 @@ svg {
 
 /* Search + pagination row */
 
+/* Verified against cloudscape.design/components/table/ (common-table
+   example, viewed at full desktop width — a narrow embedded preview frame
+   understates this): search and pagination share one row; flex-wrap only
+   drops pagination to its own row once the row runs out of horizontal
+   space (mobile width), never before. */
 .table-toolbar {
   display: flex;
   align-items: center;
   gap: var(--space-s);
   margin-bottom: var(--space-m);
+  flex-wrap: wrap;
 }
 
 .search-input {

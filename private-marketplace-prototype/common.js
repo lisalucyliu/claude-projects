@@ -4,6 +4,7 @@ function renderTopHeader() {
   return `
     <header class="top-header">
       <div class="top-header__logo">${Icons.awsLogo}</div>
+      <div class="top-header__divider"></div>
       <div class="top-header__services">${Icons.grid}<span>Services</span></div>
       <div class="top-header__search">
         ${Icons.search}

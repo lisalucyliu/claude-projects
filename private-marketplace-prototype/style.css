@@ -862,31 +862,24 @@ svg {
 
 /* Search + pagination row */
 
+/* Verified against cloudscape.design/components/table/ (common-table
+   example, viewed at full desktop width — a narrow embedded preview frame
+   understates this): search/filters and pagination+preferences share one
+   row, with the latter pushed to the far right via margin-left:auto.
+   flex-wrap only drops the controls to their own row once the row actually
+   runs out of horizontal space (i.e. down at mobile width), never before. */
 .table-toolbar {
   display: flex;
   align-items: center;
   gap: var(--space-s);
   margin-bottom: var(--space-m);
-}
-
-/* Verified against cloudscape.design/components/table/ (common-table
-   example): filters sit on their own row, with pagination + preferences
-   right-aligned on a second row below — not crammed into one row. */
-.table-toolbar--stacked {
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.table-toolbar__filters {
-  display: flex;
-  align-items: center;
-  gap: var(--space-s);
+  flex-wrap: wrap;
 }
 
 .table-toolbar__controls {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  margin-left: auto;
 }
 
 .search-input {
