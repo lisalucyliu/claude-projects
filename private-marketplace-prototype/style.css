@@ -1005,6 +1005,12 @@ table.data-table {
   white-space: nowrap;
 }
 
+/* Table cell links are always underlined, unlike nav/button links which
+   only underline on hover. */
+.data-table tbody td a {
+  text-decoration: underline;
+}
+
 .data-table tbody td:first-child {
   border-left: 2px solid transparent;
 }
@@ -1043,6 +1049,16 @@ table.data-table {
 .data-table tbody tr.selected td {
   border-top-color: var(--color-blue);
   border-bottom-color: var(--color-blue);
+}
+
+/* With border-collapse:separate every row draws its own border, so at the
+   shared boundary between two contiguously-selected rows the row above's
+   bottom border AND the row below's top border would both render blue,
+   doubling that line to 4px vs. 2px everywhere else. Only the top row
+   "owns" that shared line — the bottom row suppresses its own top border
+   there so exactly one 2px line renders, same as every other edge. */
+.data-table tbody tr.selected:not(.selected--top) td {
+  border-top-color: transparent;
 }
 
 .data-table tbody tr.selected td:first-child {

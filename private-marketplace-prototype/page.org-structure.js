@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </td>
             <td>${node.accountId}</td>
-            <td><a href="#" onclick="return false;">${escapeHtml(node.experience)} ${Icons.externalLink}</a></td>
+            <td><a href="#" onclick="return false;">${escapeHtml(node.experience)}</a></td>
             <td>${node.relationship}</td>
           </tr>
         `;

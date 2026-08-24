@@ -23,12 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
     `
   );
 
+  // The success flash only appears once a bulk action actually completes
+  // (see bulk-update-btn below) — not unconditionally on page load.
   const flashRoot = document.getElementById("flash-root");
-  showFlash(flashRoot, {
-    type: "success",
-    message: `<strong>Bulk add product process started successfully</strong><br>2 products are being added to 2 experiences`,
-    action: { label: "View change set", onClick: () => {} },
-  });
 
   const selectedApprovedIds = new Set();
 
@@ -43,9 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
     rowHtml: (row, i, list) => `
       <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => selectedApprovedIds.has(r.id))}">
         <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" ${selectedApprovedIds.has(row.id) ? "checked" : ""} /></td>
-        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.product)} ${Icons.externalLink}</a></td>
-        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.vendor)} ${Icons.externalLink}</a></td>
-        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.approvedIn)} ${Icons.externalLink}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.product)}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.vendor)}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.approvedIn)}</a></td>
       </tr>
     `,
     onRender: () => {
@@ -77,10 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("refresh-approved").addEventListener("click", () => table.render());
 
   document.getElementById("bulk-update-btn").addEventListener("click", () => {
-    showFlash(flashRoot, {
+    const inProgress = showFlash(flashRoot, {
       type: "in-progress",
       message: "Bulk update product process started. This may take a few minutes.",
-      autoDismiss: 5000,
     });
+    setTimeout(() => {
+      inProgress.remove();
+      showFlash(flashRoot, {
+        type: "success",
+        message: `<strong>Bulk add product process started successfully</strong><br>2 products are being added to 2 experiences`,
+        action: { label: "View change set", onClick: () => {} },
+        autoDismiss: 6000,
+      });
+    }, 3000);
   });
 });

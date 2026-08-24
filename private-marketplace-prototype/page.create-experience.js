@@ -210,7 +210,7 @@ function renderOrgTree() {
             <td class="checkbox-col"><input type="checkbox" class="row-check" data-w-id="${node.id}" ${disabled ? "disabled" : ""} ${checked ? "checked" : ""} /></td>
             <td style="padding-left:${2 + node.depth * 20}px;"><div class="tree-cell">${toggle}<span class="tree-icon">${icon}</span><a href="#" onclick="return false;">${escapeHtml(node.name)}</a></div></td>
             <td>${node.accountId}</td>
-            <td><a href="#" onclick="return false;">${escapeHtml(node.experience)} ${Icons.externalLink}</a></td>
+            <td><a href="#" onclick="return false;">${escapeHtml(node.experience)}</a></td>
             <td>${node.relationship}</td>
           </tr>
         `;
