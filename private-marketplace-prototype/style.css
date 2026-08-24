@@ -712,10 +712,18 @@ svg {
    tabs sit on an open white canvas with no adjacent card border to give
    the eye contrast, so the same 1px/#c6c6cd line reads as effectively
    invisible — bumped to 2px (same color) so it reliably reads as a
-   divider without going dark enough to look like a bold rule. */
+   divider without going dark enough to look like a bold rule.
+   gap:0 (not 16px) — Cloudscape's own <li> tabs sit flush adjacent with
+   zero gap; the visual spacing between labels comes entirely from each
+   button's own small padding plus the vertical divider below, not from
+   a flex gap. Missed this on three earlier passes by only checking each
+   element's own border (transparent on every side, as expected) and
+   never checking for a ::before pseudo-element carrying a real
+   border-right — that pseudo is exactly how Cloudscape draws the
+   vertical divider between tabs, see .tab:not(:last-child)::before. */
 .tabs {
   display: flex;
-  gap: 16px;
+  gap: 0;
   border-bottom: 2px solid var(--color-border-strong);
   margin-bottom: var(--space-l);
 }
@@ -733,6 +741,20 @@ svg {
 
 .tab.active {
   color: var(--color-text-heading);
+}
+
+/* The vertical divider between adjacent tabs — verified against
+   cloudscape.design's own tabs-tab-header-container::before rule
+   (border-inline-end: 1px solid #c6c6cd, inset 8px top/bottom). Every
+   tab except the last one gets it, since there's nothing to divide from
+   after the final tab. */
+.tab:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  right: 0;
+  border-right: 1px solid var(--color-border-strong);
 }
 
 /* The active indicator is its own rounded-cap pill (::after), not a
