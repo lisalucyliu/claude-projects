@@ -625,9 +625,11 @@ svg {
   gap: var(--space-m);
 }
 
+/* flex-basis 250px (not the usual 0%) so the browser only wraps a step to
+   the next line once it can no longer fit at least 250px — matching a
+   fixed minimum readable width instead of shrinking indefinitely. */
 .creation-steps__step {
-  flex: 1;
-  min-width: 0;
+  flex: 1 1 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -636,12 +638,20 @@ svg {
 }
 
 .creation-steps__icon {
-  width: 44px;
-  height: 44px;
+  width: 64px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-heading);
+}
+
+/* The icons used across these steps come from very different native
+   viewBox sizes (16px to 36px) — force a single rendered size here so
+   every step's icon reads as visually the same weight. */
+.creation-steps__icon svg {
+  width: 32px;
+  height: 32px;
 }
 
 .creation-steps__text {
@@ -2428,13 +2438,14 @@ body.hero-page .toolbar__menu-toggle.is-collapsed:hover .toolbar__menu-circle {
   align-items: center;
   justify-content: center;
   width: 100%;
-  max-width: 480px;
   aspect-ratio: 16 / 9;
   background: var(--color-text-heading);
   border-radius: var(--radius-input);
   color: #fff;
   cursor: pointer;
   border: none;
+  padding: 0;
+  font: inherit;
 }
 
 .pmp-video-caption {
@@ -2444,7 +2455,6 @@ body.hero-page .toolbar__menu-toggle.is-collapsed:hover .toolbar__menu-circle {
 }
 
 .pmp-diagram {
-  max-width: 720px;
   padding: var(--space-l);
 }
 

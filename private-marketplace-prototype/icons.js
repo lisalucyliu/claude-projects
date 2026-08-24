@@ -81,7 +81,7 @@ const Icons = {
 
   /* Filled circular play button, used for the video-thumbnail placeholder
      on the Private Marketplace homepage hero. */
-  play: `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.4"/><path d="M9 7.3v7.4c0 .5.55.8.98.55l6.2-3.7a.63.63 0 0 0 0-1.1l-6.2-3.7c-.43-.25-.98.05-.98.55Z" fill="currentColor"/></svg>`,
+  play: `<svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="26" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2"/><path d="M27 22.5v19c0 1.3 1.4 2.1 2.5 1.4l15-9.5a1.6 1.6 0 0 0 0-2.7l-15-9.5c-1.1-.7-2.5.1-2.5 1.3Z" fill="currentColor"/></svg>`,
 
   /* Paint palette, used for the "Customize branding" step of the "How it
      works" flow. */
