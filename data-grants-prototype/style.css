@@ -779,6 +779,18 @@ svg {
 
 .btn-icon:hover {
   background: var(--color-bg-layout);
+  color: var(--color-blue);
+}
+
+/* When a .btn is an <a>, the generic `a:hover` rule elsewhere in this file
+   has higher specificity than a plain `.btn-primary`/`.btn-normal` color
+   declaration, so hovering would otherwise silently repaint the label with
+   the link-hover color and underline it — verified against
+   cloudscape.design/components/button/, where a primary button's hover
+   only darkens the fill; the label stays put. Restated per variant below
+   so this can't regress the same way. */
+.btn:hover {
+  text-decoration: none;
 }
 
 /* Normal/secondary button border is AWS blue, not grey — verified against
@@ -791,6 +803,7 @@ svg {
 
 .btn-normal:hover {
   background: var(--color-bg-layout);
+  color: var(--color-blue);
 }
 
 .btn-normal:disabled {
@@ -809,6 +822,7 @@ svg {
 .btn-primary:hover {
   background: var(--color-blue-dark);
   border-color: var(--color-blue-dark);
+  color: #fff;
 }
 
 .btn-primary:disabled {
@@ -1038,6 +1052,16 @@ table.data-table {
 
 .data-table tbody td:last-child {
   border-right: 2px solid transparent;
+}
+
+/* Two tables sharing one card, separated by a divider (e.g. "All products"
+   above "Selected products"): the top table's last row already draws its
+   own bottom border, which doubles up visually right next to the divider
+   below it. Suppress it (unless that row is selected, which still needs
+   its blue border) so only the divider's single line shows between the
+   two tables. */
+div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) td {
+  border-bottom-color: transparent;
 }
 
 .data-table th.checkbox-col,
