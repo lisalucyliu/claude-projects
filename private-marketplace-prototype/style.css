@@ -370,6 +370,11 @@ svg {
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-m);
+  /* Brings the title text inset to 28px from the nav's left edge (20px
+     container padding + 8px here), matching Cloudscape's verified h2
+     header padding (20px 56px 20px 28px) on cloudscape.design's own
+     side-navigation demo. */
+  padding-left: 8px;
 }
 
 .side-nav__title {
@@ -396,35 +401,57 @@ svg {
   margin-top: 8px;
 }
 
-.side-nav__section-title {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 0;
-}
-
 /* The chevron (collapse toggle) and the group label (a real link to the
    feature's own landing page) are separate click targets living inside
-   what used to be one combined clickable row. */
-.side-nav__section-toggle {
+   what used to be one combined clickable row. Verified against
+   cloudscape.design's own expandable-link-group markup: the toggle button
+   is absolutely positioned into the row's left gutter (Cloudscape does
+   this with a negative margin instead, but the visual result is the
+   same) so it never pushes the link text — the link keeps the exact same
+   4px/8px padding as a plain .side-nav__link, landing its text at the
+   same 28px inset as every other top-level item. */
+.side-nav__section-title {
+  position: relative;
   display: flex;
+  align-items: center;
+}
+
+.side-nav__section-toggle {
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
-  color: inherit;
+  color: var(--color-text-body-secondary);
   flex-shrink: 0;
 }
 
+/* Same size/weight/color as a plain .side-nav__link — Cloudscape verified:
+   expandable-link-group triggers use the identical 14px/400 link style as
+   every other nav item, not a larger "section header" style. */
 .side-nav__section-link {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  padding: 4px 8px;
+  border-radius: 8px;
+  font-size: 14px;
   font-weight: 400;
-  font-size: 16px;
-  color: var(--color-text-heading);
+  color: var(--color-text-body-secondary);
   user-select: none;
 }
 
 .side-nav__section-link:hover {
-  text-decoration: underline;
+  background: var(--color-bg-layout);
+  text-decoration: none;
 }
 
 .side-nav__section-link.active {
@@ -448,9 +475,11 @@ svg {
 .side-nav__items {
   list-style: none;
   margin: 0;
-  /* Indents item text to land under the section header's text (after its
-     chevron+gap), rather than flush with the chevron itself. */
-  padding: 0 0 0 12px;
+  /* Nested items sit 24px further right than their parent group's own
+     28px inset — verified against cloudscape.design's expandable-link-
+     group demo (top-level item text at 52px from nav edge, nested child
+     text at 76px, i.e. +24px). */
+  padding: 0 0 0 24px;
 }
 
 .side-nav__items li {
@@ -2243,42 +2272,13 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 
 /* ============ PRIVATE MARKETPLACE HOMEPAGE (hero header) ============
    Verified against cloudscape.design/patterns/general/hero-header/ and its
-   product-detail-page demo: the hero background spans full width and
-   extends up through the breadcrumb toolbar (building block "A"); the
-   white "Get started" panel is the pattern's "Secondary header" block,
-   which per the spec "is always displayed in a light visual context,
-   independent of the styling of the main header" — i.e. never dark, even
-   though it sits on the dark hero. */
-
-body.hero-page .toolbar {
-  background: var(--color-text-heading);
-  border-bottom: none;
-}
-
-body.hero-page .breadcrumb a {
-  color: var(--color-link-hero);
-}
-
-body.hero-page .breadcrumb .sep,
-body.hero-page .breadcrumb .current {
-  color: var(--color-text-hero-body);
-}
-
-body.hero-page .toolbar__info-btn {
-  color: var(--color-text-hero-body);
-}
-
-body.hero-page .toolbar__info-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-body.hero-page .toolbar__menu-toggle.is-collapsed .toolbar__menu-circle {
-  color: var(--color-text-hero-body);
-}
-
-body.hero-page .toolbar__menu-toggle.is-collapsed:hover .toolbar__menu-circle {
-  background: rgba(255, 255, 255, 0.08);
-}
+   product-detail-page demo: the breadcrumb toolbar stays in its normal
+   light styling (Cloudscape never darkens the global toolbar/breadcrumb
+   bar itself) and only the hero block below it goes dark; the white "Get
+   started" panel is the pattern's "Secondary header" block, which per the
+   spec "is always displayed in a light visual context, independent of the
+   styling of the main header" — i.e. never dark, even though it sits on
+   the dark hero. */
 
 .hero {
   background: var(--color-text-heading);

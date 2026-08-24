@@ -22,6 +22,12 @@ const Icons = {
 
   chevronDown: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5.5 7 9.5l4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 
+  /* Matches Cloudscape's own expand/collapse-link-group glyph exactly
+     (verified via devtools on cloudscape.design/patterns/general/
+     service-navigation/side-navigation/): a solid downward triangle,
+     not an outlined chevron. */
+  triangleDown: `<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
+
   chevronDownSmall: `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3.5 5 6.5l3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 
   chevronLeft: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8.5 3 5 7l3.5 4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,

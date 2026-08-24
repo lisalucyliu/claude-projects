@@ -75,7 +75,7 @@ function renderSideNav(activeKey) {
       <ul class="side-nav__items side-nav__items--flat">${flatTop}</ul>
       <div class="side-nav__section" data-collapsible>
         <div class="side-nav__section-title">
-          <button class="side-nav__section-toggle" data-collapse-toggle title="Expand or collapse">${Icons.chevronDown}</button>
+          <button class="side-nav__section-toggle" data-collapse-toggle title="Expand or collapse">${Icons.triangleDown}</button>
           <a class="side-nav__section-link${activeKey === "private-marketplace" ? " active" : ""}" href="private-marketplace.html">${NAV_PMP_GROUP.title}</a>
         </div>
         <ul class="side-nav__items">${groupItems}</ul>
