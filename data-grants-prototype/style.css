@@ -651,6 +651,13 @@ svg {
   margin-bottom: var(--space-l);
 }
 
+/* Padding is 7px/12px/7px/10px, not 7px/4px/7px/3px — Cloudscape splits
+   this across two nested elements (the button keeps 7px/4px/7px/3px, but
+   its wrapping tabs-tab-header-container div adds its own 0/8px/0/7px on
+   top), which our single-element .tab doesn't have a slot for. Folding
+   both layers into one padding here reproduces the same measured
+   14px text-to-divider / 13px divider-to-next-text gap. Ported from
+   private-marketplace-prototype's identical fix. */
 .tab {
   position: relative;
   background: none;
@@ -659,7 +666,7 @@ svg {
   font-size: 16px;
   font-weight: 700;
   color: var(--color-text-body-secondary);
-  padding: 7px 4px 7px 3px;
+  padding: 7px 12px 7px 10px;
 }
 
 .tab.active {
