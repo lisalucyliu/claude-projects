@@ -3,7 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   mountChrome("experiences", [
     { label: "AWS Marketplace", href: "dashboard.html" },
-    { label: "Private Marketplace", href: "dashboard.html" },
+    { label: "Private Marketplace", href: "private-marketplace.html" },
     { label: "Experiences" },
   ]);
   hydrateIcons();

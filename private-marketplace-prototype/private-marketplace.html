@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Private Marketplace — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Private Marketplace feature homepage, using the hero header pattern." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="hero-page">
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content" style="padding:0;">
+    <div class="hero">
+      <div class="hero__main">
+        <h1 class="hero__heading">Private Marketplace</h1>
+        <div class="hero__subheading">Curate private catalogs of approved products in AWS Marketplace</div>
+        <p class="hero__description">Private Marketplaces are unique sets of vetted software available in AWS Marketplace for AWS organizational units or different AWS accounts within their organization to purchase.</p>
+      </div>
+      <div class="hero__secondary">
+        <h2>Get started</h2>
+        <p>Create multiple private marketplace catalogs, manage catalog contents, and more.</p>
+        <a class="btn btn-primary" href="dashboard.html">Manage resources</a>
+      </div>
+    </div>
+
+    <div class="pmp-home">
+      <div class="pmp-home__main">
+        <section class="pmp-home-section">
+          <h2>About</h2>
+          <button class="pmp-video-thumb" type="button" onclick="return false;" aria-label="Play: Introduction to Private Marketplace">
+            <span data-icon="play"></span>
+          </button>
+          <p class="pmp-video-caption">Introduction to Private Marketplace (1:31)</p>
+          <p>In a Private Marketplace, users can easily find and deploy vetted products that comply with your organization's internal policies, enabling your teams to move fast while maintaining purchasing controls.</p>
+          <p>Administrators can customize their Private Marketplace with a company logo, color scheme, and messaging so their users know they are in an approved environment.</p>
+        </section>
+
+        <section class="pmp-home-section">
+          <h2>How it works</h2>
+          <div class="container pmp-diagram">
+            <div class="creation-steps__body">
+              <div class="creation-steps__step">
+                <div class="creation-steps__icon"><span data-icon="folder"></span></div>
+                <div class="creation-steps__text"><strong>Create experience</strong><br />Administrators create a Private Marketplace experience to govern a set of accounts.</div>
+              </div>
+              <div class="creation-steps__arrow"><span data-icon="arrowRight"></span></div>
+              <div class="creation-steps__step">
+                <div class="creation-steps__icon"><span data-icon="checkCircleBig"></span></div>
+                <div class="creation-steps__text"><strong>Curate products</strong><br />Administrators create a list of approved products vetted for their user's use in AWS Marketplace.</div>
+              </div>
+              <div class="creation-steps__arrow"><span data-icon="arrowRight"></span></div>
+              <div class="creation-steps__step">
+                <div class="creation-steps__icon"><span data-icon="palette"></span></div>
+                <div class="creation-steps__text"><strong>Customize branding</strong><br />Administrators update catalog title, descriptions, logo, and color scheme that suit their experience.</div>
+              </div>
+              <div class="creation-steps__arrow"><span data-icon="arrowRight"></span></div>
+              <div class="creation-steps__step">
+                <div class="creation-steps__icon"><span data-icon="networkNodes"></span></div>
+                <div class="creation-steps__text"><strong>Associate OUs / accounts</strong><br />Administrators select AWS Organizational Units (OUs) or accounts in the organization to be governed by an experience.</div>
+              </div>
+              <div class="creation-steps__arrow"><span data-icon="arrowRight"></span></div>
+              <div class="creation-steps__step">
+                <div class="creation-steps__icon"><span data-icon="gear"></span></div>
+                <div class="creation-steps__text"><strong>Manage experience</strong><br />Administrators review software requests from users, and add additional products, modify settings and branding.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pmp-home-section">
+          <h2>Benefits and features</h2>
+          <div class="container">
+            <div class="pmp-home-grid">
+              <div>
+                <h3>Gain control</h3>
+                <p>Utilize a Private Marketplace to limit AWS Organizational Units and corresponding accounts to only subscribe to approved products.</p>
+              </div>
+              <div>
+                <h3>Multiple catalogs</h3>
+                <p>Create multiple Private Marketplace catalogs to have a different curated catalog target a different group of accounts, organized by your AWS Organizations structure.</p>
+              </div>
+              <div>
+                <h3>Streamline approvals</h3>
+                <p>A user governed by Private Marketplace can request products be added to their Private Marketplace by sending it to an admin to streamline the approval process.</p>
+              </div>
+              <div>
+                <h3>Branding settings</h3>
+                <p>Customize a Private Marketplace's experience with a different look and feel with their organization's name, description, logo, and color scheme.</p>
+              </div>
+              <div>
+                <h3>Delegation and ownership</h3>
+                <p>A management administrator can register an account in the organization as delegated administrator to manage Private Marketplace on its behalf while maintaining the ownership of Private Marketplace resources.</p>
+              </div>
+              <div>
+                <h3>Hierarchical governance</h3>
+                <p>Utilize inherited governance rules through AWS Organizations to automatically send out updates to different levels of accounts in a Private Marketplace.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pmp-home-section">
+          <h2>Users</h2>
+          <p>Users within Private Marketplace are defined by the policies of <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html" target="_blank" rel="noopener">AWS Identity and Access Management</a>.</p>
+          <div class="container">
+            <div class="pmp-home-grid">
+              <div>
+                <h3>Administrators</h3>
+                <p>Private Marketplace administrators curate catalogs of approved third-party products within AWS Marketplace. They also vet software requests from users and modify settings and branding. A management account administrator can delegate administration access to a trusted AWS account within an organization.</p>
+              </div>
+              <div>
+                <h3>Users</h3>
+                <p>Private Marketplace users are subscribers of the approved third-party products in AWS Marketplace. Users may also have the ability to request an administrator to add additional products to their Private Marketplace catalog.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pmp-home-section">
+          <h2>Use cases</h2>
+          <div class="container">
+            <div class="pmp-home-grid">
+              <div>
+                <h3>Enterprise customers</h3>
+                <p>For organizations that have software procurement policies and processes in place, Private Marketplace provides controls to ensure users are operating within those policies while using AWS Marketplace. Multiple Private Marketplace catalogs can be curated for the organization's different sets of users and their software needs, helping users easily find, buy, and deploy products approved for their use.</p>
+              </div>
+              <div>
+                <h3>Channel partners</h3>
+                <p>Private Marketplace enables channel partners to curate a catalog of approved products for managed customers accounts. Private Marketplace can be customized to adhere to the customer's procurement policies, including managing of the administrative permissions and updating the look and feel to align with branding. Learn more about <a href="https://aws.amazon.com/partners/programs/" target="_blank" rel="noopener">channel programs and features</a>.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="pmp-home-section">
+          <h2>Customer case studies</h2>
+          <div class="container">
+            <div class="pmp-home-grid">
+              <div>
+                <h3>SCC</h3>
+                <p class="pmp-quote">"Employing AWS Marketplace APIs for Private Marketplace has allowed us to streamline challenging procurement workflows for our customers. These API calls open AWS Private Marketplace up for integration with external procurement systems, which in turn has allowed us to offer streamlined AWS Private Marketplace management and governance through our own portal, Oworx HUB."</p>
+                <div class="pmp-quote-name">Debbie Johnson, Head of Public Cloud, SCC</div>
+              </div>
+              <div>
+                <h3>Presidio</h3>
+                <p class="pmp-quote">"AWS's Private Marketplace feature is transforming Presidio's AWS software engagements with enterprise customers. By managing and tailoring a software specific catalog within a project scope, we have optimized our customer's control, governance, procurement, and delivery workflows. By leveraging AWS API's, we are enabling integration with our customers approval processes. For example, Presidio is helping customers connect into their ITSM solutions, such as ServiceNow."</p>
+                <div class="pmp-quote-name">Chris Cagnazzi, SVP Cloud Solutions, Presidio</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="pmp-home__side">
+        <div class="container">
+          <h2>Pricing</h2>
+          <p style="font-size:14px;color:var(--color-text-body-secondary);margin:0;">There is no cost to use Private Marketplace.</p>
+        </div>
+
+        <div class="container">
+          <h2>What's new <span data-icon="externalLink"></span></h2>
+          <ul>
+            <li><a href="https://aws.amazon.com/about-aws/whats-new/" target="_blank" rel="noopener">AWS Marketplace announces support for multiple Private Marketplace catalogs</a></li>
+            <li><a href="https://aws.amazon.com/about-aws/whats-new/" target="_blank" rel="noopener">AWS Marketplace Announces APIs for Private Marketplace</a></li>
+          </ul>
+        </div>
+
+        <div class="container">
+          <h2>Blog posts <span data-icon="externalLink"></span></h2>
+          <ul>
+            <li><a href="https://aws.amazon.com/blogs/awsmarketplace/" target="_blank" rel="noopener">How AWS Marketplace features help you govern and manage software purchases for your organization</a></li>
+            <li><a href="https://aws.amazon.com/blogs/awsmarketplace/" target="_blank" rel="noopener">Manage AWS Marketplace catalogs for your customers' software needs</a></li>
+            <li><a href="https://aws.amazon.com/blogs/awsmarketplace/" target="_blank" rel="noopener">Use APIs to manage multiple AWS Private Marketplaces for enterprise software subscriptions</a></li>
+            <li><a href="https://aws.amazon.com/blogs/awsmarketplace/" target="_blank" rel="noopener">Administrators can now manage multiple Private Marketplace catalogs</a></li>
+            <li><a href="https://aws.amazon.com/blogs/awsmarketplace/" target="_blank" rel="noopener">New - Multiple Private Marketplace Catalogs</a></li>
+          </ul>
+        </div>
+
+        <div class="container">
+          <h2>More resources <span data-icon="externalLink"></span></h2>
+          <ul>
+            <li><a href="https://docs.aws.amazon.com/marketplace/latest/buyerguide/private-marketplace.html" target="_blank" rel="noopener">User guide</a></li>
+            <li><a href="https://aws.amazon.com/marketplace/features/privatemarketplace" target="_blank" rel="noopener">FAQs</a></li>
+            <li><a href="https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/" target="_blank" rel="noopener">API References</a></li>
+            <li><a href="https://aws.amazon.com/marketplace/features/privatemarketplace" target="_blank" rel="noopener">Videos</a></li>
+            <li><a href="https://aws.amazon.com/contact-us/" target="_blank" rel="noopener">Contact us</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="page.private-marketplace.js"></script>
+</body>
+</html>

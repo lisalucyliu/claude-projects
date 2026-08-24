@@ -79,6 +79,14 @@ const Icons = {
      the same status-indicator family as statusAccepted/statusWarning. */
   statusStopped: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="7"/><path d="M5 8h6" stroke-linecap="round"/></svg>`,
 
+  /* Filled circular play button, used for the video-thumbnail placeholder
+     on the Private Marketplace homepage hero. */
+  play: `<svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="10" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1.4"/><path d="M9 7.3v7.4c0 .5.55.8.98.55l6.2-3.7a.63.63 0 0 0 0-1.1l-6.2-3.7c-.43-.25-.98.05-.98.55Z" fill="currentColor"/></svg>`,
+
+  /* Paint palette, used for the "Customize branding" step of the "How it
+     works" flow. */
+  palette: `<svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M9 1.5a7.5 7.5 0 1 0 0 15c.9 0 1.5-.7 1.5-1.5 0-.4-.15-.75-.4-1.02-.24-.26-.4-.6-.4-.98 0-.8.65-1.5 1.5-1.5H13a3 3 0 0 0 3-3c0-3.87-3.13-7-7-7Z" stroke-linejoin="round"/><circle cx="5.5" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="6.5" cy="5" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="4.5" r="1" fill="currentColor" stroke="none"/><circle cx="12.5" cy="7" r="1" fill="currentColor" stroke="none"/></svg>`,
+
   /* Exact paths from cloudscape.design/foundation/visual-foundation/iconography/
      (name="folder" / name="folder-open") — collapsed tree rows use the
      closed glyph, expanded rows use the open one. */

@@ -70,7 +70,7 @@ let step2ValidationShown = false;
 document.addEventListener("DOMContentLoaded", () => {
   mountChrome("dashboard", [
     { label: "AWS Marketplace", href: "dashboard.html" },
-    { label: "Private Marketplace", href: "dashboard.html" },
+    { label: "Private Marketplace", href: "private-marketplace.html" },
     { label: "Dashboard", href: "dashboard.html" },
     { label: "Bulk update products" },
   ]);

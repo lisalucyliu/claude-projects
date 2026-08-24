@@ -13,6 +13,15 @@
   --color-text-inverted: #f9f9fa;
   --color-text-inverted-secondary: #c6c6cd;
 
+  /* Verified against cloudscape.design/examples/react/product-detail-page.html
+     (a live "high-contrast" hero header): heading/body text and link colors
+     when placed directly on the #0f141a hero background specifically —
+     these read lower-contrast than --color-text-inverted on a lighter
+     surface, so they're their own tokens rather than reused ones. */
+  --color-text-hero-heading: #ebebf0;
+  --color-text-hero-body: #c6c6cd;
+  --color-link-hero: #42b4ff;
+
   /* Verified 2026-08 against cloudscape.design/examples/react/table.html and
      dashboard.html via computed-style inspection of the live site: the page
      canvas and full-page table sections share the same near-white #fcfcfd —
@@ -391,12 +400,36 @@ svg {
   display: flex;
   align-items: center;
   gap: 6px;
+  padding: 5px 0;
+}
+
+/* The chevron (collapse toggle) and the group label (a real link to the
+   feature's own landing page) are separate click targets living inside
+   what used to be one combined clickable row. */
+.side-nav__section-toggle {
+  display: flex;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+.side-nav__section-link {
   font-weight: 400;
   font-size: 16px;
   color: var(--color-text-heading);
-  cursor: pointer;
-  padding: 5px 0;
   user-select: none;
+}
+
+.side-nav__section-link:hover {
+  text-decoration: underline;
+}
+
+.side-nav__section-link.active {
+  color: var(--color-text-link);
+  font-weight: 700;
 }
 
 .side-nav__section-title svg {
@@ -587,6 +620,7 @@ svg {
 .creation-steps__body {
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
   padding: var(--space-xl) var(--space-l);
   gap: var(--space-m);
 }
@@ -2196,3 +2230,251 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 .data-table.hide-col-5 > tbody > tr > :nth-child(5) { display: none; }
 .data-table.hide-col-6 > thead > tr > :nth-child(6),
 .data-table.hide-col-6 > tbody > tr > :nth-child(6) { display: none; }
+
+/* ============ PRIVATE MARKETPLACE HOMEPAGE (hero header) ============
+   Verified against cloudscape.design/patterns/general/hero-header/ and its
+   product-detail-page demo: the hero background spans full width and
+   extends up through the breadcrumb toolbar (building block "A"); the
+   white "Get started" panel is the pattern's "Secondary header" block,
+   which per the spec "is always displayed in a light visual context,
+   independent of the styling of the main header" — i.e. never dark, even
+   though it sits on the dark hero. */
+
+body.hero-page .toolbar {
+  background: var(--color-text-heading);
+  border-bottom: none;
+}
+
+body.hero-page .breadcrumb a {
+  color: var(--color-link-hero);
+}
+
+body.hero-page .breadcrumb .sep,
+body.hero-page .breadcrumb .current {
+  color: var(--color-text-hero-body);
+}
+
+body.hero-page .toolbar__info-btn {
+  color: var(--color-text-hero-body);
+}
+
+body.hero-page .toolbar__info-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.hero-page .toolbar__menu-toggle.is-collapsed .toolbar__menu-circle {
+  color: var(--color-text-hero-body);
+}
+
+body.hero-page .toolbar__menu-toggle.is-collapsed:hover .toolbar__menu-circle {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.hero {
+  background: var(--color-text-heading);
+  padding: var(--space-xxl) var(--space-xxl) 48px;
+  display: flex;
+  gap: var(--space-xxl);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.hero__main {
+  flex: 1 1 480px;
+  min-width: 0;
+}
+
+.hero__heading,
+.hero__subheading {
+  font-size: 40px;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--color-text-hero-heading);
+}
+
+.hero__heading {
+  font-weight: 700;
+}
+
+.hero__subheading {
+  font-weight: 300;
+  margin-bottom: var(--space-l);
+}
+
+.hero__description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-text-hero-body);
+  max-width: 640px;
+}
+
+.hero__description + .hero__description {
+  margin-top: var(--space-m);
+}
+
+.hero__secondary {
+  flex: 0 0 320px;
+  background: var(--color-bg-container);
+  border-radius: 16px;
+  padding: var(--space-l);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.hero__secondary h2 {
+  font-size: 18px;
+  margin: 0 0 var(--space-xs);
+  color: var(--color-text-heading);
+}
+
+.hero__secondary p {
+  font-size: 14px;
+  color: var(--color-text-body-secondary);
+  line-height: 1.5;
+  margin: 0 0 var(--space-m);
+}
+
+.pmp-home {
+  display: flex;
+  gap: var(--space-xxl);
+  align-items: flex-start;
+  padding: var(--space-xxl);
+}
+
+.pmp-home__main {
+  flex: 1 1 600px;
+  min-width: 0;
+}
+
+.pmp-home__side {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+}
+
+.pmp-home__side .container {
+  padding: var(--space-l);
+}
+
+.pmp-home__side h2 {
+  font-size: 16px;
+  margin: 0 0 var(--space-s);
+  color: var(--color-text-heading);
+}
+
+.pmp-home__side ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pmp-home__side li {
+  margin-bottom: var(--space-xs);
+}
+
+.pmp-home__side li:last-child {
+  margin-bottom: 0;
+}
+
+.pmp-home-section {
+  margin-bottom: 40px;
+}
+
+.pmp-home-section:last-child {
+  margin-bottom: 0;
+}
+
+.pmp-home-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 var(--space-m);
+  color: var(--color-text-heading);
+}
+
+.pmp-home-section p {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.6;
+  max-width: 760px;
+}
+
+.pmp-home-section .container {
+  padding: var(--space-l) var(--space-xxl);
+}
+
+.pmp-home-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-l) var(--space-xxl);
+}
+
+.pmp-home-grid h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--color-text-heading);
+}
+
+.pmp-home-grid p {
+  font-size: 14px;
+  color: var(--color-text-body-secondary);
+  line-height: 1.5;
+  margin: 0;
+  max-width: none;
+}
+
+.pmp-video-thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 16 / 9;
+  background: var(--color-text-heading);
+  border-radius: var(--radius-input);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+.pmp-video-caption {
+  font-size: 13px;
+  color: var(--color-text-body-secondary);
+  margin: var(--space-xs) 0 0;
+}
+
+.pmp-diagram {
+  max-width: 720px;
+  padding: var(--space-l);
+}
+
+.pmp-quote {
+  font-size: 14px;
+  font-style: italic;
+  color: var(--color-text-body);
+  line-height: 1.6;
+  margin: 0 0 var(--space-m);
+}
+
+.pmp-quote-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-heading);
+}
+
+.pmp-quote-title {
+  font-size: 13px;
+  color: var(--color-text-body-secondary);
+}
+
+@media (max-width: 900px) {
+  .hero,
+  .pmp-home {
+    flex-direction: column;
+  }
+  .hero__secondary,
+  .pmp-home__side {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+}

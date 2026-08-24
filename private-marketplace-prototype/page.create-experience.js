@@ -27,7 +27,7 @@ const wizardState = {
 document.addEventListener("DOMContentLoaded", () => {
   mountChrome("experiences", [
     { label: "AWS Marketplace", href: "dashboard.html" },
-    { label: "Private Marketplace", href: "dashboard.html" },
+    { label: "Private Marketplace", href: "private-marketplace.html" },
     { label: "Experiences", href: "experiences.html" },
     { label: "Create new Private Marketplace experience" },
   ]);
