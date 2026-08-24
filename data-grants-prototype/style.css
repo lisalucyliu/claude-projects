@@ -221,11 +221,13 @@ svg {
   height: 20px;
 }
 
+/* No margin here — .top-header already sets a 12px flex `gap` between every
+   child, so adding the divider's own margin on top of that was double-
+   counting the spacing (24px instead of 12px on each side). */
 .top-header__divider {
   width: 1px;
   height: 20px;
   background: #424650;
-  margin: 0 var(--space-s);
   flex-shrink: 0;
 }
 
