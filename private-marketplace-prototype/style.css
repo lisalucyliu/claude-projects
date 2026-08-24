@@ -1740,7 +1740,6 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
    fields in the next column out of alignment. */
 .info-card__columns {
   display: flex;
-  gap: var(--space-xxl);
 }
 
 .info-card__column {
@@ -1749,6 +1748,20 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   display: flex;
   flex-direction: column;
   gap: var(--space-l);
+}
+
+/* A divider between columns instead of a plain flex gap — matches the
+   wireframe's vertical rules separating each key-value group. Padding
+   (not a separate gap) carries the spacing so the total distance between
+   columns stays ~32px, the same as the plain .info-card__grid's own
+   column gap. Divider goes on the left of every column but the first
+   (rather than the right of every column but the last) so that hiding
+   the actual last column — e.g. Change set details' error column when
+   there's no error — never leaves a dangling divider trailing off into
+   empty space; :not(:first-child) only cares about what's before it. */
+.info-card__column:not(:first-child) {
+  padding-left: var(--space-xxl);
+  border-left: 1px solid var(--color-border-divider);
 }
 
 .info-card__field dt {
@@ -1796,6 +1809,20 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 
 .tree-toggle.expanded {
   transform: rotate(90deg);
+}
+
+/* Icons.triangleDown (the same filled, rounded-corner triangle used in
+   the left nav's expandable groups) points down by default, unlike the
+   plain chevron .tree-toggle otherwise uses which points right by
+   default — so this variant needs the opposite rotation logic: rotated
+   -90deg (pointing right) when collapsed, and back to its natural
+   down-pointing orientation when expanded. */
+.tree-toggle--triangle {
+  transform: rotate(-90deg);
+}
+
+.tree-toggle--triangle.expanded {
+  transform: rotate(0deg);
 }
 
 .tree-toggle-spacer {

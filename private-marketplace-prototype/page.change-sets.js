@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const hasMultiple = cs.changes.length > 1;
         const label = hasMultiple ? `${cs.changeType} + more` : cs.changeType;
         const toggle = hasMultiple
-          ? `<button class="tree-toggle${cs.expanded ? " expanded" : ""}" data-toggle="${cs.id}">${Icons.treeToggle}</button>`
+          ? `<button class="tree-toggle tree-toggle--triangle${cs.expanded ? " expanded" : ""}" data-toggle="${cs.id}">${Icons.triangleDown}</button>`
           : `<span class="tree-toggle-spacer"></span>`;
         const setRow = `
           <tr data-row-id="${cs.id}" class="${selectedKind === "set" && selectedId === cs.id ? "selected selected--top selected--bottom" : ""}">
