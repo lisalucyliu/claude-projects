@@ -110,13 +110,20 @@
               </div>
               <p class="page-subtitle">View a hierarchy of organizational units and accounts that you can associate with private marketplace experiences.</p>
 
-              <div class="table-toolbar">
-                <div class="search-input" style="max-width:400px;">
-                  <span data-icon="search"></span>
-                  <input type="text" placeholder="Find AWS account or OU by their exact ID" />
+              <div class="table-toolbar table-toolbar--stacked">
+                <div class="table-toolbar__filters">
+                  <div class="search-input" style="max-width:400px;">
+                    <span data-icon="search"></span>
+                    <input type="text" placeholder="Find AWS account or OU by their exact ID" />
+                  </div>
                 </div>
-                <div class="pagination">
-                  <button class="page-btn current">1</button>
+                <div class="table-toolbar__controls">
+                  <div class="pagination">
+                    <button class="page-btn" disabled><span data-icon="chevronLeft"></span></button>
+                    <button class="page-btn current">1</button>
+                    <button class="page-btn"><span data-icon="chevronRight"></span></button>
+                  </div>
+                  <button class="page-settings"><span data-icon="settingsTable"></span></button>
                 </div>
               </div>
 
@@ -124,7 +131,7 @@
                 <table class="data-table" id="w-org-table">
                   <thead>
                     <tr>
-                      <th class="checkbox-col no-sort"></th>
+                      <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-w-org" /></th>
                       <th class="no-sort">Audience name</th>
                       <th class="no-sort">ID</th>
                       <th class="no-sort">Governing experience <span data-icon="externalLink"></span></th>
@@ -176,7 +183,7 @@
                 <div class="table-scroll">
                   <table class="data-table" id="w-all-products-table">
                     <thead><tr>
-                      <th class="checkbox-col no-sort"></th>
+                      <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-w-products" /></th>
                       <th class="no-sort">Product</th>
                       <th class="no-sort">Vendor</th>
                       <th class="no-sort">Approved in</th>
@@ -185,8 +192,7 @@
                   </table>
                 </div>
               </div>
-            </section>
-            <section class="container">
+              <hr class="side-nav__divider" style="margin:0;" />
               <div style="padding:20px;" id="selected-products-root">
                 <div class="page-header-row">
                   <h2 style="margin:0;font-size:18px;">Selected products <span class="table-panel__count" data-count>(0)</span></h2>
@@ -195,7 +201,7 @@
                 <div class="table-scroll">
                   <table class="data-table" id="w-selected-products-table">
                     <thead><tr>
-                      <th class="checkbox-col no-sort"></th>
+                      <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-w-selected" /></th>
                       <th class="no-sort">Product</th>
                       <th class="no-sort">Vendor</th>
                       <th class="no-sort">Approved in</th>

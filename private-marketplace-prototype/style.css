@@ -1668,7 +1668,11 @@ table.data-table {
   margin-bottom: 0;
 }
 
-.form-field label {
+/* :not(.form-radio) — otherwise this descendant selector's specificity
+   (class + type) beats .form-radio's own rules (class only) and silently
+   forces every radio option's label to this block/bold/heading-color
+   styling instead of its own flex/400-weight/body-color one. */
+.form-field label:not(.form-radio) {
   display: block;
   font-size: 14px;
   font-weight: 700;
@@ -1716,7 +1720,7 @@ table.data-table {
 .form-radio-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 .form-radio {
@@ -1724,6 +1728,7 @@ table.data-table {
   align-items: center;
   gap: 8px;
   font-size: 14px;
+  font-weight: 400;
   color: var(--color-text-body);
   cursor: pointer;
 }
@@ -1756,52 +1761,69 @@ table.data-table {
   flex-shrink: 0;
 }
 
+/* Verified against cloudscape.design/examples/react/wizard.html: each step
+   is a flex row of [rail: dot + connector] and [text: "Step N" + title].
+   The rail is itself a flex column stretched (by the row's default
+   align-items:stretch) to the text column's natural height, so its
+   flex:1 connector always fills exactly to the next dot — whether the
+   title wraps to 1 line or 2 — without any manual height math. */
 .wizard-nav__step {
   display: flex;
-  gap: var(--space-s);
-  position: relative;
-  padding-bottom: var(--space-l);
 }
 
-.wizard-nav__step::before {
-  content: "";
-  position: absolute;
-  left: 9px;
-  top: 22px;
-  bottom: 0;
-  width: 1px;
-  background: var(--color-border-strong);
-}
-
-.wizard-nav__step:last-child::before {
-  display: none;
-}
-
-.wizard-nav__icon {
+.wizard-nav__rail {
+  width: 10px;
+  margin-right: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   flex-shrink: 0;
-  color: var(--color-border-strong);
-  z-index: 1;
-  background: var(--color-bg-layout);
 }
 
-.wizard-nav__step.complete .wizard-nav__icon {
-  color: var(--color-text-heading);
+.wizard-nav__circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: #fff;
+  box-shadow: 0 0 0 2px var(--color-text-disabled), 0 0 0 4px var(--color-bg-container);
 }
 
-.wizard-nav__step.active .wizard-nav__icon {
-  color: var(--color-blue);
+.wizard-nav__step.complete .wizard-nav__circle {
+  background: var(--color-text-body-secondary);
+  box-shadow: 0 0 0 2px var(--color-text-body-secondary), 0 0 0 4px var(--color-bg-container);
+}
+
+.wizard-nav__step.active .wizard-nav__circle {
+  background: var(--color-blue);
+  box-shadow: 0 0 0 3px var(--color-bg-container), 0 0 0 5px var(--color-blue), 0 0 0 7px var(--color-bg-container);
+}
+
+.wizard-nav__connector {
+  width: 2px;
+  flex: 1;
+  background: var(--color-border-strong);
+  margin: 7px 0;
+}
+
+.wizard-nav__text {
+  padding-bottom: 16px;
 }
 
 .wizard-nav__label {
   font-size: 12px;
-  color: var(--color-text-body-secondary);
-  margin-bottom: 2px;
+  color: var(--color-text-body-tertiary);
 }
 
 .wizard-nav__title {
   font-size: 14px;
   font-weight: 400;
-  color: var(--color-text-body);
+  color: var(--color-text-body-tertiary);
+  margin-top: 2px;
+}
+
+.wizard-nav__step.complete .wizard-nav__title {
+  color: var(--color-text-body-secondary);
 }
 
 .wizard-nav__step.active .wizard-nav__title {

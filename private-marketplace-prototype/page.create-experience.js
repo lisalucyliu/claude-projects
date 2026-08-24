@@ -34,6 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
   hydrateIcons();
   initSharedUI();
 
+  // Verified against cloudscape.design/examples/react/wizard.html: a
+  // multi-page create flow hides the service navigation by default (nothing
+  // to navigate away to mid-task) — collapsed here, not removed, so the
+  // toolbar's toggle can still reveal it if needed.
+  document.querySelector(".app-layout").classList.add("nav-collapsed");
+  document.getElementById("toolbar-menu-toggle").classList.add("is-collapsed");
+
   initHelpPanel(
     "Create experience",
     `
@@ -79,15 +86,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+/* Verified against cloudscape.design/examples/react/wizard.html: each step is
+   a dot (plain flex-stretched rail, not a fixed-size icon box) connected to
+   the next by a 2px line that fills the rail's remaining height, so the
+   connector always reaches exactly to the next dot regardless of whether the
+   step title wraps to 1 or 2 lines. */
 function renderWizardNav() {
   const nav = document.getElementById("wizard-nav");
-  nav.innerHTML = WIZARD_STEPS.map((step) => {
+  nav.innerHTML = WIZARD_STEPS.map((step, i) => {
     const state = step.n < wizardState.currentStep ? "complete" : step.n === wizardState.currentStep ? "active" : "";
-    const icon = state === "complete" ? Icons.stepComplete : state === "active" ? Icons.stepActive : Icons.stepIncomplete;
+    const isLast = i === WIZARD_STEPS.length - 1;
     return `
       <div class="wizard-nav__step ${state}">
-        <span class="wizard-nav__icon">${icon}</span>
-        <div>
+        <div class="wizard-nav__rail">
+          <div class="wizard-nav__circle"></div>
+          ${isLast ? "" : '<div class="wizard-nav__connector"></div>'}
+        </div>
+        <div class="wizard-nav__text">
           <div class="wizard-nav__label">${step.label}</div>
           <div class="wizard-nav__title">${step.title}</div>
         </div>
@@ -158,11 +173,11 @@ function renderTags() {
       <div class="form-field-row" style="margin-bottom:12px;align-items:flex-end;">
         <div class="form-field" style="margin-bottom:0;">
           ${i === 0 ? '<label>Key</label>' : ""}
-          <div class="search-input"><span data-icon="search"></span><input type="text" placeholder="Enter value" data-tag-key="${i}" value="${escapeHtml(tag.key)}" /></div>
+          <input type="text" placeholder="Enter value" data-tag-key="${i}" value="${escapeHtml(tag.key)}" />
         </div>
         <div class="form-field" style="margin-bottom:0;">
           ${i === 0 ? '<label>Value</label>' : ""}
-          <div class="search-input"><span data-icon="search"></span><input type="text" placeholder="Enter value" data-tag-value="${i}" value="${escapeHtml(tag.value)}" /></div>
+          <input type="text" placeholder="Enter value" data-tag-value="${i}" value="${escapeHtml(tag.value)}" />
         </div>
         <button class="btn btn-normal" data-remove-tag="${i}" style="flex-shrink:0;">Remove</button>
       </div>
@@ -194,19 +209,20 @@ function renderOrgTree() {
     }
     return true;
   }
+  const selectAllOrg = document.getElementById("select-all-w-org");
   function draw() {
     const rows = WIZARD_ORG_NODES.filter(isVisible);
     document.getElementById("w-org-count").textContent = `(${wizardState.selectedOrgIds.size}/${WIZARD_ORG_NODES.length}+)`;
     tbody.innerHTML = rows
-      .map((node) => {
+      .map((node, i) => {
         const checked = wizardState.selectedOrgIds.has(node.id);
         const disabled = node.relationship === "Inherited" && !checked;
-        const icon = Icons.folder;
+        const icon = node.expanded ? Icons.folderOpen : Icons.folder;
         const toggle = node.hasChildren
           ? `<button class="tree-toggle${node.expanded ? " expanded" : ""}" data-w-toggle="${node.id}">${Icons.treeToggle}</button>`
           : `<span class="tree-toggle-spacer"></span>`;
         return `
-          <tr data-row-id="${node.id}" class="${checked ? "selected" : ""}">
+          <tr data-row-id="${node.id}" class="${selectionRowClass(rows, i, (n) => wizardState.selectedOrgIds.has(n.id))}">
             <td class="checkbox-col"><input type="checkbox" class="row-check" data-w-id="${node.id}" ${disabled ? "disabled" : ""} ${checked ? "checked" : ""} /></td>
             <td style="padding-left:${2 + node.depth * 20}px;"><div class="tree-cell">${toggle}<span class="tree-icon">${icon}</span><a href="#" onclick="return false;">${escapeHtml(node.name)}</a></div></td>
             <td>${node.accountId}</td>
@@ -216,6 +232,9 @@ function renderOrgTree() {
         `;
       })
       .join("");
+
+    const selectableRows = rows.filter((n) => n.relationship !== "Inherited");
+    updateSelectAllCheckbox(selectAllOrg, selectableRows.filter((n) => wizardState.selectedOrgIds.has(n.id)).length, selectableRows.length);
   }
   tbody.addEventListener("click", (e) => {
     const t = e.target.closest("[data-w-toggle]");
@@ -232,6 +251,14 @@ function renderOrgTree() {
     else wizardState.selectedOrgIds.delete(id);
     draw();
   });
+  selectAllOrg.addEventListener("change", (e) => {
+    tbody.querySelectorAll(".row-check:not(:disabled)").forEach((cb) => {
+      const id = cb.getAttribute("data-w-id");
+      if (e.target.checked) wizardState.selectedOrgIds.add(id);
+      else wizardState.selectedOrgIds.delete(id);
+    });
+    draw();
+  });
   draw();
 }
 
@@ -239,6 +266,11 @@ function renderOrgTree() {
 let allProductsTable, selectedProductsTable, bulkTable;
 
 function setupProductTables() {
+  const selectAllProducts = document.getElementById("select-all-w-products");
+  const selectAllSelected = document.getElementById("select-all-w-selected");
+  const selectAllBtn = document.getElementById("select-all-products-btn");
+  let removeSelectedIds = new Set();
+
   allProductsTable = new DataTable({
     root: document.getElementById("all-products-root"),
     data: WIZARD_ALL_PRODUCTS,
@@ -256,6 +288,10 @@ function setupProductTables() {
       </tr>
     `,
     selectedCountFn: () => wizardState.selectedProductIds.size,
+    onRender: (visible) => {
+      updateSelectAllCheckbox(selectAllProducts, visible.filter((r) => wizardState.selectedProductIds.has(r.id)).length, visible.length);
+      selectAllBtn.textContent = wizardState.selectedProductIds.size === WIZARD_ALL_PRODUCTS.length ? "Unselect all" : "Select all";
+    },
   });
   allProductsTable.render();
 
@@ -266,14 +302,18 @@ function setupProductTables() {
     searchFields: ["product"],
     colspan: 4,
     emptyHtml: `<div class="empty-state">No products selected yet</div>`,
-    rowHtml: (row) => `
-      <tr data-row-id="${row.id}">
-        <td class="checkbox-col"><input type="checkbox" class="row-check" data-sp-id="${row.id}" /></td>
+    rowHtml: (row, i, list) => `
+      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => removeSelectedIds.has(r.id))}">
+        <td class="checkbox-col"><input type="checkbox" class="row-check" data-sp-id="${row.id}" ${removeSelectedIds.has(row.id) ? "checked" : ""} /></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.product)}</a></td>
         <td><a href="#" onclick="return false;">${escapeHtml(row.vendor)}</a></td>
         <td><a href="#" onclick="return false;">${escapeHtml(row.approvedIn)}</a></td>
       </tr>
     `,
+    onRender: (visible) => {
+      document.getElementById("remove-selected-products-btn").disabled = removeSelectedIds.size === 0;
+      updateSelectAllCheckbox(selectAllSelected, visible.filter((r) => removeSelectedIds.has(r.id)).length, visible.length);
+    },
   });
   refreshSelectedProducts();
 
@@ -286,16 +326,46 @@ function setupProductTables() {
     refreshSelectedProducts();
   });
 
-  document.getElementById("select-all-products-btn").addEventListener("click", () => {
-    WIZARD_ALL_PRODUCTS.forEach((p) => wizardState.selectedProductIds.add(p.id));
+  selectAllProducts.addEventListener("change", (e) => {
+    document.querySelectorAll("#w-all-products-table .row-check").forEach((cb) => {
+      const id = cb.getAttribute("data-p-id");
+      if (e.target.checked) wizardState.selectedProductIds.add(id);
+      else wizardState.selectedProductIds.delete(id);
+    });
+    allProductsTable.render();
+    refreshSelectedProducts();
+  });
+
+  document.querySelector("#w-selected-products-table tbody").addEventListener("change", (e) => {
+    if (!e.target.matches(".row-check")) return;
+    const id = e.target.getAttribute("data-sp-id");
+    if (e.target.checked) removeSelectedIds.add(id);
+    else removeSelectedIds.delete(id);
+    selectedProductsTable.render();
+  });
+
+  selectAllSelected.addEventListener("change", (e) => {
+    document.querySelectorAll("#w-selected-products-table .row-check").forEach((cb) => {
+      const id = cb.getAttribute("data-sp-id");
+      if (e.target.checked) removeSelectedIds.add(id);
+      else removeSelectedIds.delete(id);
+    });
+    selectedProductsTable.render();
+  });
+
+  selectAllBtn.addEventListener("click", () => {
+    if (wizardState.selectedProductIds.size === WIZARD_ALL_PRODUCTS.length) {
+      wizardState.selectedProductIds.clear();
+    } else {
+      WIZARD_ALL_PRODUCTS.forEach((p) => wizardState.selectedProductIds.add(p.id));
+    }
     allProductsTable.render();
     refreshSelectedProducts();
   });
 
   document.getElementById("remove-selected-products-btn").addEventListener("click", () => {
-    document.querySelectorAll("#w-selected-products-table .row-check:checked").forEach((cb) => {
-      wizardState.selectedProductIds.delete(cb.getAttribute("data-sp-id"));
-    });
+    removeSelectedIds.forEach((id) => wizardState.selectedProductIds.delete(id));
+    removeSelectedIds.clear();
     allProductsTable.render();
     refreshSelectedProducts();
   });
