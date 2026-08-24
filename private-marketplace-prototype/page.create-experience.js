@@ -425,7 +425,7 @@ function renderReview() {
       </div>
       <div class="container review-card">
         <h3 style="margin-top:0;">Tags (${wizardState.tags.filter((t) => t.key).length})</h3>
-        <table class="data-table"><thead><tr><th class="no-sort">Key</th><th class="no-sort">Value</th></tr></thead>
+        <table class="data-table simple"><thead><tr><th class="no-sort">Key</th><th class="no-sort">Value</th></tr></thead>
         <tbody>${wizardState.tags.filter((t) => t.key).map((t) => `<tr><td>${escapeHtml(t.key)}</td><td>${escapeHtml(t.value)}</td></tr>`).join("") || '<tr><td colspan="2" style="text-align:center;color:var(--color-text-body-tertiary);">No tags added</td></tr>'}</tbody></table>
       </div>
     </div>
@@ -434,7 +434,7 @@ function renderReview() {
       <div class="review-section__header"><h3>Step 2: Choose audience</h3><button class="btn btn-normal" data-edit-step="2">Edit</button></div>
       <div class="container review-card">
         <h3 style="margin-top:0;">Selected audiences for this experience (${selectedOrgCount})</h3>
-        <table class="data-table"><thead><tr><th class="no-sort">Page</th><th class="no-sort">Number of accounts</th></tr></thead>
+        <table class="data-table simple"><thead><tr><th class="no-sort">Page</th><th class="no-sort">Number of accounts</th></tr></thead>
         <tbody>${[...wizardState.selectedOrgIds].map((id) => { const n = WIZARD_ORG_NODES.find((x) => x.id === id); return n ? `<tr><td>${escapeHtml(n.name)}</td><td>${n.type === "org" ? "1234" : "1"}</td></tr>` : ""; }).join("")}</tbody></table>
       </div>
     </div>
@@ -447,7 +447,7 @@ function renderReview() {
       </div>
       <div class="container review-card">
         <h3 style="margin-top:0;">Selected products</h3>
-        <table class="data-table"><thead><tr><th class="no-sort">Products</th><th class="no-sort">Vendor</th><th class="no-sort">Approved in</th></tr></thead>
+        <table class="data-table simple"><thead><tr><th class="no-sort">Products</th><th class="no-sort">Vendor</th><th class="no-sort">Approved in</th></tr></thead>
         <tbody>${selectedProducts.map((p) => `<tr><td>${escapeHtml(p.product)}</td><td>${escapeHtml(p.vendor)}</td><td>${escapeHtml(p.approvedIn)}</td></tr>`).join("") || '<tr><td colspan="3" style="text-align:center;color:var(--color-text-body-tertiary);">No products selected</td></tr>'}</tbody></table>
       </div>
     </div>

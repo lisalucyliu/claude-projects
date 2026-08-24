@@ -448,7 +448,7 @@ function renderReview() {
       </div>
       <div class="container review-card">
         <h3 style="margin-top:0;">Selected products</h3>
-        <table class="data-table"><thead><tr><th class="no-sort">Products</th><th class="no-sort">Vendor</th><th class="no-sort">Approved in</th></tr></thead>
+        <table class="data-table simple"><thead><tr><th class="no-sort">Products</th><th class="no-sort">Vendor</th><th class="no-sort">Approved in</th></tr></thead>
         <tbody>${selectedProducts.map((p) => `<tr><td>${escapeHtml(p.product)}</td><td>${escapeHtml(p.vendor)}</td><td>${escapeHtml(p.approvedIn)}</td></tr>`).join("") || '<tr><td colspan="3" style="text-align:center;color:var(--color-text-body-tertiary);">No products selected</td></tr>'}</tbody></table>
       </div>
     </div>
@@ -457,7 +457,7 @@ function renderReview() {
       <div class="review-section__header"><h3>Step 2: Select experiences</h3><button class="btn btn-normal" data-edit-step="2">Edit</button></div>
       <div class="container review-card">
         <h3 style="margin-top:0;">Selected experiences</h3>
-        <table class="data-table"><thead><tr><th class="no-sort">Experiences</th><th class="no-sort"># of audiences</th><th class="no-sort">Status</th></tr></thead>
+        <table class="data-table simple"><thead><tr><th class="no-sort">Experiences</th><th class="no-sort"># of audiences</th><th class="no-sort">Status</th></tr></thead>
         <tbody>${selectedExperiences.map((e) => `<tr><td>${escapeHtml(e.name)}</td><td>${e.audiences} audience${e.audiences === 1 ? "" : "s"}</td><td>${statusHtml(e.status, e.statusLabel)}</td></tr>`).join("") || '<tr><td colspan="3" style="text-align:center;color:var(--color-text-body-tertiary);">No experiences selected</td></tr>'}</tbody></table>
       </div>
     </div>

@@ -721,6 +721,7 @@ svg {
 }
 
 .tab {
+  position: relative;
   background: none;
   border: none;
   cursor: pointer;
@@ -728,13 +729,27 @@ svg {
   font-weight: 700;
   color: var(--color-text-body-secondary);
   padding: 7px 4px 7px 3px;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -2px;
 }
 
 .tab.active {
   color: var(--color-text-heading);
-  border-bottom-color: var(--color-blue);
+}
+
+/* The active indicator is its own rounded-cap pill (::after), not a
+   border — verified against cloudscape.design's own tab markup, which
+   uses a 4px bar with a full 20px border-radius on every corner rather
+   than a hard-edged border-bottom. The rounded ends are what keep a bar
+   this tall from reading as "too thick": a sharp-cornered rectangle at
+   the same height looks visibly heavier than a pill does. */
+.tab.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 4px;
+  background: var(--color-blue);
+  border-radius: 20px;
 }
 
 .tab-panel {
