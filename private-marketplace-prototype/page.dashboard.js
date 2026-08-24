@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const flashRoot = document.getElementById("flash-root");
 
   const selectedApprovedIds = new Set();
+  const selectAllApproved = document.getElementById("select-all-approved");
 
   const table = new DataTable({
     root: document.getElementById("approved-panel"),
@@ -45,8 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.approvedIn)}</a></td>
       </tr>
     `,
-    onRender: () => {
+    selectedCountFn: () => selectedApprovedIds.size,
+    onRender: (visible) => {
       document.getElementById("remove-approved-btn").disabled = selectedApprovedIds.size === 0;
+      updateSelectAllCheckbox(selectAllApproved, visible.filter((r) => selectedApprovedIds.has(r.id)).length, visible.length);
     },
   });
   table.render();

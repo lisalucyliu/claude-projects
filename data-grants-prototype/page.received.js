@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${row.expiration}</td>
       </tr>
     `,
+    selectedCountFn: () => (selectedPendingId ? 1 : 0),
   });
   pendingTable.render();
 

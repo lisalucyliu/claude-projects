@@ -255,6 +255,7 @@ function setupProductTables() {
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.approvedIn)}</a></td>
       </tr>
     `,
+    selectedCountFn: () => wizardState.selectedProductIds.size,
   });
   allProductsTable.render();
 
@@ -321,6 +322,7 @@ function setupBulkTable() {
         <td>${statusHtml(row.status, row.statusLabel)}</td>
       </tr>
     `,
+    selectedCountFn: () => (wizardState.bulkExperienceId ? 1 : 0),
   });
   bulkTable.render();
 

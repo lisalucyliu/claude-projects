@@ -35,6 +35,15 @@ function selectionRowClass(list, index, isSelectedFn) {
   return cls;
 }
 
+/* Syncs a header "select all" checkbox to a partial/full selection, matching
+   the live Cloudscape table: checked when every visible row is selected,
+   indeterminate (minus glyph) when some but not all are. */
+function updateSelectAllCheckbox(el, selectedCount, totalCount) {
+  if (!el) return;
+  el.checked = totalCount > 0 && selectedCount === totalCount;
+  el.indeterminate = selectedCount > 0 && selectedCount < totalCount;
+}
+
 function hydrateIcons(root = document) {
   root.querySelectorAll("[data-icon]").forEach((el) => {
     const name = el.getAttribute("data-icon");
@@ -145,6 +154,7 @@ class DataTable {
     this.onRender = options.onRender;
     this.countLabel = options.countLabel;
     this.countUsesTotal = options.countUsesTotal || false;
+    this.selectedCountFn = options.selectedCountFn;
 
     this.searchText = "";
     this.sortKey = null;
@@ -223,7 +233,12 @@ class DataTable {
 
     if (this.countEl) {
       const countValue = this.countUsesTotal ? this.data.length : filtered.length;
-      this.countEl.textContent = this.countLabel ? this.countLabel(countValue) : `(${countValue})`;
+      if (this.countLabel) {
+        this.countEl.textContent = this.countLabel(countValue);
+      } else {
+        const selectedCount = this.selectedCountFn ? this.selectedCountFn() : 0;
+        this.countEl.textContent = selectedCount > 0 ? `(${selectedCount}/${countValue})` : `(${countValue})`;
+      }
     }
 
     if (visible.length === 0) {

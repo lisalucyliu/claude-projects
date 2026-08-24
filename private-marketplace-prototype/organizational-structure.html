@@ -39,19 +39,23 @@
     </div>
     <p class="page-subtitle">View a hierarchy of organizational units and accounts that you can associate with private marketplace experiences.</p>
 
-    <div class="table-toolbar">
-      <div class="search-input" style="max-width:520px;">
-        <span data-icon="search"></span>
-        <input type="text" placeholder="Find AWS account or OU by their exact ID" data-org-search />
+    <div class="table-toolbar table-toolbar--stacked">
+      <div class="table-toolbar__filters">
+        <div class="search-input" style="max-width:520px;">
+          <span data-icon="search"></span>
+          <input type="text" placeholder="Find AWS account or OU by their exact ID" data-org-search />
+        </div>
+        <div class="search-input" style="max-width:180px; flex:0 0 180px;">
+          <span>All types</span>
+          <span data-icon="chevronDownSmall" style="margin-left:auto;"></span>
+        </div>
       </div>
-      <div class="search-input" style="max-width:180px; flex:0 0 180px;">
-        <span>All types</span>
-        <span data-icon="chevronDownSmall" style="margin-left:auto;"></span>
-      </div>
-      <div class="pagination">
-        <button class="page-btn" disabled><span data-icon="chevronLeft"></span></button>
-        <button class="page-btn current">1</button>
-        <button class="page-btn"><span data-icon="chevronRight"></span></button>
+      <div class="table-toolbar__controls">
+        <div class="pagination">
+          <button class="page-btn" disabled><span data-icon="chevronLeft"></span></button>
+          <button class="page-btn current">1</button>
+          <button class="page-btn"><span data-icon="chevronRight"></span></button>
+        </div>
         <button class="page-settings"><span data-icon="settingsTable"></span></button>
       </div>
     </div>

@@ -7,6 +7,7 @@
   --color-text-body: #16191f;
   --color-text-body-secondary: #424650;
   --color-text-body-tertiary: #656871;
+  --color-text-disabled: #b4b4bb;
   --color-text-link: #006ce0;
   --color-text-link-hover: #002b66;
   --color-text-inverted: #f9f9fa;
@@ -861,6 +862,26 @@ svg {
   margin-bottom: var(--space-m);
 }
 
+/* Verified against cloudscape.design/components/table/ (common-table
+   example): filters sit on their own row, with pagination + preferences
+   right-aligned on a second row below — not crammed into one row. */
+.table-toolbar--stacked {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.table-toolbar__filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+}
+
+.table-toolbar__controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
 .search-input {
   flex: 1;
   display: flex;
@@ -889,19 +910,25 @@ svg {
   color: var(--color-text-body-tertiary);
 }
 
+/* Verified against cloudscape.design/components/pagination/: page-number
+   buttons are plain text (no box/pill), 20x24, current page is bold
+   near-black, others grey, disabled lighter grey. Hover only darkens text —
+   no background. The preferences trigger is a separate borderless icon
+   button (20px gap from the pagination group) that only darkens on hover. */
 .pagination {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   flex-shrink: 0;
 }
 
 .page-btn {
-  width: 28px;
-  height: 28px;
-  border: none;
+  box-sizing: border-box;
+  width: 20px;
+  height: 24px;
+  border: 2px solid transparent;
   background: none;
-  border-radius: 6px;
+  border-radius: 0;
   cursor: pointer;
   color: var(--color-text-body-secondary);
   display: flex;
@@ -911,27 +938,26 @@ svg {
 }
 
 .page-btn:hover:not(:disabled) {
-  background: var(--color-bg-layout);
+  color: var(--color-text-heading);
 }
 
 .page-btn:disabled {
-  color: var(--color-border-strong);
+  color: var(--color-text-disabled);
   cursor: not-allowed;
 }
 
 .page-btn.current {
-  background: var(--color-blue-tint);
-  color: var(--color-blue);
+  color: var(--color-text-heading);
   font-weight: 700;
 }
 
 .page-settings {
-  margin-left: 6px;
-  width: 32px;
+  margin-left: 20px;
+  width: 28px;
   height: 32px;
-  border: 1px solid var(--color-border-strong);
-  border-radius: 6px;
-  background: var(--color-bg-container);
+  border: none;
+  border-radius: 20px;
+  background: none;
   color: var(--color-text-body-secondary);
   display: flex;
   align-items: center;
@@ -940,7 +966,7 @@ svg {
 }
 
 .page-settings:hover {
-  background: var(--color-bg-layout);
+  color: var(--color-text-heading);
 }
 
 /* Table — no wrapping border/radius: on the live full-page table demos the
@@ -1124,6 +1150,24 @@ table.data-table {
   transform: rotate(40deg);
 }
 
+/* Header "select all" checkbox when some but not all rows are selected —
+   set via JS (input.indeterminate = true), matching the live Cloudscape
+   table's minus-glyph treatment instead of an empty or fully-checked box. */
+.data-table input[type="checkbox"]:indeterminate {
+  background: var(--color-blue);
+  border-color: var(--color-blue);
+}
+
+.data-table input[type="checkbox"]:indeterminate::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 6.5px;
+  width: 8px;
+  height: 2px;
+  background: #fff;
+}
+
 .data-table input[type="radio"] {
   width: 16px;
   height: 16px;
@@ -1203,6 +1247,13 @@ table.data-table {
 
 .flashbar {
   margin-bottom: var(--space-m);
+}
+
+/* No flash showing: the div is still in the layout (so a flash can be
+   prepended into it later) but shouldn't reserve its margin — otherwise
+   every page shows a dead gap between the breadcrumbs and the page header. */
+.flashbar:empty {
+  margin-bottom: 0;
 }
 
 /* Verified against cloudscape.design/components/flashbar/: 12px radius,
@@ -1503,6 +1554,23 @@ table.data-table {
   font-size: 14px;
   color: var(--color-text-body);
   margin: 0;
+}
+
+/* Verified against cloudscape.design/components/link/?example=external-link:
+   the Link component is always underlined (not just on hover), and its
+   trailing icon is glued to the last word with a non-breaking space so the
+   two never split across a line wrap. */
+.info-card__field dd a {
+  text-decoration: underline;
+}
+
+/* The global `svg { display: block; }` reset (used everywhere else for
+   flex-laid-out icon+text pairs) forces a line break when an icon sits
+   inline inside flowing link text instead — override back to inline here
+   so the icon flows with the text instead of wrapping onto its own line. */
+.info-card__field dd a svg {
+  display: inline-block;
+  vertical-align: -2px;
 }
 
 /* ---- Org structure tree table ---- */

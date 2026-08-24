@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let showExpired = false;
   const selectedGrantIds = new Set();
   const grantsTbody = document.querySelector("#sent-grants-table tbody");
+  const selectAllGrants = document.getElementById("select-all-grants");
 
   const sentTable = new DataTable({
     root: document.getElementById("grants-panel"),
@@ -55,7 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
         <td>${row.creation}</td>
       </tr>
     `,
-    onRender: updateActionsState,
+    selectedCountFn: () => selectedGrantIds.size,
+    onRender: (visible) => {
+      updateActionsState();
+      updateSelectAllCheckbox(selectAllGrants, visible.filter((r) => selectedGrantIds.has(r.id)).length, visible.length);
+    },
   });
   sentTable.render();
 

@@ -48,10 +48,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function render() {
     const rows = ORG_NODES.filter((n) => (searchText ? matchesSearch(n) : isVisible(n)));
-    countEl.textContent = `(${ORG_NODES.length})`;
+    countEl.textContent = selectedIds.size > 0 ? `(${selectedIds.size}/${ORG_NODES.length})` : `(${ORG_NODES.length})`;
 
     if (rows.length === 0) {
       tbody.innerHTML = `<tr class="empty-row"><td colspan="5"><div class="empty-state">No matching organizational units or accounts</div></td></tr>`;
+      updateSelectAllCheckbox(document.getElementById("select-all-org"), 0, 0);
       return;
     }
 
@@ -79,6 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       })
       .join("");
+
+    const selectableRows = rows.filter((n) => n.relationship !== "Inherited");
+    updateSelectAllCheckbox(document.getElementById("select-all-org"), selectableRows.filter((n) => selectedIds.has(n.id)).length, selectableRows.length);
   }
 
   render();

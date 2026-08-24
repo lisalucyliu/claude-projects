@@ -32,8 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ---- Active experiences ----
-  let selectedActiveId = null;
+  const selectedActiveIds = new Set();
   const activeTbody = document.querySelector("#active-exp-table tbody");
+  const selectAllActive = document.getElementById("select-all-active-exp");
   const viewDetailsBtn = document.getElementById("view-details-btn");
   const archiveBtn = document.getElementById("archive-exp-btn");
 
@@ -46,47 +47,54 @@ document.addEventListener("DOMContentLoaded", () => {
     colspan: 4,
     emptyHtml: `<div class="empty-state">No active experiences</div>`,
     rowHtml: (row, i, list) => `
-      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => selectedActiveId === r.id)}">
-        <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" ${selectedActiveId === row.id ? "checked" : ""} /></td>
+      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => selectedActiveIds.has(r.id))}">
+        <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" ${selectedActiveIds.has(row.id) ? "checked" : ""} /></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.name)}</a></td>
         <td>${statusHtml(row.status, row.statusLabel)}</td>
         <td>${row.lastModified}</td>
       </tr>
     `,
+    selectedCountFn: () => selectedActiveIds.size,
+    onRender: (visible) => {
+      viewDetailsBtn.disabled = selectedActiveIds.size !== 1;
+      archiveBtn.disabled = selectedActiveIds.size === 0;
+      updateSelectAllCheckbox(selectAllActive, visible.filter((r) => selectedActiveIds.has(r.id)).length, visible.length);
+    },
   });
   activeTable.render();
 
   activeTbody.addEventListener("change", (e) => {
     if (!e.target.matches(".row-check")) return;
     const id = e.target.getAttribute("data-id");
-    if (e.target.checked) {
-      selectedActiveId = id;
-    } else if (selectedActiveId === id) {
-      selectedActiveId = null;
-    }
-    // Full re-render (not manual class toggling) so unchecking the other
-    // row and recomputing corner-rounding both happen consistently.
+    if (e.target.checked) selectedActiveIds.add(id);
+    else selectedActiveIds.delete(id);
+    // Full re-render (not manual class toggling) so unchecking other rows
+    // and recomputing corner-rounding both happen consistently.
     activeTable.render();
-    viewDetailsBtn.disabled = !selectedActiveId;
-    archiveBtn.disabled = !selectedActiveId;
   });
 
-  document.getElementById("select-all-active-exp").addEventListener("change", () => {
-    // header select-all not meaningful for single-select; no-op visually but keep checkbox in sync
-    document.getElementById("select-all-active-exp").checked = false;
+  selectAllActive.addEventListener("change", (e) => {
+    activeTbody.querySelectorAll(".row-check").forEach((cb) => {
+      const id = cb.getAttribute("data-id");
+      if (e.target.checked) selectedActiveIds.add(id);
+      else selectedActiveIds.delete(id);
+    });
+    activeTable.render();
   });
 
   document.getElementById("archive-exp-btn").addEventListener("click", () => {
-    if (!selectedActiveId) return;
-    const idx = ACTIVE_EXPERIENCES.findIndex((e) => e.id === selectedActiveId);
-    const [moved] = ACTIVE_EXPERIENCES.splice(idx, 1);
-    ARCHIVED_EXPERIENCES.unshift({ ...moved, status: "notlive", statusLabel: "Not live" });
-    selectedActiveId = null;
-    viewDetailsBtn.disabled = true;
-    archiveBtn.disabled = true;
+    if (selectedActiveIds.size === 0) return;
+    const moved = ACTIVE_EXPERIENCES.filter((e) => selectedActiveIds.has(e.id));
+    moved.forEach((e) => {
+      const idx = ACTIVE_EXPERIENCES.indexOf(e);
+      ACTIVE_EXPERIENCES.splice(idx, 1);
+      ARCHIVED_EXPERIENCES.unshift({ ...e, status: "notlive", statusLabel: "Not live" });
+    });
+    const message = moved.length === 1 ? `Experience '${escapeHtml(moved[0].name)}' was archived.` : `${moved.length} experiences were archived.`;
+    selectedActiveIds.clear();
     activeTable.setData(ACTIVE_EXPERIENCES);
     archivedTable.setData(ARCHIVED_EXPERIENCES);
-    showFlash(document.getElementById("flash-root"), { type: "success", message: `Experience '${escapeHtml(moved.name)}' was archived.`, autoDismiss: 4000 });
+    showFlash(document.getElementById("flash-root"), { type: "success", message, autoDismiss: 4000 });
   });
 
   document.getElementById("view-details-btn").addEventListener("click", () => {
