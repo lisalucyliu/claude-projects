@@ -26,7 +26,7 @@ const Icons = {
      (verified via devtools on cloudscape.design/patterns/general/
      service-navigation/side-navigation/): a solid downward triangle,
      not an outlined chevron. */
-  triangleDown: `<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
+  triangleDown: `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
 
   chevronDownSmall: `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 3.5 5 6.5l3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 
@@ -87,7 +87,7 @@ const Icons = {
 
   /* Filled circular play button, used for the video-thumbnail placeholder
      on the Private Marketplace homepage hero. */
-  play: `<svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="26" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2"/><path d="M27 22.5v19c0 1.3 1.4 2.1 2.5 1.4l15-9.5a1.6 1.6 0 0 0 0-2.7l-15-9.5c-1.1-.7-2.5.1-2.5 1.3Z" fill="currentColor"/></svg>`,
+  play: `<svg width="64" height="64" viewBox="0 0 64 64" fill="none"><circle cx="32" cy="32" r="26" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2"/><g transform="translate(-2,0)"><path d="M27 22.5v19c0 1.3 1.4 2.1 2.5 1.4l15-9.5a1.6 1.6 0 0 0 0-2.7l-15-9.5c-1.1-.7-2.5.1-2.5 1.3Z" fill="currentColor"/></g></svg>`,
 
   /* Paint palette, used for the "Customize branding" step of the "How it
      works" flow. */

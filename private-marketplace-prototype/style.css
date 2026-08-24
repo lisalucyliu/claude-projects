@@ -421,8 +421,8 @@ svg {
   left: -18px;
   top: 50%;
   transform: translateY(-50%);
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -444,6 +444,7 @@ svg {
   padding: 4px 8px;
   border-radius: 8px;
   font-size: 14px;
+  line-height: 1.4;
   font-weight: 400;
   color: var(--color-text-body-secondary);
   user-select: none;
