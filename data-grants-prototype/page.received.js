@@ -35,8 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
     countUsesTotal: true,
     colspan: 5,
     emptyHtml: `<div class="empty-state">No pending data grants</div>`,
-    rowHtml: (row) => `
-      <tr data-row-id="${row.id}" class="${selectedPendingId === row.id ? "selected" : ""}">
+    rowHtml: (row, i, list) => `
+      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => selectedPendingId === r.id)}">
         <td class="radio-col"><input type="radio" name="pending-select" class="row-radio" data-id="${row.id}" ${selectedPendingId === row.id ? "checked" : ""} /></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.name)}</a></td>
         <td>${statusHtml(row.status, row.statusLabel)}</td>
@@ -50,9 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   pendingTbody.addEventListener("change", (e) => {
     if (!e.target.matches(".row-radio")) return;
     selectedPendingId = e.target.getAttribute("data-id");
-    pendingTbody.querySelectorAll("tr").forEach((tr) => {
-      tr.classList.toggle("selected", tr.getAttribute("data-row-id") === selectedPendingId);
-    });
+    pendingTable.render();
     acceptBtn.disabled = false;
   });
 

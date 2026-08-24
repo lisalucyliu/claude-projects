@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
     countUsesTotal: true,
     colspan: 6,
     emptyHtml: `<div class="empty-state">No grants<button class="btn btn-normal" id="empty-create-grant-btn">Create data grant</button></div>`,
-    rowHtml: (row) => `
-      <tr data-row-id="${row.id}" class="${selectedGrantIds.has(row.id) ? "selected" : ""}">
+    rowHtml: (row, i, list) => `
+      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => selectedGrantIds.has(r.id))}">
         <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" ${selectedGrantIds.has(row.id) ? "checked" : ""} /></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.name)}</a></td>
         <td>${statusHtml(row.status, row.statusLabel)}</td>
@@ -71,7 +71,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const id = e.target.getAttribute("data-id");
     if (e.target.checked) selectedGrantIds.add(id);
     else selectedGrantIds.delete(id);
-    e.target.closest("tr").classList.toggle("selected", e.target.checked);
+    // Full re-render (not just toggling this row's class) so neighboring
+    // rows recompute their selected--top/bottom corner-rounding too.
+    sentTable.render();
     updateActionsState();
   });
 
@@ -82,10 +84,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.getElementById("select-all-grants").addEventListener("change", (e) => {
+    // Batch the Set update and re-render once, rather than dispatching a
+    // synthetic "change" per checkbox — render() replaces the tbody, which
+    // would detach not-yet-processed checkboxes mid-loop otherwise.
     grantsTbody.querySelectorAll(".row-check").forEach((cb) => {
-      cb.checked = e.target.checked;
-      cb.dispatchEvent(new Event("change", { bubbles: true }));
+      const id = cb.getAttribute("data-id");
+      if (e.target.checked) selectedGrantIds.add(id);
+      else selectedGrantIds.delete(id);
     });
+    sentTable.render();
+    updateActionsState();
   });
 
   document.getElementById("show-expired-toggle").addEventListener("change", (e) => {

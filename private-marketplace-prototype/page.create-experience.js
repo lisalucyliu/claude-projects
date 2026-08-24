@@ -247,12 +247,12 @@ function setupProductTables() {
     countUsesTotal: true,
     colspan: 4,
     emptyHtml: `<div class="empty-state">No products available</div>`,
-    rowHtml: (row) => `
-      <tr data-row-id="${row.id}" class="${wizardState.selectedProductIds.has(row.id) ? "selected" : ""}">
+    rowHtml: (row, i, list) => `
+      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => wizardState.selectedProductIds.has(r.id))}">
         <td class="checkbox-col"><input type="checkbox" class="row-check" data-p-id="${row.id}" ${wizardState.selectedProductIds.has(row.id) ? "checked" : ""} /></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.product)}</a></td>
-        <td><a href="#" onclick="return false;">${escapeHtml(row.vendor)}</a></td>
-        <td><a href="#" onclick="return false;">${escapeHtml(row.approvedIn)}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.vendor)}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.approvedIn)}</a></td>
       </tr>
     `,
   });
@@ -314,8 +314,8 @@ function setupBulkTable() {
     countUsesTotal: true,
     colspan: 3,
     emptyHtml: `<div class="empty-state">No experiences available</div>`,
-    rowHtml: (row) => `
-      <tr data-row-id="${row.id}" class="${wizardState.bulkExperienceId === row.id ? "selected" : ""}">
+    rowHtml: (row, i, list) => `
+      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => wizardState.bulkExperienceId === r.id)}">
         <td class="radio-col"><input type="radio" name="bulk-exp" data-b-id="${row.id}" ${wizardState.bulkExperienceId === row.id ? "checked" : ""} /></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.name)}</a></td>
         <td>${statusHtml(row.status, row.statusLabel)}</td>

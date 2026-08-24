@@ -950,9 +950,19 @@ svg {
   overflow-x: auto;
 }
 
+/* border-collapse:separate + border-spacing:0 is the verified live-
+   Cloudscape recipe — it lets each cell own an independent border (needed
+   for per-cell selection radius) without the collapsed-border merging that
+   caused row selection to shift the whole table by 1px, and without
+   changing row height when a cell's border color/width changes on
+   selection (verified directly against the live table: selecting a row
+   does not move any other row by even 1px). table-layout stays auto since
+   our columns rely on content-based sizing, not the live demo's fixed
+   layout. */
 table.data-table {
   width: 100%;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0;
   font-size: 14px;
 }
 
@@ -982,12 +992,25 @@ table.data-table {
   flex-shrink: 0;
 }
 
+/* Every cell always reserves the same border widths it would have when
+   selected (1px top / 1px bottom / 2px left+right on edge columns) —
+   selection only ever changes color, never width, which is what makes the
+   live Cloudscape table immune to any layout shift on selection. */
 .data-table tbody td {
   padding: 9px 20px;
-  border-bottom: 1px solid var(--color-border-divider);
+  border-top: 2px solid transparent;
+  border-bottom: 2px solid var(--color-border-divider);
   color: var(--color-text-body);
   vertical-align: middle;
   white-space: nowrap;
+}
+
+.data-table tbody td:first-child {
+  border-left: 2px solid transparent;
+}
+
+.data-table tbody td:last-child {
+  border-right: 2px solid transparent;
 }
 
 .data-table th.checkbox-col,
@@ -1003,32 +1026,47 @@ table.data-table {
   max-width: 320px;
 }
 
-.data-table tbody tr:last-child td {
-  border-bottom: none;
-}
-
 .data-table tbody tr:hover {
   background: var(--color-bg-row-hover);
 }
 
-/* Selected row: verified against cloudscape.design/components/table/ — every
-   cell gets a 2px blue top/bottom border, and the first/last cell also get
-   the matching left/right edge, forming a complete outline around the row. */
+/* Selected row: verified against the live table — border-color switches to
+   blue and border-top/bottom-width switches 1px->2px (Cloudscape's own
+   selected cells measure the same way and still don't shift the table).
+   Corner radius is conditional: a row only rounds an edge that isn't
+   shared with an equally-selected neighbor, so a contiguous block of
+   selected rows rounds only its outer corners, matching the live table. */
 .data-table tbody tr.selected {
   background: var(--color-bg-row-selected);
 }
 
 .data-table tbody tr.selected td {
-  border-top: 2px solid var(--color-blue);
-  border-bottom: 2px solid var(--color-blue);
+  border-top-color: var(--color-blue);
+  border-bottom-color: var(--color-blue);
 }
 
 .data-table tbody tr.selected td:first-child {
-  border-left: 2px solid var(--color-blue);
+  border-left-color: var(--color-blue);
 }
 
 .data-table tbody tr.selected td:last-child {
-  border-right: 2px solid var(--color-blue);
+  border-right-color: var(--color-blue);
+}
+
+.data-table tbody tr.selected.selected--top td:first-child {
+  border-top-left-radius: 8px;
+}
+
+.data-table tbody tr.selected.selected--top td:last-child {
+  border-top-right-radius: 8px;
+}
+
+.data-table tbody tr.selected.selected--bottom td:first-child {
+  border-bottom-left-radius: 8px;
+}
+
+.data-table tbody tr.selected.selected--bottom td:last-child {
+  border-bottom-right-radius: 8px;
 }
 
 .data-table .checkbox-col,
@@ -1062,7 +1100,7 @@ table.data-table {
   content: "";
   position: absolute;
   left: 4px;
-  top: 1.5px;
+  top: 0.5px;
   width: 5px;
   height: 9px;
   border-right: 2px solid #fff;

@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
     countUsesTotal: true,
     colspan: 4,
     emptyHtml: `<div class="empty-state">No active experiences</div>`,
-    rowHtml: (row) => `
-      <tr data-row-id="${row.id}" class="${selectedActiveId === row.id ? "selected" : ""}">
+    rowHtml: (row, i, list) => `
+      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => selectedActiveId === r.id)}">
         <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" ${selectedActiveId === row.id ? "checked" : ""} /></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.name)}</a></td>
         <td>${statusHtml(row.status, row.statusLabel)}</td>
@@ -60,17 +60,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!e.target.matches(".row-check")) return;
     const id = e.target.getAttribute("data-id");
     if (e.target.checked) {
-      // single-select: uncheck any other checked row
-      activeTbody.querySelectorAll(".row-check").forEach((cb) => {
-        if (cb !== e.target) cb.checked = false;
-      });
       selectedActiveId = id;
     } else if (selectedActiveId === id) {
       selectedActiveId = null;
     }
-    activeTbody.querySelectorAll("tr").forEach((tr) => {
-      tr.classList.toggle("selected", tr.getAttribute("data-row-id") === selectedActiveId);
-    });
+    // Full re-render (not manual class toggling) so unchecking the other
+    // row and recomputing corner-rounding both happen consistently.
+    activeTable.render();
     viewDetailsBtn.disabled = !selectedActiveId;
     archiveBtn.disabled = !selectedActiveId;
   });

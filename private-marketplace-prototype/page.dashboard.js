@@ -30,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
     action: { label: "View change set", onClick: () => {} },
   });
 
+  const selectedApprovedIds = new Set();
+
   const table = new DataTable({
     root: document.getElementById("approved-panel"),
     data: APPROVED_PRODUCTS,
@@ -38,17 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
     countUsesTotal: true,
     colspan: 4,
     emptyHtml: `<div class="empty-state">No approved products</div>`,
-    rowHtml: (row) => `
-      <tr data-row-id="${row.id}">
-        <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" /></td>
+    rowHtml: (row, i, list) => `
+      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => selectedApprovedIds.has(r.id))}">
+        <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" ${selectedApprovedIds.has(row.id) ? "checked" : ""} /></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.product)} ${Icons.externalLink}</a></td>
-        <td><a href="#" onclick="return false;">${escapeHtml(row.vendor)} ${Icons.externalLink}</a></td>
-        <td><a href="#" onclick="return false;">${escapeHtml(row.approvedIn)} ${Icons.externalLink}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.vendor)} ${Icons.externalLink}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.approvedIn)} ${Icons.externalLink}</a></td>
       </tr>
     `,
     onRender: () => {
-      const anyChecked = document.querySelectorAll("#approved-table .row-check:checked").length > 0;
-      document.getElementById("remove-approved-btn").disabled = !anyChecked;
+      document.getElementById("remove-approved-btn").disabled = selectedApprovedIds.size === 0;
     },
   });
   table.render();
@@ -56,16 +57,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const tbody = document.querySelector("#approved-table tbody");
   tbody.addEventListener("change", (e) => {
     if (!e.target.matches(".row-check")) return;
-    document.getElementById("remove-approved-btn").disabled =
-      document.querySelectorAll("#approved-table .row-check:checked").length === 0;
+    const id = e.target.getAttribute("data-id");
+    if (e.target.checked) selectedApprovedIds.add(id);
+    else selectedApprovedIds.delete(id);
+    // Full re-render (not just toggling this row's class) so neighboring
+    // rows recompute their selected--top/bottom corner-rounding too.
+    table.render();
   });
 
   document.getElementById("select-all-approved").addEventListener("change", (e) => {
     tbody.querySelectorAll(".row-check").forEach((cb) => {
-      cb.checked = e.target.checked;
+      const id = cb.getAttribute("data-id");
+      if (e.target.checked) selectedApprovedIds.add(id);
+      else selectedApprovedIds.delete(id);
     });
-    document.getElementById("remove-approved-btn").disabled =
-      document.querySelectorAll("#approved-table .row-check:checked").length === 0;
+    table.render();
   });
 
   document.getElementById("refresh-approved").addEventListener("click", () => table.render());

@@ -56,14 +56,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     tbody.innerHTML = rows
-      .map((node) => {
+      .map((node, i) => {
         const disabled = node.relationship === "Inherited";
         const icon = node.type === "account" ? Icons.account : Icons.folder;
         const toggle = node.hasChildren
           ? `<button class="tree-toggle${node.expanded ? " expanded" : ""}" data-toggle="${node.id}">${Icons.treeToggle}</button>`
           : `<span class="tree-toggle-spacer"></span>`;
         return `
-          <tr data-row-id="${node.id}" class="${selectedIds.has(node.id) ? "selected" : ""}">
+          <tr data-row-id="${node.id}" class="${selectionRowClass(rows, i, (n) => selectedIds.has(n.id))}">
             <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${node.id}" ${disabled ? "disabled" : ""} ${selectedIds.has(node.id) ? "checked" : ""} /></td>
             <td style="padding-left:${2 + node.depth * 20}px;">
               <div class="tree-cell">

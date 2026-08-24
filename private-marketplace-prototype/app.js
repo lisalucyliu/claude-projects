@@ -19,6 +19,22 @@ function statusHtml(status, label) {
   return `<span class="status status--${status}">${iconMap[status]}${label}</span>`;
 }
 
+/* Returns "selected selected--top selected--bottom" (as applicable) for a
+   row at `index` within `list`, given `isSelectedFn`. A row only rounds an
+   edge that isn't shared with an equally-selected neighbor, so an isolated
+   selected row gets full corner radius while a contiguous block of
+   selected rows only rounds its outer edges — matching the live Cloudscape
+   table exactly. Returns "" when the row itself isn't selected. */
+function selectionRowClass(list, index, isSelectedFn) {
+  if (!isSelectedFn(list[index])) return "";
+  const prevSelected = index > 0 && isSelectedFn(list[index - 1]);
+  const nextSelected = index < list.length - 1 && isSelectedFn(list[index + 1]);
+  let cls = "selected";
+  if (!prevSelected) cls += " selected--top";
+  if (!nextSelected) cls += " selected--bottom";
+  return cls;
+}
+
 function hydrateIcons(root = document) {
   root.querySelectorAll("[data-icon]").forEach((el) => {
     const name = el.getAttribute("data-icon");
@@ -213,7 +229,7 @@ class DataTable {
     if (visible.length === 0) {
       this.tbody.innerHTML = `<tr class="empty-row"><td colspan="${this.colspan}">${this.emptyHtml}</td></tr>`;
     } else {
-      this.tbody.innerHTML = visible.map((row) => this.rowHtml(row)).join("");
+      this.tbody.innerHTML = visible.map((row, i) => this.rowHtml(row, i, visible)).join("");
     }
 
     this.renderPagination(totalPages);
