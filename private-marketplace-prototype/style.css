@@ -3269,14 +3269,25 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 
 .pdp-page {
   max-width: 1040px;
+  margin: 0 auto;
 }
 
 /* The header and the tabs strip below it read as one seamless plane — no
    divider between them — with a soft shadow cast onto the scrollable
    content below, so that content reads as sitting on a lower plane. */
+/* Full-bleed: cancels .main-content's own 20px side padding so this plane
+   spans the entire content-area width, while .pdp-header-block__inner
+   re-applies that 20px as padding and caps/centers the actual header
+   content at 1040px, same as .pdp-page below it. */
 .pdp-header-block {
   box-shadow: 0 4px 8px -4px rgba(15, 20, 26, 0.15);
-  margin-bottom: var(--space-l);
+  margin: 0 -20px var(--space-l);
+  padding: 0 20px;
+}
+
+.pdp-header-block__inner {
+  max-width: 1040px;
+  margin: 0 auto;
 }
 
 .pdp-header-block .tabs {
@@ -3370,6 +3381,20 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   align-items: flex-start;
 }
 
+/* Support's two cards should match height (unlike Overview's main/sidebar
+   columns, which are meant to size to their own content). */
+.pdp-columns--equal {
+  align-items: stretch;
+}
+
+.pdp-columns--equal > .pdp-columns__main {
+  display: flex;
+}
+
+.pdp-columns--equal .pdp-card {
+  flex: 1;
+}
+
 .pdp-columns__main {
   flex: 2;
   min-width: 0;
@@ -3426,6 +3451,14 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   justify-content: space-between;
   gap: var(--space-s);
   margin-bottom: var(--space-s);
+}
+
+/* Some card headers pair a heading with just an Info link — that link
+   should sit right next to the heading text, not pushed to the far
+   right by the default space-between (which is meant for a heading vs.
+   a trailing action button/CTA, e.g. Free trial's "Try for free"). */
+.pdp-card__header--inline {
+  justify-content: flex-start;
 }
 
 .pdp-card__header h3 {

@@ -21,8 +21,8 @@
   <main class="main-content">
     <div id="flash-root" class="flashbar"></div>
 
-    <div class="pdp-page">
     <div class="pdp-header-block">
+    <div class="pdp-header-block__inner">
     <div class="pdp-header">
       <div class="pdp-header__icon" style="background:#da291c;">F</div>
       <div class="pdp-header__content">
@@ -51,7 +51,9 @@
       <a class="tab" href="#support">Support</a>
     </div>
     </div>
+    </div>
 
+    <div class="pdp-page">
     <section class="pdp-section" id="overview">
       <h2>Overview</h2>
       <div class="pdp-columns">
@@ -116,15 +118,15 @@
       <h2>Pricing</h2>
 
       <section class="container pdp-card" style="padding:20px;">
-        <div class="pdp-card__header"><h3>Free trial</h3></div>
-        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:var(--space-l);">
-          <p>Try this product at no cost for 30 days according to the free trial terms set by the vendor. Usage-based pricing is in effect for usage beyond the free trial terms. Your free trial gets automatically converted to a paid subscription when the trial ends, but may be cancelled any time before.</p>
-          <a class="btn btn-normal" href="#" onclick="return false;" style="flex-shrink:0;">Try for free</a>
+        <div class="pdp-card__header">
+          <h3>Free trial</h3>
+          <a class="btn btn-normal" href="#" onclick="return false;">Try for free</a>
         </div>
+        <p>Try this product at no cost for 30 days according to the free trial terms set by the vendor. Usage-based pricing is in effect for usage beyond the free trial terms. Your free trial gets automatically converted to a paid subscription when the trial ends, but may be cancelled any time before.</p>
       </section>
 
       <section class="container pdp-card" style="padding:20px;">
-        <div class="pdp-card__header">
+        <div class="pdp-card__header pdp-card__header--inline">
           <h3>Fortinet Fortigate Next-Generation Firewall</h3>
           <button class="info-link" data-help-key="pricing">Info</button>
         </div>
@@ -222,7 +224,7 @@
       </div>
 
       <section class="container pdp-card" style="padding:20px;">
-        <div class="pdp-card__header">
+        <div class="pdp-card__header pdp-card__header--inline">
           <h3>Delivery details</h3>
           <button class="info-link" data-help-key="delivery-details">Info</button>
         </div>
@@ -265,7 +267,7 @@
 
     <section class="pdp-section" id="support" style="margin-bottom:var(--space-xl);">
       <h2>Support</h2>
-      <div class="pdp-columns">
+      <div class="pdp-columns pdp-columns--equal">
         <div class="pdp-columns__main" style="flex:1;">
           <section class="container pdp-card" style="padding:20px;">
             <div class="pdp-card__header"><h3>Vendor support</h3></div>
