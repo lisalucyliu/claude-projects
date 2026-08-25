@@ -1892,10 +1892,14 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 }
 
 /* Verified against cloudscape.design/components/link/?example=external-link:
-   the Link component is always underlined (not just on hover), and its
-   trailing icon is glued to the last word with a non-breaking space so the
-   two never split across a line wrap. */
-.info-card__field dd a {
+   the Link component is always underlined (not just on hover, which is all
+   the site's default `a` gets), and its trailing icon is glued to the last
+   word with a non-breaking space so the two never split across a line wrap.
+   .link is the general-purpose class for any prose anchor that should read
+   as a real Cloudscape Link rather than a plain in-page navigation link;
+   .info-card__field dd a covers the key-value-pair case specifically. */
+.info-card__field dd a,
+.link {
   text-decoration: underline;
 }
 

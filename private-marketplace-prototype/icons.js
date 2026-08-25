@@ -34,7 +34,10 @@ const Icons = {
 
   chevronRight: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5.5 3 9 7l-3.5 4" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 
-  externalLink: `<svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M5 2H2.5a1 1 0 0 0-1 1v7.5a1 1 0 0 0 1 1H10a1 1 0 0 0 1-1V8" stroke-linecap="round" stroke-linejoin="round"/><path d="M7 2h4v4M11 2 6 7" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  /* Verified against cloudscape.design/components/link/?example=external-link
+     via computed style + outerHTML of the live "Learn more" link's icon
+     (name-external): 16x16, stroke-width 2, rounded joins, no rounded caps. */
+  externalLink: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 9.012v-6H7M13.02 3 7 9.01"/><path d="M3 5.012v8h8.01"/></svg>`,
 
   close: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9" stroke-linecap="round"/></svg>`,
 
