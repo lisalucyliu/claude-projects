@@ -28,7 +28,7 @@ function renderTopHeader() {
    nav shown in the source Figma screens (not every item groups into a
    titled section, unlike the Data Exchange nav). */
 const NAV_FLAT_TOP = [
-  { key: "discover-products", label: "Discover products", href: "#" },
+  { key: "discover-products", label: "Discover products", href: "discover-products.html" },
   { key: "procurement-insights", label: "Procurement insights", href: "#" },
   { key: "manage-subscriptions", label: "Manage subscriptions", href: "#" },
   { key: "private-offers", label: "Private offers", href: "#" },

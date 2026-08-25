@@ -116,6 +116,8 @@ const Icons = {
 
   account: `<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="7" cy="4.6" r="2.4"/><path d="M2 12.5c.7-2.6 2.7-4 5-4s4.3 1.4 5 4" stroke-linecap="round"/></svg>`,
 
+  starFilled: `<svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.5l2.02 4.31 4.73.58-3.5 3.28.94 4.68L8 12.1l-4.19 2.25.94-4.68-3.5-3.28 4.73-.58Z"/></svg>`,
+
   treeToggle: `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 2l4 3-4 3" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
 
   /* Wizard step indicators */

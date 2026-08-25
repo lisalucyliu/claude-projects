@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Discover products — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Marketplace discover products search page." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="discover-layout">
+      <aside class="container refine-panel" data-collapsible>
+        <div class="refine-panel__header" data-collapse-toggle>
+          <span data-icon="triangleDown"></span>
+          <h2>Refine results</h2>
+        </div>
+        <div class="refine-panel__body">
+          <a class="link-btn refine-panel__clear-all" href="#" onclick="return false;">Clear all filters</a>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Categories</button>
+            <div class="filter-group__body">
+              <div class="filter-link-list">
+                <a href="#" onclick="return false;">Infrastructure Software (14)</a>
+                <a href="#" onclick="return false;">DevOps (6)</a>
+                <a href="#" onclick="return false;">Business Applications (3)</a>
+                <a href="#" onclick="return false;">Industries (3)</a>
+                <a href="#" onclick="return false;">Machine Learning (2)</a>
+                <a href="#" onclick="return false;">Data Products (2)</a>
+                <a href="#" onclick="return false;">Professional Services (2)</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Private Marketplace</button>
+            <div class="filter-group__body">
+              <a class="link-btn filter-group__clear" href="#" onclick="return false;">Clear</a>
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" checked /> Approved Products (22)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Delivery methods</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Amazon Machine Image (13)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> SaaS (3)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> CloudFormation Template (2)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Data Exchange (2)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Professional Services (2)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Helm Chart (1)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> SageMaker Model (1)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Publisher</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Open Text (5)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Amazon Web Services (3)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> ThunderCat Technology LLC (1)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Innovators for openSUSE (1)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Speed of Me (1)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Sophos (1)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> DataSunrise Database and Data Security (1)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Solve DevOps (1)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Trend Micro (1)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Starburst (1)</label>
+              </div>
+              <a class="link-btn filter-group__show-all" href="#" onclick="return false;">Show All</a>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Products included</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Single-product (21)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Pricing model</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Upfront Commitment (9)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Usage Based (8)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Free (4)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Bring Your Own License (1)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Pricing unit</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Custom Units (12)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Users (6)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Hosts (4)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Purchase paths</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Buy now (14)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Request private offer (4)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Try for free (3)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Request demo (1)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Vendor Insights</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Security Profiles (2)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Certificates</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Product Certificates</label>
+              </div>
+              <div class="filter-group__nested">
+                <label class="filter-checkbox"><input type="checkbox" /> SOC 2 Type 2 (2)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> HIPAA (1)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Operating system</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> All Linux/Unix</label>
+              </div>
+              <div class="filter-group__nested">
+                <label class="filter-checkbox"><input type="checkbox" /> Ubuntu (5)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Red Hat Enterprise Linux (1)</label>
+              </div>
+              <div class="filter-checkbox-list" style="margin-top:6px;">
+                <label class="filter-checkbox"><input type="checkbox" /> All Windows</label>
+              </div>
+              <div class="filter-group__nested">
+                <label class="filter-checkbox"><input type="checkbox" /> Windows Server 2022 Base (1)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Free trial</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Free Trial (4)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Deployed on AWS</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Deployed on AWS (10)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Contract type</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> Standard Contract (18)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Average rating</button>
+            <div class="filter-group__body">
+              <div class="filter-rating-list">
+                <button class="filter-rating" type="button" onclick="return false;"><span data-icon="starFilled"></span> &amp; up (3)</button>
+                <button class="filter-rating" type="button" onclick="return false;"><span data-icon="starFilled"></span> &amp; up (5)</button>
+                <button class="filter-rating" type="button" onclick="return false;"><span data-icon="starFilled"></span> &amp; up (1)</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Architecture</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> 64-bit (x86) (20)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group" data-collapsible>
+            <button class="filter-group__header" data-collapse-toggle><span data-icon="triangleDown"></span>Region</button>
+            <div class="filter-group__body">
+              <div class="filter-checkbox-list">
+                <label class="filter-checkbox"><input type="checkbox" /> US East (N. Virginia) (18)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> US West (Oregon) (14)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Europe (Frankfurt) (10)</label>
+                <label class="filter-checkbox"><input type="checkbox" /> Asia Pacific (Tokyo) (8)</label>
+              </div>
+              <a class="link-btn filter-group__show-all" href="#" onclick="return false;">Show more</a>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="discover-results">
+        <h1>Search AWS Marketplace products</h1>
+        <div class="search-input">
+          <span data-icon="search"></span>
+          <input type="text" placeholder="Search for any product via AWS Marketplace..." />
+        </div>
+
+        <div class="discover-results__toolbar">
+          <div class="discover-results__toolbar-row">
+            <div class="discover-results__count">All products <span id="discover-count">(0 results)</span> <span>showing 1 - <span id="discover-showing"></span></span></div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <div class="pagination" data-pagination></div>
+              <button class="btn-icon" title="Preferences" onclick="return false;"><span data-icon="gear"></span></button>
+            </div>
+          </div>
+          <div class="discover-results__toolbar-row">
+            <div></div>
+            <div class="btn-dropdown">
+              <button class="sort-dropdown-trigger" data-dropdown-trigger>Sort By: Relevance <span data-icon="chevronDownSmall"></span></button>
+              <div class="dropdown-menu">
+                <button type="button">Relevance</button>
+                <button type="button">Newest</button>
+                <button type="button">Name (A-Z)</button>
+                <button type="button">Name (Z-A)</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-list" id="product-list"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="data.discover-products.js"></script>
+<script src="page.discover-products.js"></script>
+</body>
+</html>
