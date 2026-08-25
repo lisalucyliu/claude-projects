@@ -30,23 +30,25 @@
     <section class="container" style="padding:20px;">
       <h2 style="margin:0 0 var(--space-m);font-size:18px;color:var(--color-text-heading);">Trust level preference</h2>
 
-      <label class="prefs-checkbox" style="margin-top:0;">
-        <input type="checkbox" id="chk-slr" checked />
-        <div>
-          <div class="prefs-checkbox__title">Create a service-linked role for your organization</div>
-          <div class="prefs-checkbox__desc">The service-linked role allows the trusted service to perform the tasks that are described in the trusted services documentation. The trusted service is notified about any changes to your organization and can perform additional tasks in response to those notifications.</div>
-        </div>
-      </label>
+      <div class="checkbox-group">
+        <label class="checkbox-item">
+          <input type="checkbox" id="chk-slr" />
+          <div>
+            <div class="checkbox-item__label">Create a service-linked role for your organization</div>
+            <div class="checkbox-item__desc">The service-linked role allows the trusted service to perform the tasks that are described in the trusted services documentation. The trusted service is notified about any changes to your organization and can perform additional tasks in response to those notifications.</div>
+          </div>
+        </label>
 
-      <label class="prefs-checkbox">
-        <input type="checkbox" id="chk-trusted" checked />
-        <div>
-          <div class="prefs-checkbox__title">Enable trusted access across your organization</div>
-          <div class="prefs-checkbox__desc">Enabling trusted access designates Private Marketplace as a trusted service in your organization. A trusted service can query the organization's structure and create a service-linked role in the management account of the organization.</div>
-        </div>
-      </label>
+        <label class="checkbox-item">
+          <input type="checkbox" id="chk-trusted" />
+          <div>
+            <div class="checkbox-item__label">Enable trusted access across your organization</div>
+            <div class="checkbox-item__desc">Enabling trusted access designates Private Marketplace as a trusted service in your organization. A trusted service can query the organization's structure and create a service-linked role in the management account of the organization.</div>
+          </div>
+        </label>
+      </div>
 
-      <p style="margin:var(--space-l) 0 0;font-size:14px;">After an integration is created, you can't undo this action on this page. Visit <a href="#" onclick="return false;">IAM</a> to delete SLRs, or <a href="#" onclick="return false;">AWS Organizations</a> to disable trusted access.</p>
+      <p style="margin:var(--space-l) 0 0;font-size:14px;">After an integration is created, you can't undo this action on this page. Visit <a class="link" href="#" onclick="return false;">IAM&nbsp;<span data-icon="externalLink"></span></a> to delete SLRs, or <a class="link" href="#" onclick="return false;">AWS Organizations&nbsp;<span data-icon="externalLink"></span></a> to disable trusted access.</p>
     </section>
 
     <div style="display:flex;justify-content:flex-end;align-items:center;gap:var(--space-m);">

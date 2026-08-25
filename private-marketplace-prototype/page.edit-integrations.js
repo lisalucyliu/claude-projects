@@ -20,8 +20,15 @@ document.addEventListener("DOMContentLoaded", () => {
     `
   );
 
+  // This page is shared by two entry points on settings.html — Private
+  // Marketplace settings' "Edit integrations" button (?target=pms, the
+  // default) and Deployment parameters integration's "Edit integration"
+  // button (?target=deployment) — so settings.html knows which card's
+  // status to flip and which flash message to show on return.
+  const target = new URLSearchParams(window.location.search).get("target") || "pms";
+
   document.getElementById("create-integration-btn").addEventListener("click", () => {
-    sessionStorage.setItem("pmp-integration-created", "deployment-params");
+    sessionStorage.setItem("pmp-integration-created", target);
     window.location.href = "settings.html";
   });
 });

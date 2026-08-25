@@ -75,19 +75,32 @@
       </div>
     </section>
 
-    <section class="container info-card">
+    <section class="container info-card" id="pms-card">
       <div class="info-card__header info-card__header--actions">
         <div style="display:flex;align-items:baseline;gap:8px;">
           <h2>Private Marketplace settings</h2>
           <button class="info-link" data-open-help>Info</button>
         </div>
-        <button class="btn btn-primary" data-open-register-admin>Register new administrator</button>
+        <div class="table-panel__actions">
+          <button class="btn btn-normal" data-open-register-admin>Register new administrator</button>
+          <a class="btn btn-primary" id="pms-edit-integrations-link" href="edit-integrations.html?target=pms">Edit integrations</a>
+        </div>
       </div>
       <p class="page-subtitle" style="margin-bottom:20px;">Enable administrator-level permissions for Private Marketplace.</p>
 
-      <div class="info-card__field" style="margin-bottom:20px;">
-        <dt>Service-linked role</dt>
-        <dd><span class="status status--accepted"><span data-icon="statusAccepted"></span>Successfully created</span></dd>
+      <div class="info-card__columns" id="pms-status-columns" style="margin-bottom:24px;">
+        <dl class="info-card__column">
+          <div class="info-card__field">
+            <dt>Service-linked role</dt>
+            <dd><span class="status status--notlive"><span data-icon="statusStopped"></span>Not created</span></dd>
+          </div>
+        </dl>
+        <dl class="info-card__column">
+          <div class="info-card__field">
+            <dt>Trusted access</dt>
+            <dd><span class="status status--notlive"><span data-icon="statusStopped"></span>Not created</span></dd>
+          </div>
+        </dl>
       </div>
 
       <div class="table-panel__title-group">
@@ -125,7 +138,7 @@
           <h2>Deployment parameters integration</h2>
           <button class="info-link" data-open-help>Info</button>
         </div>
-        <a class="btn btn-normal" href="edit-integrations.html">Edit integration</a>
+        <a class="btn btn-normal" href="edit-integrations.html?target=deployment">Edit integration</a>
       </div>
       <p class="page-subtitle" style="margin-bottom:20px;">Enable AWS Marketplace to manage vendor deployment parameters.</p>
       <div class="info-card__field" id="deployment-params-status">

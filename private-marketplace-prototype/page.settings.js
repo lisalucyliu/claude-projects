@@ -28,20 +28,44 @@ document.addEventListener("DOMContentLoaded", () => {
     `
   );
 
-  // If we just came back from creating the deployment parameters
-  // integration, flip its card from "Not created" to "Successfully created"
-  // and surface the same success-flash handoff pattern used elsewhere
-  // (e.g. dashboard.html's bulk-update-result handoff).
+  // edit-integrations.html is shared by two entry points — Private
+  // Marketplace settings' "Edit integrations" and Deployment parameters
+  // integration's "Edit integration" — so it hands back which target it
+  // was creating, and we flip that specific card's status + show its own
+  // success flash (same sessionStorage handoff pattern as dashboard.html's
+  // bulk-update-result).
   const flashRoot = document.getElementById("flash-root");
-  if (sessionStorage.getItem("pmp-integration-created") === "deployment-params") {
+  const integrationTarget = sessionStorage.getItem("pmp-integration-created");
+  if (integrationTarget) {
     sessionStorage.removeItem("pmp-integration-created");
-    document.getElementById("deployment-params-status").innerHTML = `
-      <dt>Service-linked role</dt>
-      <dd><span class="status status--accepted"><span data-icon="statusAccepted"></span>Successfully created</span></dd>
-    `;
-    hydrateIcons(document.getElementById("deployment-params-status"));
-    document.querySelector('#deployment-params-card .info-card__header--actions a[href="edit-integrations.html"]')?.remove();
-    showFlash(flashRoot, { type: "success", message: "Deployment parameters integration was created successfully.", autoDismiss: 4000 });
+
+    if (integrationTarget === "pms") {
+      document.getElementById("pms-status-columns").innerHTML = `
+        <dl class="info-card__column">
+          <div class="info-card__field">
+            <dt>Service-linked role</dt>
+            <dd><span class="status status--accepted"><span data-icon="statusAccepted"></span>Successfully created</span></dd>
+          </div>
+        </dl>
+        <dl class="info-card__column">
+          <div class="info-card__field">
+            <dt>Trusted access</dt>
+            <dd><span class="status status--accepted"><span data-icon="statusAccepted"></span>Successfully created</span></dd>
+          </div>
+        </dl>
+      `;
+      hydrateIcons(document.getElementById("pms-status-columns"));
+      document.getElementById("pms-edit-integrations-link")?.remove();
+      showFlash(flashRoot, { type: "success", message: "Service-linked role and trusted access integrations have been successfully created.", autoDismiss: 4000 });
+    } else if (integrationTarget === "deployment") {
+      document.getElementById("deployment-params-status").innerHTML = `
+        <dt>Service-linked role</dt>
+        <dd><span class="status status--accepted"><span data-icon="statusAccepted"></span>Successfully created</span></dd>
+      `;
+      hydrateIcons(document.getElementById("deployment-params-status"));
+      document.querySelector('#deployment-params-card .info-card__header--actions a[href^="edit-integrations.html"]')?.remove();
+      showFlash(flashRoot, { type: "success", message: "Deployment parameters integration was created successfully.", autoDismiss: 4000 });
+    }
   }
 
   const selectedAdminIds = new Set();

@@ -2474,6 +2474,60 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   margin-top: 2px;
 }
 
+/* ---- Checkbox group with labels and descriptions: styled like Cloudscape's
+   RadioGroup "with labels and descriptions" example, but with checkboxes in
+   place of radio buttons (cloudscape.design/components/radio-group/?example=with-labels-and-descriptions,
+   verified via computed style — 14px/400 label, NOT bold like .prefs-checkbox's
+   title, 12px/400 tertiary-color description, 8px vertical gap between
+   items). Reuses .prefs-checkbox's own checkbox square/check-fill styling,
+   since that was already verified separately against Cloudscape's Checkbox
+   component. ---- */
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  border-radius: 3px;
+  border: 1px solid #8c8c94;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.checkbox-item input[type="checkbox"]:checked {
+  background: var(--color-blue)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpolyline points='3.5,8 7,11 12,4' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E")
+    no-repeat center / 16px 16px;
+  border-color: var(--color-blue);
+}
+
+.checkbox-item__label {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-text-heading);
+}
+
+.checkbox-item__desc {
+  font-size: 12px;
+  color: var(--color-text-body-tertiary);
+  margin-top: 0;
+}
+
 .prefs-col-row {
   display: flex;
   align-items: center;
