@@ -393,8 +393,16 @@ svg {
    section's header row; every row in the nav is a uniform 28px tall and
    that height alone carries the rhythm. Ported from the
    private-marketplace-prototype's identical fix. */
+/* Item-to-item spacing within a section is carried entirely by each
+   row's own uniform height (no explicit margin) — but section-to-section
+   transitions need to read as a distinct break, so those specifically
+   get an explicit 20px gap instead of the plain row rhythm. */
 .side-nav__section {
   margin-top: 0;
+}
+
+.side-nav__section:not(:first-child) {
+  margin-top: var(--space-l);
 }
 
 /* This nav is Cloudscape's "Organized with sections" pattern (plain,
