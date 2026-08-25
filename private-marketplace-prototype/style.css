@@ -1172,6 +1172,15 @@ table.data-table {
   cursor: default;
 }
 
+/* The active sort column's icon (sortAsc/sortDesc) is solid-filled,
+   unlike the hollow sortNeutral icon every other sortable column shows —
+   both use currentColor, so darkening the whole header's text color to
+   match cloudscape.design's own active-sort color is enough to recolor
+   the icon too. */
+.data-table thead th.sorted {
+  color: var(--color-text-heading);
+}
+
 .data-table thead th .th-inner {
   display: flex;
   align-items: center;
@@ -1414,6 +1423,10 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 
 .status--inprogress {
   color: var(--color-grey-text);
+}
+
+.status--succeeded {
+  color: var(--color-green);
 }
 
 .spin {

@@ -49,9 +49,17 @@ const Icons = {
   /* Sort triangles — verified against cloudscape.design/components/table/:
      unsorted is a muted down-triangle; active sort is the same shape
      (down = descending, up = ascending) filled dark. */
-  sortNeutral: `<svg width="16" height="16" viewBox="0 0 16 16" fill="#c6c6cd"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
-  sortAsc: `<svg width="16" height="16" viewBox="0 0 16 16" fill="#0f141a"><path d="m8 5 4 6H4l4-6Z"/></svg>`,
-  sortDesc: `<svg width="16" height="16" viewBox="0 0 16 16" fill="#0f141a"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
+  /* Verified against cloudscape.design/examples/react/table.html: the
+     unsorted-column icon is a hollow, stroke-only triangle (fill:none,
+     2px stroke), not a small solid-filled one — only the active sort
+     direction's icon is actually filled solid, and even then with the
+     same 2px rounded-join stroke on top so its corners stay rounded
+     like every other triangle glyph in the app. currentColor lets the
+     th's own text color (secondary by default, heading when .sorted)
+     drive both fill and stroke. */
+  sortNeutral: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
+  sortAsc: `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m8 5 4 6H4l4-6Z"/></svg>`,
+  sortDesc: `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m8 11 4-6H4l4 6Z"/></svg>`,
 
   /* Status-indicator icons — verified against cloudscape.design/components/status-indicator/ */
   statusPending: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="7"/><path d="M8 4v5H4" stroke-linejoin="round"/></svg>`,

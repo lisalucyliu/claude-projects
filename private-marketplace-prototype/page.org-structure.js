@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const disabled = node.relationship === "Inherited";
         const icon = node.type === "account" ? Icons.account : node.expanded ? Icons.folderOpen : Icons.folder;
         const toggle = node.hasChildren
-          ? `<button class="tree-toggle${node.expanded ? " expanded" : ""}" data-toggle="${node.id}">${Icons.treeToggle}</button>`
+          ? `<button class="tree-toggle tree-toggle--triangle${node.expanded ? " expanded" : ""}" data-toggle="${node.id}">${Icons.triangleDown}</button>`
           : `<span class="tree-toggle-spacer"></span>`;
         return `
           <tr data-row-id="${node.id}" class="${selectionRowClass(rows, i, (n) => selectedIds.has(n.id))}">
