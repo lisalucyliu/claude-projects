@@ -1073,6 +1073,7 @@ table.data-table {
 }
 
 .data-table thead th {
+  position: relative;
   background: var(--color-bg-table-header);
   color: var(--color-text-body-secondary);
   font-weight: 700;
@@ -1082,6 +1083,21 @@ table.data-table {
   white-space: nowrap;
   cursor: pointer;
   user-select: none;
+}
+
+/* The vertical divider between header cells — Cloudscape renders it as
+   an actual <span class="divider"> sibling inside every th but the last
+   one, with a 1px #c6c6cd border-inline-start inset ~9px top/bottom.
+   We don't have that sibling span, so a ::after pseudo-element
+   reproduces the same measured inset instead. Ported from
+   private-marketplace-prototype's identical fix. */
+.data-table thead th:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  bottom: 9px;
+  right: 0;
+  border-right: 1px solid var(--color-border-strong);
 }
 
 .data-table thead th.no-sort {

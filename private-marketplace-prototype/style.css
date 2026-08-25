@@ -1157,6 +1157,7 @@ table.data-table {
 }
 
 .data-table thead th {
+  position: relative;
   background: var(--color-bg-table-header);
   color: var(--color-text-body-secondary);
   font-weight: 700;
@@ -1170,6 +1171,22 @@ table.data-table {
 
 .data-table thead th.no-sort {
   cursor: default;
+}
+
+/* The vertical divider between header cells — found only after
+   discovering (the same way as the tabs divider) that it isn't a border
+   on the th or a pseudo-element at all: Cloudscape renders it as an
+   actual <span class="divider"> sibling inside every th but the last
+   one, with a 1px #c6c6cd border-inline-start inset ~9px top/bottom.
+   We don't have that sibling span, so a ::after pseudo-element
+   reproduces the same measured inset instead. */
+.data-table thead th:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  bottom: 9px;
+  right: 0;
+  border-right: 1px solid var(--color-border-strong);
 }
 
 /* The active sort column's icon (sortAsc/sortDesc) is solid-filled,
@@ -1764,16 +1781,23 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 }
 
 /* A divider between columns instead of a plain flex gap — matches the
-   wireframe's vertical rules separating each key-value group. Padding
-   (not a separate gap) carries the spacing so the total distance between
-   columns stays ~32px, the same as the plain .info-card__grid's own
-   column gap. Divider goes on the left of every column but the first
-   (rather than the right of every column but the last) so that hiding
-   the actual last column — e.g. Change set details' error column when
-   there's no error — never leaves a dangling divider trailing off into
-   empty space; :not(:first-child) only cares about what's before it. */
+   wireframe's vertical rules separating each key-value group. 16px on
+   each side of the line (not 32px hugging one side of it, which is what
+   this looked like before) keeps the same ~32px total distance between
+   columns as the plain .info-card__grid's own column gap, but centers
+   the divider in that gap instead of crowding it against whichever
+   column's text happens to be on the left. Divider itself goes on the
+   left of every column but the first (rather than the right of every
+   column but the last) so that hiding the actual last column — e.g.
+   Change set details' error column when there's no error — never
+   leaves a dangling divider trailing off into empty space;
+   :not(:first-child) only cares about what's before it. */
+.info-card__column:not(:last-child) {
+  padding-right: var(--space-m);
+}
+
 .info-card__column:not(:first-child) {
-  padding-left: var(--space-xxl);
+  padding-left: var(--space-m);
   border-left: 1px solid var(--color-border-divider);
 }
 
