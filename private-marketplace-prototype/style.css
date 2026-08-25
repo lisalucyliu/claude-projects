@@ -196,6 +196,7 @@ svg {
 
 .top-header__search input::placeholder {
   color: #8c8c94;
+  font-style: italic;
 }
 
 .top-header__shortcut {
@@ -3126,28 +3127,45 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   min-width: 0;
 }
 
+.discover-results__panel {
+  padding: var(--space-xl) 0;
+}
+
 .discover-results h1 {
   font-size: 24px;
-  margin: 0 0 var(--space-m);
+  margin: 0 var(--space-xxl) var(--space-m);
   color: var(--color-text-heading);
 }
 
 .discover-results .search-input {
   height: 40px;
-  margin-bottom: var(--space-l);
+  margin: 0 var(--space-xxl) var(--space-l);
+}
+
+.discover-results .search-input input::placeholder {
+  font-style: italic;
 }
 
 .discover-results__toolbar {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  margin-bottom: var(--space-l);
+  margin: 0 var(--space-xxl) var(--space-l);
 }
 
 .discover-results__toolbar-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* This row is shorter than the table-header context .page-settings::before
+   was designed for, so its default -1px/-1px inset (matching a 32px-tall
+   header cell) overshoots visibly above and below the 24px pagination
+   buttons here — inset it to align with their height instead. */
+.discover-results__toolbar-row .page-settings::before {
+  top: 4px;
+  bottom: 4px;
 }
 
 .discover-results__count {
@@ -3175,17 +3193,18 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 .product-list {
   display: flex;
   flex-direction: column;
+  border-top: 1px solid var(--color-border-divider);
 }
 
 .product-card {
   display: flex;
   gap: var(--space-m);
-  padding: var(--space-l) 0;
+  padding: var(--space-l) var(--space-xxl);
   border-bottom: 1px solid var(--color-border-divider);
 }
 
-.product-card:first-child {
-  padding-top: 0;
+.product-card:last-child {
+  border-bottom: none;
 }
 
 .product-card__icon {
