@@ -369,7 +369,7 @@ svg {
 }
 
 .side-nav__title {
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--color-text-heading);
 }
@@ -410,11 +410,12 @@ svg {
 .side-nav__section-title {
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 4px 8px;
   border-radius: 8px;
   font-size: 16px;
   font-weight: 700;
+  line-height: 20px;
   color: var(--color-text-heading);
   cursor: pointer;
   user-select: none;
@@ -424,11 +425,15 @@ svg {
   background: var(--color-bg-layout);
 }
 
+/* Positioned from the container's own top edge (padding-top + half the
+   first line's own line-height) rather than 50% of the whole title,
+   which — once a long header like "Subscribed with AWS Marketplace"
+   wraps to 2 lines — would center the icon between both lines instead
+   of against the first one. */
 .side-nav__section-title svg {
   position: absolute;
   left: -13px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 6px;
   width: 16px;
   height: 16px;
   flex-shrink: 0;
@@ -437,20 +442,23 @@ svg {
 }
 
 .side-nav__section.collapsed .side-nav__section-title svg {
-  transform: translateY(-50%) rotate(-90deg);
+  transform: rotate(-90deg);
 }
 
 .side-nav__section.collapsed .side-nav__items {
   display: none;
 }
 
+/* Cloudscape's "Organized with sections" pattern (unlike PMP's "Nesting
+   with expandable link groups") does NOT indent items under their
+   section header — verified against cloudscape.design/patterns/general/
+   service-navigation/side-navigation/#organized-with-sections: "Dashboard",
+   "Usage", "API Keys", etc. all sit flush with "Reports and Analytics" /
+   "Security", not indented under them. */
 .side-nav__items {
   list-style: none;
   margin: 0;
-  /* Nested items sit 24px further right than their parent group's own
-     28px inset — same verified indent PMP uses, now that this header's
-     text lands at that same 28px inset too. */
-  padding: 0 0 0 24px;
+  padding: 0;
 }
 
 .side-nav__items li {
