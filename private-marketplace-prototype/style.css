@@ -3301,6 +3301,10 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 
 .pdp-header-block .tabs {
   margin-bottom: 0;
+  /* The plane's own box-shadow already marks this edge — the tabs
+     component's usual hard divider directly beneath the active tab pill
+     would just double up on top of it. */
+  border-bottom: none;
 }
 
 .pdp-header {
@@ -3414,7 +3418,17 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   min-width: 260px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-l);
+  gap: var(--space-m);
+}
+
+/* .pdp-card here is also a .container (margin-bottom) and a
+   .pdp-card + .pdp-card sibling (margin-top) — both of those were
+   stacking on top of this flex gap, tripling the actual spacing. The
+   flex gap alone should drive it. Three classes (not two) so this
+   reliably outweighs .pdp-card + .pdp-card's equal-specificity rule
+   regardless of source order. */
+.pdp-columns__side .container.pdp-card {
+  margin: 0;
 }
 
 .pdp-highlights {
