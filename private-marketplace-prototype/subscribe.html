@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Subscribe to Fortinet FortiGate Next-Generation Firewall — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of an AWS Marketplace subscription/procurement page." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="procure-page">
+      <h1 style="display:inline;">Subscribe to Fortinet FortiGate Next-Generation Firewall</h1>
+      <button class="info-link" data-open-help style="margin-left:8px;">Info</button>
+      <div style="margin-top:var(--space-s);"><span class="badge badge--pmp">Approved for purchase</span></div>
+      <p class="procure-header__desc">To create a subscription, review the pricing information, and accept the terms for this software.</p>
+
+      <section class="container procure-card" style="margin-top:var(--space-l);">
+        <h2 class="procure-card__title">Offer details <button class="info-link" data-help-key="offer-details" style="font-size:14px;font-weight:400;">Info</button></h2>
+        <p class="procure-card__hint">Choose the offer you'd like to use for your subscription.</p>
+
+        <p class="procure-card__subhead" style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px;">Available offers <span style="font-weight:400;color:var(--color-text-body-secondary);">(4)</span> <button class="info-link" data-help-key="available-offers" style="font-size:12px;font-weight:400;">Info</button></p>
+        <p class="procure-card__hint" style="margin-top:0;">Select from all available offers to see terms and pricing information.</p>
+
+        <div class="offer-row" data-collapsible>
+          <div class="offer-row__main">
+            <div class="offer-row__title">Offer54321</div>
+            <div class="offer-row__meta">Offered by: <a class="link" href="#" onclick="return false;">Fortinet</a></div>
+            <div class="offer-row__details">
+              <span>Product ID: offer-9876543</span>
+              <span>Offer type: Private offer</span>
+              <span>Offer extended: Feb 16, 2024</span>
+              <span>Offer expires: May 5, 2024</span>
+            </div>
+          </div>
+          <div class="offer-row__side">
+            <span class="badge badge--green">Free trial</span>
+            <button class="offer-row__toggle" data-collapse-toggle title="Expand or collapse"><span data-icon="chevronDown"></span></button>
+          </div>
+        </div>
+
+        <p class="procure-card__subhead" style="display:flex;align-items:baseline;gap:8px;">Offer summary <button class="info-link" data-help-key="offer-summary" style="font-size:12px;font-weight:400;">Info</button></p>
+        <div class="info-card__grid" style="margin-top:var(--space-s);">
+          <div class="info-card__field">
+            <dt>Offer ID</dt>
+            <dd>offer-1234928167</dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Offered by</dt>
+            <dd>Fortinet</dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Offer extended</dt>
+            <dd>Feb 16, 2024</dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Offer expires</dt>
+            <dd>May 5, 2024</dd>
+          </div>
+        </div>
+      </section>
+
+      <section class="container procure-card">
+        <h2 class="procure-card__title">Free trial details <button class="info-link" data-help-key="free-trial-details" style="font-size:14px;font-weight:400;">Info</button></h2>
+        <p class="procure-card__hint">Try this product at no cost for 30 days according to the free trial terms set by the vendor. Usage-based pricing is in effect for usage beyond the free trial terms. Your free trial gets automatically converted to a paid subscription when the trial ends, but may be cancelled any time before that.</p>
+
+        <div class="info-card__grid" style="grid-template-columns:repeat(3,1fr);margin-top:var(--space-l);">
+          <div class="info-card__field">
+            <dt>Free trial duration</dt>
+            <dd>30 days</dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Start date</dt>
+            <dd>May 1, 2024</dd>
+          </div>
+          <div class="info-card__field">
+            <dt>End date</dt>
+            <dd>May 30, 2024</dd>
+          </div>
+        </div>
+      </section>
+
+      <section class="container procure-card" id="pricing-details">
+        <h2 class="procure-card__title">Pricing details <button class="info-link" data-help-key="pricing-details" style="font-size:14px;font-weight:400;">Info</button></h2>
+        <p class="procure-card__hint">Pricing is based on actual usage, with charges varying according to how much you consume. Additional AWS infrastructure costs may apply.</p>
+
+        <div class="form-field" style="max-width:320px;margin-top:var(--space-l);">
+          <label for="procure-region-select">Region</label>
+          <select class="form-select" id="procure-region-select">
+            <option>US East (N. Virginia)</option>
+            <option>US West (Oregon)</option>
+            <option>Europe (Frankfurt)</option>
+            <option>Asia Pacific (Tokyo)</option>
+          </select>
+        </div>
+
+        <div class="table-panel__header" style="margin-top:var(--space-l);">
+          <div class="table-panel__title-group">
+            <h2 style="font-size:16px;">Usage cost <span class="table-panel__count">(58)</span> <button class="info-link" data-help-key="usage-cost" style="font-size:14px;font-weight:400;">Info</button></h2>
+          </div>
+        </div>
+
+        <div class="table-toolbar">
+          <div class="search-input">
+            <span data-icon="search"></span>
+            <input type="text" placeholder="Find instance types" />
+          </div>
+          <div class="table-toolbar__controls">
+            <div class="pagination" data-pagination></div>
+            <button class="page-settings" title="Preferences" onclick="return false;"><span data-icon="settingsTable"></span></button>
+          </div>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data-table simple">
+            <thead>
+              <tr>
+                <th class="sorted"><span class="th-inner">Instance type <span class="sort-icon" data-icon="sortDesc"></span></span></th>
+                <th><span class="th-inner">Product cost/hour <span class="sort-icon" data-icon="sortNeutral"></span></span></th>
+              </tr>
+            </thead>
+            <tbody id="procure-usage-costs-body"></tbody>
+          </table>
+        </div>
+
+        <p class="procure-card__subhead">Additional costs</p>
+        <p class="procure-card__hint" style="margin-top:0;">This product may have additional costs not included in the table(s) above. Additional taxes and fees may apply. Use the <a class="link" href="#" onclick="return false;">AWS Pricing Calculator&nbsp;<span data-icon="externalLink"></span></a> to calculate exact costs.</p>
+
+        <div class="table-scroll" style="margin-top:var(--space-m);">
+          <table class="data-table simple">
+            <thead>
+              <tr>
+                <th class="no-sort">Type</th>
+                <th class="no-sort">Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>EBS General Purpose SSD (gp2) volumes</td><td>$0.10/GB/month of provisioned storage</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="container procure-card">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:var(--space-l);">
+          <h2 class="procure-card__title">Terms and conditions <button class="info-link" data-help-key="terms" style="font-size:14px;font-weight:400;">Info</button></h2>
+          <button class="btn btn-normal" onclick="return false;"><span data-icon="download"></span>&nbsp;Download EULA(s)</button>
+        </div>
+        <p class="procure-card__hint">By subscribing to this software, you agree to the pricing terms and the seller's <a class="link" href="#" onclick="return false;">End User License Agreement (EULA)&nbsp;<span data-icon="externalLink"></span></a>. You also agree and acknowledge that AWS may share information about this transaction (including your payment terms) with the respective seller, reseller or underlying provider, as applicable, in accordance with the <a class="link" href="#" onclick="return false;">AWS Privacy Notice&nbsp;<span data-icon="externalLink"></span></a>. Your use of AWS services is subject to the <a class="link" href="#" onclick="return false;">AWS Customer Agreement&nbsp;<span data-icon="externalLink"></span></a> or other agreement with AWS governing your use of such services.</p>
+      </section>
+
+      <section class="container procure-card">
+        <h2 class="procure-card__title">Purchase order (PO) number <button class="info-link" data-help-key="po-number" style="font-size:14px;font-weight:400;">Info</button></h2>
+        <p class="procure-card__hint">You can assign unique purchase order (PO) numbers to charges to include them on your invoices. <a class="link" href="#" onclick="return false;">Learn more&nbsp;<span data-icon="externalLink"></span></a>.</p>
+
+        <p class="procure-card__subhead">Purchase order number options</p>
+        <div class="form-radio-group" style="margin-top:var(--space-s);">
+          <label class="form-radio"><input type="radio" name="po-number" checked /> No purchase order</label>
+          <label class="form-radio"><input type="radio" name="po-number" /> Add a purchase order</label>
+        </div>
+      </section>
+
+      <section class="container procure-card">
+        <h2 class="procure-card__title">Purchase details <button class="info-link" data-help-key="purchase-details" style="font-size:14px;font-weight:400;">Info</button></h2>
+        <div class="info-card__grid" style="grid-template-columns:repeat(4,1fr);margin-top:var(--space-l);">
+          <div class="info-card__field">
+            <dt>Offer ID</dt>
+            <dd>offer-1234928167</dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Offered by</dt>
+            <dd>Fortinet</dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Total cost</dt>
+            <dd>30 days</dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Purchase order number</dt>
+            <dd>-</dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Total contract price</dt>
+            <dd>Total charges based on usage</dd>
+          </div>
+          <div class="info-card__field">
+            <dt>Tax details</dt>
+            <dd>Additional taxes may apply</dd>
+          </div>
+        </div>
+      </section>
+
+      <div class="procure-footer">
+        <a class="link-btn" href="fortinet-fortigate.html">Cancel</a>
+        <button class="btn btn-primary" id="subscribe-btn">Subscribe</button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="page.subscribe.js"></script>
+</body>
+</html>

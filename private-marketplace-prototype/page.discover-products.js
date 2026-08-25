@@ -8,6 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
   hydrateIcons();
   initSharedUI();
 
+  const subscribedProduct = sessionStorage.getItem("pmp-subscribe-success");
+  if (subscribedProduct) {
+    sessionStorage.removeItem("pmp-subscribe-success");
+    showFlash(document.getElementById("flash-root"), {
+      type: "success",
+      message: `You have successfully subscribed to ${escapeHtml(subscribedProduct)}.`,
+      autoDismiss: 5000,
+    });
+  }
+
   const total = DISCOVER_PRODUCTS.length;
   document.getElementById("discover-count").textContent = `(${total} results)`;
   document.getElementById("discover-showing").textContent = String(total);
