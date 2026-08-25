@@ -38,7 +38,7 @@ const NAV_FLAT_TOP = [
 const NAV_PMP_GROUP = {
   title: "Private Marketplace",
   items: [
-    { key: "my-pmp", label: "My Private Marketplace", href: "#" },
+    { key: "my-pmp", label: "My Private Marketplace", href: "my-private-marketplace.html" },
     { key: "dashboard", label: "Dashboard", href: "dashboard.html" },
     { key: "org-structure", label: "Organizational structure", href: "organizational-structure.html" },
     { key: "experiences", label: "Experiences", href: "experiences.html" },
@@ -46,7 +46,7 @@ const NAV_PMP_GROUP = {
   ],
 };
 
-const NAV_FLAT_BOTTOM = [{ key: "settings", label: "Settings", href: "#" }];
+const NAV_FLAT_BOTTOM = [{ key: "settings", label: "Settings", href: "settings.html" }];
 
 function renderSideNav(activeKey) {
   const flatTop = NAV_FLAT_TOP.map((item) => {

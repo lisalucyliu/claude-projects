@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Private Marketplace settings: Integrations — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Private Marketplace settings integrations edit page." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header">
+      <h1>Private Marketplace settings: Integrations</h1>
+      <button class="info-link" data-open-help>Info</button>
+    </div>
+    <p class="page-subtitle">Enable administrator-level permissions for Private Marketplace.</p>
+
+    <section class="container" style="padding:20px;">
+      <h2 style="margin:0 0 var(--space-m);font-size:18px;color:var(--color-text-heading);">Trust level preference</h2>
+
+      <label class="prefs-checkbox" style="margin-top:0;">
+        <input type="checkbox" id="chk-slr" checked />
+        <div>
+          <div class="prefs-checkbox__title">Create a service-linked role for your organization</div>
+          <div class="prefs-checkbox__desc">The service-linked role allows the trusted service to perform the tasks that are described in the trusted services documentation. The trusted service is notified about any changes to your organization and can perform additional tasks in response to those notifications.</div>
+        </div>
+      </label>
+
+      <label class="prefs-checkbox">
+        <input type="checkbox" id="chk-trusted" checked />
+        <div>
+          <div class="prefs-checkbox__title">Enable trusted access across your organization</div>
+          <div class="prefs-checkbox__desc">Enabling trusted access designates Private Marketplace as a trusted service in your organization. A trusted service can query the organization's structure and create a service-linked role in the management account of the organization.</div>
+        </div>
+      </label>
+
+      <p style="margin:var(--space-l) 0 0;font-size:14px;">After an integration is created, you can't undo this action on this page. Visit <a href="#" onclick="return false;">IAM</a> to delete SLRs, or <a href="#" onclick="return false;">AWS Organizations</a> to disable trusted access.</p>
+    </section>
+
+    <div style="display:flex;justify-content:flex-end;align-items:center;gap:var(--space-m);">
+      <a class="link-btn" href="settings.html">Cancel</a>
+      <button class="btn btn-primary" id="create-integration-btn">Create integration</button>
+    </div>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="page.edit-integrations.js"></script>
+</body>
+</html>

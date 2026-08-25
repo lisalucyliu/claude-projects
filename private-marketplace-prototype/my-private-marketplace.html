@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Private Marketplace — AWS Marketplace</title>
+<meta name="description" content="Cloudscape-styled functional prototype of the AWS Private Marketplace end-user landing page (governed state)." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div id="header-root"></div>
+<div id="toolbar-root"></div>
+
+<div class="app-layout">
+  <div id="sidenav-root"></div>
+
+  <main class="main-content">
+    <div id="flash-root" class="flashbar"></div>
+
+    <div class="page-header-row">
+      <div class="page-header">
+        <h1>My Private Marketplace</h1>
+        <button class="info-link" data-open-help>Info</button>
+      </div>
+      <div class="page-header__actions">
+        <a class="btn btn-primary" href="#" onclick="return false;">Explore your Private Marketplace</a>
+      </div>
+    </div>
+
+    <section class="container info-card">
+      <h2 style="margin:0 0 8px;font-size:18px;">Welcome to Starbucks Private Marketplace</h2>
+      <p style="margin:0;">This is a Private Marketplace for Starbucks software developers. Feel free to request more products! Visit <a href="#" onclick="return false;">www.dev.starbucks.not.really.com&nbsp;<span data-icon="externalLink"></span></a> or contact <a href="#" onclick="return false;">shawnyu@starbucks.not.really.com&nbsp;<span data-icon="externalLink"></span></a> for more info!</p>
+      <div class="status status--accepted" style="margin-top:var(--space-m);"><span data-icon="statusAccepted"></span><span>Product request enabled</span></div>
+    </section>
+
+    <section class="container collapsible-card" data-collapsible>
+      <div class="collapsible-card__header" data-collapse-toggle>
+        <div class="collapsible-card__header-left"><span data-icon="triangleDown"></span><h2>What is Private Marketplace?</h2></div>
+        <button class="info-link" data-open-help onclick="event.stopPropagation()">Info</button>
+      </div>
+      <div class="collapsible-card__body">
+        <p>Private Marketplace is a new feature that makes it simple to control which AWS Marketplace products developers can procure. Built on top of AWS Marketplace, Private Marketplace enables administrators to create and customize a curated digital catalog of approved independent software vendor (ISV) products that conform to their in-house policies. Business users and engineering teams can now find, buy, and deploy products from AWS Marketplace in their custom Private Marketplace, knowing that all available products comply with their organization's policies and standards.</p>
+      </div>
+    </section>
+
+    <section class="container info-card">
+      <div class="info-card__header">
+        <h2>Preview</h2>
+        <button class="info-link" data-open-help>Info</button>
+      </div>
+      <p style="margin:0 0 var(--space-m);">If a product is approved for purchase in a Private Marketplace, you will see this badge:</p>
+      <span class="badge badge--blue">Approved for purchase</span>
+    </section>
+  </main>
+</div>
+
+<div id="footer-root"></div>
+
+<script src="icons.js"></script>
+<script src="common.js"></script>
+<script src="app.js"></script>
+<script src="page.my-private-marketplace.js"></script>
+</body>
+</html>
