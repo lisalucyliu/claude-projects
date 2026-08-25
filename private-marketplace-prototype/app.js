@@ -97,22 +97,33 @@ function initDropdowns() {
   });
 }
 
-function initHelpPanel(title, bodyHtml) {
+/* One help panel per page, lazily created — initHelpPanel() and
+   registerHelpTopic() both share it via this singleton rather than each
+   minting their own overlay+panel pair. */
+let _helpPanel = null;
+
+function ensureHelpPanel() {
+  if (_helpPanel) return _helpPanel;
+
   const overlay = document.createElement("div");
   overlay.className = "help-panel-overlay";
   const panel = document.createElement("div");
   panel.className = "help-panel";
   panel.innerHTML = `
     <div class="help-panel__header">
-      <h2>${title}</h2>
+      <h2></h2>
       <button class="help-panel__close" aria-label="Close">${Icons.close}</button>
     </div>
-    <div class="help-panel__body">${bodyHtml}</div>
+    <div class="help-panel__body"></div>
   `;
   document.body.appendChild(overlay);
   document.body.appendChild(panel);
 
-  function open() {
+  function open(title, bodyHtml) {
+    panel.querySelector(".help-panel__header h2").textContent = title;
+    const bodyEl = panel.querySelector(".help-panel__body");
+    bodyEl.innerHTML = bodyHtml;
+    hydrateIcons(bodyEl);
     overlay.classList.add("open");
     panel.classList.add("open");
   }
@@ -123,11 +134,32 @@ function initHelpPanel(title, bodyHtml) {
 
   overlay.addEventListener("click", close);
   panel.querySelector(".help-panel__close").addEventListener("click", close);
-  document.querySelectorAll("[data-open-help]").forEach((btn) => {
-    btn.addEventListener("click", open);
-  });
 
-  return { open, close };
+  _helpPanel = { open, close };
+  return _helpPanel;
+}
+
+/* Wires every plain [data-open-help] button on the page (i.e. one without
+   its own data-help-key) to the same title/body — the original one-panel-
+   per-page behavior every existing page still relies on. */
+function initHelpPanel(title, bodyHtml) {
+  const helpPanel = ensureHelpPanel();
+  document.querySelectorAll("[data-open-help]:not([data-help-key])").forEach((btn) => {
+    btn.addEventListener("click", () => helpPanel.open(title, bodyHtml));
+  });
+  return helpPanel;
+}
+
+/* Wires every [data-help-key="key"] button to its own title/body, so a
+   page with several Info links (e.g. one per card) can show different
+   content per link instead of all of them sharing initHelpPanel()'s
+   single page-level topic. */
+function registerHelpTopic(key, title, bodyHtml) {
+  const helpPanel = ensureHelpPanel();
+  document.querySelectorAll(`[data-help-key="${key}"]`).forEach((btn) => {
+    btn.addEventListener("click", () => helpPanel.open(title, bodyHtml));
+  });
+  return helpPanel;
 }
 
 /**

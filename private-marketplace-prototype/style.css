@@ -1446,38 +1446,42 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   color: var(--color-green);
 }
 
-/* ---- Badge (cloudscape.design/components/badge/): solid pill, white text
-   on a colored fill — distinct from .status, which pairs an outline icon
-   with plain text and no fill. ---- */
+/* ---- Badge (verified against cloudscape.design/components/badge/?example=blue
+   via computed style: rgb(0,108,224) fill — same value as --color-blue —
+   4px radius (not a pill), 12px/400 text, "0 8px" padding, 20px line-height). ---- */
 .badge {
   display: inline-block;
-  padding: 2px 10px;
-  border-radius: var(--radius-badge);
+  padding: 0 8px;
+  border-radius: 4px;
   font-size: 12px;
-  font-weight: 700;
-  color: #fff;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--color-text-inverted);
 }
 
-.badge--blue {
-  background: var(--color-blue);
+/* PMP's own brand color for the "Approved for purchase" badge — not one of
+   Cloudscape's stock badge colors, so it's applied the same way as
+   cloudscape.design/components/badge/?example=with-custom-style: same
+   structural Badge shape/type as .badge, just a custom fill. */
+.badge--pmp {
+  background: #3759ce;
 }
 
-/* ---- Collapsible card (e.g. "What is Private Marketplace?"): a .container
-   whose body can be toggled via the shared data-collapsible/data-collapse-toggle
-   wiring in app.js's initCollapsibles(). ---- */
+/* ---- Collapsible card: Cloudscape's ExpandableSection, variant="container"
+   (cloudscape.design/components/expandable-section/?example=container-with-interactive-header-elements),
+   verified via computed style — no divider between header and body in this
+   variant (unlike a plain .container + border-bottom split), 20px/700
+   heading, 20px icon. A .container is the outer chrome (border+radius
+   already match Cloudscape's root exactly), toggled via the shared
+   data-collapsible/data-collapse-toggle wiring in app.js's initCollapsibles(). ---- */
 .collapsible-card__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-s);
-  padding: var(--space-l);
+  padding: var(--space-m) var(--space-l);
   cursor: pointer;
   user-select: none;
-  border-bottom: 1px solid var(--color-border-divider);
-}
-
-.collapsible-card.collapsed .collapsible-card__header {
-  border-bottom: none;
 }
 
 .collapsible-card__header-left {
@@ -1487,6 +1491,8 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 }
 
 .collapsible-card__header-left svg {
+  width: 20px;
+  height: 20px;
   transition: transform 0.15s ease;
   flex-shrink: 0;
 }
@@ -1496,7 +1502,7 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 }
 
 .collapsible-card__header-left h2 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   margin: 0;
   color: var(--color-text-heading);
@@ -1507,7 +1513,7 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 }
 
 .collapsible-card__body {
-  padding: var(--space-l);
+  padding: 4px 20px 20px;
   font-size: 14px;
   line-height: 1.6;
   color: var(--color-text-body);

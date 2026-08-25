@@ -21,7 +21,7 @@
   <main class="main-content">
     <div id="flash-root" class="flashbar"></div>
 
-    <div class="page-header-row">
+    <div class="page-header-row" style="margin-bottom:var(--space-m);">
       <div class="page-header">
         <h1>My Private Marketplace</h1>
         <button class="info-link" data-open-help>Info</button>
@@ -40,7 +40,7 @@
     <section class="container collapsible-card" data-collapsible>
       <div class="collapsible-card__header" data-collapse-toggle>
         <div class="collapsible-card__header-left"><span data-icon="triangleDown"></span><h2>What is Private Marketplace?</h2></div>
-        <button class="info-link" data-open-help onclick="event.stopPropagation()">Info</button>
+        <button class="info-link" data-help-key="what-is-pmp" onclick="event.stopPropagation()">Info</button>
       </div>
       <div class="collapsible-card__body">
         <p>Private Marketplace is a new feature that makes it simple to control which AWS Marketplace products developers can procure. Built on top of AWS Marketplace, Private Marketplace enables administrators to create and customize a curated digital catalog of approved independent software vendor (ISV) products that conform to their in-house policies. Business users and engineering teams can now find, buy, and deploy products from AWS Marketplace in their custom Private Marketplace, knowing that all available products comply with their organization's policies and standards.</p>
@@ -50,10 +50,10 @@
     <section class="container info-card">
       <div class="info-card__header">
         <h2>Preview</h2>
-        <button class="info-link" data-open-help>Info</button>
+        <button class="info-link" data-help-key="preview">Info</button>
       </div>
       <p style="margin:0 0 var(--space-m);">If a product is approved for purchase in a Private Marketplace, you will see this badge:</p>
-      <span class="badge badge--blue">Approved for purchase</span>
+      <span class="badge badge--pmp">Approved for purchase</span>
     </section>
   </main>
 </div>
