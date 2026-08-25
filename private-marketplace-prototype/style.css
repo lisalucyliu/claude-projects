@@ -1450,13 +1450,22 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 /* ---- Badge (verified against cloudscape.design/components/badge/?example=blue
    via computed style: rgb(0,108,224) fill — same value as --color-blue —
    4px radius (not a pill), 12px/400 text, "0 8px" padding, 20px line-height). ---- */
+/* Standardized to a fixed 22px height with flex-centered text — the
+   previous line-height-only sizing rendered 20px for the solid .badge--pmp
+   variant but 24px for .badge--outline (its 2px border added on top of
+   line-height, since border wasn't included in the sizing), and neither
+   was actually vertically centering its text within that height. */
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 22px;
   padding: 0 8px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 1;
   color: var(--color-text-inverted);
 }
 
