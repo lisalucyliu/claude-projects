@@ -1468,6 +1468,17 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   background: #3759ce;
 }
 
+/* "Free trial" badge — verified via computed style against a live AWS
+   Marketplace search result card: white fill, 2px solid teal border,
+   dark (near-black) text, 6px radius — a transparent/outline Badge
+   variant, distinct from .badge--pmp's solid fill. */
+.badge--outline {
+  background: #fff;
+  border: 2px solid #2ea597;
+  border-radius: 6px;
+  color: var(--color-text-heading);
+}
+
 /* ---- Collapsible card: Cloudscape's ExpandableSection, variant="container"
    (cloudscape.design/components/expandable-section/?example=container-with-interactive-header-elements),
    verified via computed style — no divider between header and body in this
@@ -3242,9 +3253,214 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   text-decoration: underline;
 }
 
+.product-card__badges {
+  display: flex;
+  gap: var(--space-xs);
+}
+
 .product-card__desc {
   font-size: 14px;
   color: var(--color-text-body);
   line-height: 1.5;
   margin: 8px 0 0;
+}
+
+/* ============ PRODUCT DETAIL PAGE ============ */
+
+.pdp-header {
+  display: flex;
+  gap: var(--space-l);
+  padding-bottom: var(--space-l);
+  border-bottom: 1px solid var(--color-border-divider);
+  margin-bottom: var(--space-l);
+}
+
+.pdp-header__icon {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 26px;
+  color: #fff;
+}
+
+.pdp-header__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.pdp-header__content h1 {
+  font-size: 22px;
+  margin: 0;
+  color: var(--color-text-heading);
+  display: inline;
+}
+
+.pdp-header__sold-by {
+  font-size: 14px;
+  color: var(--color-text-body);
+  margin: 4px 0 var(--space-s);
+}
+
+.pdp-header__badges {
+  display: flex;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-s);
+}
+
+.pdp-header__desc {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.pdp-header__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  flex-shrink: 0;
+  width: 200px;
+}
+
+.pdp-header__actions .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Anchor-jump tabs reuse .tabs/.tab as-is; this offset keeps a jumped-to
+   section's heading from landing flush against the viewport top. */
+.pdp-section {
+  scroll-margin-top: var(--space-l);
+  margin-top: 40px;
+}
+
+.pdp-section:first-of-type {
+  margin-top: var(--space-xl);
+}
+
+.pdp-section > h2 {
+  font-size: 20px;
+  margin: 0 0 var(--space-m);
+  color: var(--color-text-heading);
+}
+
+.pdp-columns {
+  display: flex;
+  gap: var(--space-l);
+  align-items: flex-start;
+}
+
+.pdp-columns__main {
+  flex: 2;
+  min-width: 0;
+}
+
+.pdp-columns__side {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+}
+
+.pdp-highlights {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.pdp-highlights li {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.5;
+  margin-bottom: var(--space-m);
+}
+
+.pdp-highlights li:last-child {
+  margin-bottom: 0;
+}
+
+.pdp-prose p {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.6;
+  margin: 0 0 var(--space-m);
+}
+
+.pdp-prose p:last-of-type {
+  margin-bottom: 0;
+}
+
+.show-more-link {
+  display: inline-block;
+  margin-top: var(--space-s);
+  font-size: 14px;
+}
+
+.pdp-card + .pdp-card {
+  margin-top: var(--space-l);
+}
+
+.pdp-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-s);
+  margin-bottom: var(--space-s);
+}
+
+.pdp-card__header h3 {
+  font-size: 16px;
+  margin: 0;
+  color: var(--color-text-heading);
+}
+
+.pdp-card p {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-input);
+  padding: 6px 32px 6px var(--space-s);
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--color-text-body);
+  background: var(--color-bg-input) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'%3E%3Cpath d='M3 5.5 7 9.5l4-4' fill='none' stroke='%23424650' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 10px center / 14px 14px;
+  cursor: pointer;
+}
+
+.pdp-usage-table-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin: var(--space-l) 0 var(--space-s);
+}
+
+.pdp-instructions p {
+  font-size: 14px;
+  color: var(--color-text-body);
+  line-height: 1.6;
+  margin: 0 0 var(--space-m);
+}
+
+.pdp-instructions p:last-child {
+  margin-bottom: 0;
+}
+
+.vendor-resource-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
 }
