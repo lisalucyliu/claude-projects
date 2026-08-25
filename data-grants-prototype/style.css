@@ -361,6 +361,11 @@ svg {
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-m);
+  /* Brings the title text inset to 28px from the nav's left edge (20px
+     container padding + 8px here), matching Cloudscape's verified h2
+     header padding — ported from the private-marketplace-prototype's
+     identical fix. */
+  padding-left: 8px;
 }
 
 .side-nav__title {
@@ -392,27 +397,47 @@ svg {
   margin-top: 0;
 }
 
+/* This nav is Cloudscape's "Organized with sections" pattern (plain,
+   non-link group headers), not PMP's "Nesting with expandable link
+   groups" (where the header doubles as a real link to its own landing
+   page) — verified against cloudscape.design/patterns/general/
+   service-navigation/side-navigation/#organized-with-sections via
+   computed style: 16px/700 bold heading text in
+   --color-text-heading, not the 16px/400 this previously used. The
+   chevron sits in the same left gutter as PMP's toggle button (absolute,
+   -13px) so the header text still lands at the same 28px inset as every
+   plain nav link below it. */
 .side-nav__section-title {
+  position: relative;
   display: flex;
   align-items: center;
-  /* Icon-to-text gap verified pixel-for-pixel against cloudscape.design's
-     expandable-link-group toggle. */
-  gap: 5px;
-  font-weight: 400;
+  padding: 4px 8px;
+  border-radius: 8px;
   font-size: 16px;
+  font-weight: 700;
   color: var(--color-text-heading);
   cursor: pointer;
-  padding: 5px 0;
   user-select: none;
 }
 
+.side-nav__section-title:hover {
+  background: var(--color-bg-layout);
+}
+
 .side-nav__section-title svg {
-  transition: transform 0.15s ease;
+  position: absolute;
+  left: -13px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
   flex-shrink: 0;
+  transition: transform 0.15s ease;
+  color: var(--color-text-body-secondary);
 }
 
 .side-nav__section.collapsed .side-nav__section-title svg {
-  transform: rotate(-90deg);
+  transform: translateY(-50%) rotate(-90deg);
 }
 
 .side-nav__section.collapsed .side-nav__items {
@@ -422,9 +447,10 @@ svg {
 .side-nav__items {
   list-style: none;
   margin: 0;
-  /* Indents item text to land under the section header's text (after its
-     chevron+gap), rather than flush with the chevron itself. */
-  padding: 0 0 0 12px;
+  /* Nested items sit 24px further right than their parent group's own
+     28px inset — same verified indent PMP uses, now that this header's
+     text lands at that same 28px inset too. */
+  padding: 0 0 0 24px;
 }
 
 .side-nav__items li {
