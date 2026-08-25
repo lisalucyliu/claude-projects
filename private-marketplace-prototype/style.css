@@ -3267,12 +3267,26 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
 
 /* ============ PRODUCT DETAIL PAGE ============ */
 
+.pdp-page {
+  max-width: 1040px;
+}
+
+/* The header and the tabs strip below it read as one seamless plane — no
+   divider between them — with a soft shadow cast onto the scrollable
+   content below, so that content reads as sitting on a lower plane. */
+.pdp-header-block {
+  box-shadow: 0 4px 8px -4px rgba(15, 20, 26, 0.15);
+  margin-bottom: var(--space-l);
+}
+
+.pdp-header-block .tabs {
+  margin-bottom: 0;
+}
+
 .pdp-header {
   display: flex;
   gap: var(--space-l);
   padding-bottom: var(--space-l);
-  border-bottom: 1px solid var(--color-border-divider);
-  margin-bottom: var(--space-l);
 }
 
 .pdp-header__icon {
@@ -3441,11 +3455,58 @@ div:has(+ hr.side-nav__divider) .data-table tbody tr:last-child:not(.selected) t
   cursor: pointer;
 }
 
-.pdp-usage-table-title {
+/* .pdp-card p (a class+type selector, specificity 0,1,1) otherwise beats
+   a bare .pdp-usage-table-title (0,1,0) regardless of source order and
+   silently zeroes out this margin — qualify with .pdp-card so the two
+   classes (0,2,0) win instead. */
+.pdp-card .pdp-usage-table-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-heading);
+  margin: var(--space-xl) 0 var(--space-s);
+}
+
+.dotted-underline {
+  text-decoration: underline dotted;
+  text-underline-offset: 2px;
+  cursor: help;
+}
+
+.kv-pairs {
+  display: flex;
+  flex-direction: column;
+}
+
+.kv-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-m);
+  padding: var(--space-s) 0;
+  border-bottom: 1px solid var(--color-border-divider);
+}
+
+.kv-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.kv-row:first-child {
+  padding-top: 0;
+}
+
+.kv-key {
   font-size: 14px;
   font-weight: 700;
   color: var(--color-text-heading);
-  margin: var(--space-l) 0 var(--space-s);
+}
+
+.kv-value {
+  font-size: 14px;
+  color: var(--color-text-body);
+}
+
+.kv-value a {
+  text-decoration: underline;
 }
 
 .pdp-instructions p {

@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ---- Usage costs table (static demo data — no real pagination/search wiring) ----
   document.getElementById("pdp-usage-costs-body").innerHTML = PDP_USAGE_COSTS.map(
-    (row) => `<tr><td>${escapeHtml(row.type)}</td><td>${escapeHtml(row.cost)}</td></tr>`
+    (row) => `<tr><td><span class="dotted-underline">${escapeHtml(row.type)}</span></td><td>${escapeHtml(row.cost)}</td></tr>`
   ).join("");
 
   const paginationEl = document.querySelector("#pricing [data-pagination]");

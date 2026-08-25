@@ -21,6 +21,8 @@
   <main class="main-content">
     <div id="flash-root" class="flashbar"></div>
 
+    <div class="pdp-page">
+    <div class="pdp-header-block">
     <div class="pdp-header">
       <div class="pdp-header__icon" style="background:#da291c;">F</div>
       <div class="pdp-header__content">
@@ -47,6 +49,7 @@
       <a class="tab" href="#usage">Usage</a>
       <a class="tab" href="#resources">Resources</a>
       <a class="tab" href="#support">Support</a>
+    </div>
     </div>
 
     <section class="pdp-section" id="overview">
@@ -78,29 +81,31 @@
 
           <section class="container pdp-card" style="padding:20px;">
             <div class="pdp-card__header"><h3>Details</h3></div>
-            <div class="info-card__field" style="margin-bottom:var(--space-m);">
-              <dt>Sold by</dt>
-              <dd>Fortinet Inc.</dd>
-            </div>
-            <div class="info-card__field" style="margin-bottom:var(--space-m);">
-              <dt>Categories</dt>
-              <dd><a href="#" onclick="return false;">Security</a><br /><a href="#" onclick="return false;">Network Infrastructure</a></dd>
-            </div>
-            <div class="info-card__field" style="margin-bottom:var(--space-m);">
-              <dt>Delivery method</dt>
-              <dd>Amazon Machine Image (AMI)</dd>
-            </div>
-            <div class="info-card__field" style="margin-bottom:var(--space-m);">
-              <dt>Delivery option</dt>
-              <dd>64-bit (x86) Amazon Machine Image (AMI)<br />Cold Standby using CloudFormation<br />Warm Standby using CloudFormation</dd>
-            </div>
-            <div class="info-card__field" style="margin-bottom:var(--space-m);">
-              <dt>Latest version</dt>
-              <dd>7.2.7</dd>
-            </div>
-            <div class="info-card__field">
-              <dt>Operating system</dt>
-              <dd>Linux/Unix</dd>
+            <div class="kv-pairs">
+              <div class="kv-row">
+                <div class="kv-key">Sold by</div>
+                <div class="kv-value">Fortinet Inc.</div>
+              </div>
+              <div class="kv-row">
+                <div class="kv-key">Categories</div>
+                <div class="kv-value"><a href="#" onclick="return false;">Security</a><br /><a href="#" onclick="return false;">Network Infrastructure</a></div>
+              </div>
+              <div class="kv-row">
+                <div class="kv-key">Delivery method</div>
+                <div class="kv-value"><span class="dotted-underline">Amazon Machine Image (AMI)</span></div>
+              </div>
+              <div class="kv-row">
+                <div class="kv-key">Delivery option</div>
+                <div class="kv-value">64-bit (x86) Amazon Machine Image (AMI)<br />Cold Standby using CloudFormation<br />Warm Standby using CloudFormation</div>
+              </div>
+              <div class="kv-row">
+                <div class="kv-key">Latest version</div>
+                <div class="kv-value"><span class="dotted-underline">7.2.7</span></div>
+              </div>
+              <div class="kv-row">
+                <div class="kv-key">Operating system</div>
+                <div class="kv-value">Linux/Unix</div>
+              </div>
             </div>
           </section>
         </div>
@@ -157,8 +162,8 @@
           <table class="data-table simple">
             <thead>
               <tr>
-                <th class="no-sort">Instance type</th>
-                <th class="no-sort">Product cost/hour</th>
+                <th class="sorted"><span class="th-inner">Instance type <span class="sort-icon" data-icon="sortDesc"></span></span></th>
+                <th><span class="th-inner">Product cost/hour <span class="sort-icon" data-icon="sortNeutral"></span></span></th>
               </tr>
             </thead>
             <tbody id="pdp-usage-costs-body"></tbody>
@@ -281,6 +286,7 @@
         </div>
       </div>
     </section>
+    </div>
   </main>
 </div>
 
