@@ -85,15 +85,49 @@ function renderSideNav(activeKey) {
   `;
 }
 
-function renderBreadcrumb(trail) {
-  const parts = trail
+function renderBreadcrumbItems(trail) {
+  return trail
     .map((item, i) => {
       const isLast = i === trail.length - 1;
       if (isLast) return `<span class="current">${item.label}</span>`;
       return `<a href="${item.href}">${item.label}</a><span class="sep">${Icons.chevronRight}</span>`;
     })
     .join("");
-  return `<nav class="breadcrumb">${parts}</nav>`;
+}
+
+/* Verified against cloudscape.design/examples/react/edit.html: past 3
+   items, BreadcrumbGroup collapses everything between the first and last
+   two into a "..." control (a real dropdown listing the hidden items,
+   not just decorative) once the viewport narrows. Both the full and
+   collapsed markup are rendered up front and swapped by a media query —
+   no resize listener needed — so the same dropdown wiring initDropdowns()
+   already does once at page load covers the collapsed variant too. */
+function renderBreadcrumb(trail) {
+  if (trail.length <= 3) {
+    return `<nav class="breadcrumb">${renderBreadcrumbItems(trail)}</nav>`;
+  }
+
+  const full = renderBreadcrumbItems(trail);
+
+  const hiddenMiddle = trail.slice(1, trail.length - 2);
+  const lastTwo = trail.slice(trail.length - 2);
+  const menuItems = hiddenMiddle.map((item) => `<a href="${item.href}">${item.label}</a>`).join("");
+  const collapsed = `
+    <a href="${trail[0].href}">${trail[0].label}</a><span class="sep">${Icons.chevronRight}</span>
+    <span class="breadcrumb__ellipsis btn-dropdown">
+      <button class="breadcrumb__ellipsis-trigger" data-dropdown-trigger title="Show path" aria-label="Show path">&hellip;</button>
+      <div class="dropdown-menu">${menuItems}</div>
+    </span>
+    <span class="sep">${Icons.chevronRight}</span>
+    ${renderBreadcrumbItems(lastTwo)}
+  `;
+
+  return `
+    <div class="breadcrumb-wrapper">
+      <nav class="breadcrumb breadcrumb--full">${full}</nav>
+      <nav class="breadcrumb breadcrumb--collapsed">${collapsed}</nav>
+    </div>
+  `;
 }
 
 function renderToolbar(trail) {

@@ -1,7 +1,10 @@
 /* Page wiring for received-data-grants.html */
 
 document.addEventListener("DOMContentLoaded", () => {
-  mountChrome("received", "Received data grants");
+  mountChrome("received", [
+    { label: "AWS Data Exchange", href: "sent-data-grants.html" },
+    { label: "Received data grants" },
+  ]);
   hydrateIcons();
   initSharedUI();
 

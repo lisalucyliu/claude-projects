@@ -560,6 +560,20 @@ svg {
   align-items: center;
   gap: 6px;
   font-size: 14px;
+  min-width: 0;
+}
+
+/* Every segment but the current one keeps its natural width and never
+   wraps — only the final (current-page) segment, which is the one most
+   likely to be long, shrinks and truncates when space runs out. Without
+   this, a flex row with no explicit sizing shrinks every segment
+   equally, wrapping each one's text internally instead of just the
+   last. */
+.breadcrumb a,
+.breadcrumb .sep,
+.breadcrumb__ellipsis-trigger {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .breadcrumb a {
@@ -580,6 +594,68 @@ svg {
 .breadcrumb .current {
   color: var(--color-grey-text);
   font-weight: 700;
+  /* Floor so it always shows at least a few truncated characters instead
+     of shrinking to nothing when every other segment (flex-shrink:0
+     above) has already claimed all the space it needs. */
+  min-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.breadcrumb-wrapper {
+  display: flex;
+  min-width: 0;
+}
+
+.breadcrumb--collapsed {
+  display: none;
+}
+
+/* Matches Cloudscape's own BreadcrumbGroup collapse point (verified by
+   resizing cloudscape.design/examples/react/edit.html down until its
+   breadcrumb switched to the "..." control). */
+@media (max-width: 700px) {
+  .breadcrumb--full {
+    display: none;
+  }
+
+  .breadcrumb--collapsed {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+}
+
+.breadcrumb__ellipsis-trigger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-link);
+  padding: 0;
+}
+
+.breadcrumb__ellipsis-trigger:hover {
+  color: var(--color-text-link-hover);
+}
+
+.dropdown-menu a {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--color-text-body);
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background: var(--color-bg-layout);
 }
 
 .page-header {

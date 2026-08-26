@@ -8,7 +8,10 @@ function stateHtml(state, label) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  mountChrome("sent", "Sent data grants");
+  mountChrome("sent", [
+    { label: "AWS Data Exchange", href: "sent-data-grants.html" },
+    { label: "Sent data grants" },
+  ]);
   hydrateIcons();
   initSharedUI();
 
