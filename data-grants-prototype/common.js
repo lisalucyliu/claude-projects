@@ -99,23 +99,23 @@ function renderBreadcrumbItems(trail) {
     .join("");
 }
 
-/* Verified against cloudscape.design/examples/react/edit.html: past 3
-   items, BreadcrumbGroup collapses everything between the first and last
-   two into a "..." control (a real dropdown listing the hidden items,
-   not just decorative) once the viewport narrows. Both the full and
-   collapsed markup are rendered up front and swapped by a media query —
-   no resize listener needed — so the same dropdown wiring initDropdowns()
-   already does once at page load covers the collapsed variant too.
-   Ported from the private-marketplace-prototype's identical fix. */
+/* On narrow viewports only the first and last crumb stay visible —
+   everything else, including the second-to-last item, collapses into a
+   "..." control (a real dropdown listing the hidden items, not just
+   decorative). Both the full and collapsed markup are rendered up front
+   and swapped by a media query — no resize listener needed — so the
+   same dropdown wiring initDropdowns() already does once at page load
+   covers the collapsed variant too. Ported from the
+   private-marketplace-prototype's identical fix. */
 function renderBreadcrumb(trail) {
-  if (trail.length <= 3) {
+  if (trail.length <= 2) {
     return `<nav class="breadcrumb">${renderBreadcrumbItems(trail)}</nav>`;
   }
 
   const full = renderBreadcrumbItems(trail);
 
-  const hiddenMiddle = trail.slice(1, trail.length - 2);
-  const lastTwo = trail.slice(trail.length - 2);
+  const hiddenMiddle = trail.slice(1, trail.length - 1);
+  const last = trail[trail.length - 1];
   const menuItems = hiddenMiddle.map((item) => `<a href="${item.href}">${item.label}</a>`).join("");
   const collapsed = `
     <a href="${trail[0].href}">${trail[0].label}</a><span class="sep">${Icons.chevronRight}</span>
@@ -124,7 +124,7 @@ function renderBreadcrumb(trail) {
       <div class="dropdown-menu">${menuItems}</div>
     </span>
     <span class="sep">${Icons.chevronRight}</span>
-    ${renderBreadcrumbItems(lastTwo)}
+    <span class="current">${last.label}</span>
   `;
 
   return `
