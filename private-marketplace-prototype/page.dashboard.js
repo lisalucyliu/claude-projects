@@ -40,52 +40,60 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  const selectedApprovedIds = new Set();
-  const selectAllApproved = document.getElementById("select-all-approved");
+  const selectedManagedIds = new Set();
+  const selectAllManaged = document.getElementById("select-all-managed");
 
   const table = new DataTable({
-    root: document.getElementById("approved-panel"),
-    data: APPROVED_PRODUCTS,
+    root: document.getElementById("managed-panel"),
+    data: MANAGED_PRODUCTS,
     pageSize: 10,
     searchFields: ["product", "vendor"],
     countUsesTotal: true,
-    colspan: 4,
-    emptyHtml: `<div class="empty-state">No approved products</div>`,
+    colspan: 5,
+    emptyHtml: `<div class="empty-state">No managed products</div>`,
     rowHtml: (row, i, list) => `
-      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => selectedApprovedIds.has(r.id))}">
-        <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" ${selectedApprovedIds.has(row.id) ? "checked" : ""} /></td>
+      <tr data-row-id="${row.id}" class="${selectionRowClass(list, i, (r) => selectedManagedIds.has(r.id))}">
+        <td class="checkbox-col"><input type="checkbox" class="row-check" data-id="${row.id}" ${selectedManagedIds.has(row.id) ? "checked" : ""} /></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.product)}</a></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.vendor)}</a></td>
         <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.approvedIn)}</a></td>
+        <td><a href="#" class="truncate" onclick="return false;">${escapeHtml(row.declinedIn)}</a></td>
       </tr>
     `,
-    selectedCountFn: () => selectedApprovedIds.size,
+    selectedCountFn: () => selectedManagedIds.size,
     onRender: (visible) => {
-      document.getElementById("remove-approved-btn").disabled = selectedApprovedIds.size === 0;
-      updateSelectAllCheckbox(selectAllApproved, visible.filter((r) => selectedApprovedIds.has(r.id)).length, visible.length);
+      document.getElementById("remove-managed-btn").disabled = selectedManagedIds.size === 0;
+      updateSelectAllCheckbox(selectAllManaged, visible.filter((r) => selectedManagedIds.has(r.id)).length, visible.length);
     },
   });
+
+  // Product is the default-sorted column — verified against the release 2
+  // wireframe, where the Product header's sort triangle is filled (active)
+  // while every other sortable column's stays outlined (neutral).
+  table.sortKey = "product";
+  table.sortDir = 1;
+  table.updateSortIndicators();
   table.render();
 
-  const tbody = document.querySelector("#approved-table tbody");
+  const tbody = document.querySelector("#managed-table tbody");
   tbody.addEventListener("change", (e) => {
     if (!e.target.matches(".row-check")) return;
     const id = e.target.getAttribute("data-id");
-    if (e.target.checked) selectedApprovedIds.add(id);
-    else selectedApprovedIds.delete(id);
+    if (e.target.checked) selectedManagedIds.add(id);
+    else selectedManagedIds.delete(id);
     // Full re-render (not just toggling this row's class) so neighboring
     // rows recompute their selected--top/bottom corner-rounding too.
     table.render();
   });
 
-  document.getElementById("select-all-approved").addEventListener("change", (e) => {
+  document.getElementById("select-all-managed").addEventListener("change", (e) => {
     tbody.querySelectorAll(".row-check").forEach((cb) => {
       const id = cb.getAttribute("data-id");
-      if (e.target.checked) selectedApprovedIds.add(id);
-      else selectedApprovedIds.delete(id);
+      if (e.target.checked) selectedManagedIds.add(id);
+      else selectedManagedIds.delete(id);
     });
     table.render();
   });
 
-  document.getElementById("refresh-approved").addEventListener("click", () => table.render());
+  document.getElementById("refresh-managed").addEventListener("click", () => table.render());
 });

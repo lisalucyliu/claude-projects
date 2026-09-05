@@ -28,7 +28,6 @@
       </div>
       <div class="page-header__actions">
         <button class="btn btn-normal" id="view-requests-btn">View requests <span data-icon="externalLink"></span></button>
-        <a class="btn btn-primary" href="bulk-update-products.html">Bulk update products</a>
       </div>
     </div>
     <p class="page-subtitle">Summary of your organization's products in your experiences, including approved, declined/blocked, and all AWS Marketplace products.</p>
@@ -63,67 +62,44 @@
     </section>
 
     <div class="tabs" data-tab-group="dashboard">
-      <button class="tab active" data-tab="approved">Approved products</button>
-      <button class="tab" data-tab="declined">Declined/blocked products</button>
-      <button class="tab" data-tab="all">All AWS Marketplace products</button>
+      <button class="tab active" data-tab="managed">Managed products</button>
+      <button class="tab" data-tab="all">All available products</button>
     </div>
 
-    <div class="tab-panel active" data-tab-group="dashboard" data-tab="approved">
-      <div class="table-panel" id="approved-panel">
+    <div class="tab-panel active" data-tab-group="dashboard" data-tab="managed">
+      <div class="table-panel" id="managed-panel">
         <div class="table-panel__header">
           <div class="table-panel__title-group">
-            <h2>Approved products <span class="table-panel__count" data-count>(0)</span></h2>
-            <p class="table-panel__subtitle">List of approved products in your Private Marketplace.</p>
+            <h2>Managed products <span class="table-panel__count" data-count>(0)</span></h2>
+            <p class="table-panel__subtitle">Lists of products that have access approved and/or declined in your Private Marketplaces.</p>
           </div>
           <div class="table-panel__actions">
-            <button class="btn btn-icon" id="refresh-approved" title="Refresh"><span data-icon="refreshCircular"></span></button>
-            <button class="btn btn-normal" id="remove-approved-btn" disabled>Remove</button>
+            <button class="btn btn-icon" id="refresh-managed" title="Refresh"><span data-icon="refreshCircular"></span></button>
+            <button class="btn btn-normal" id="remove-managed-btn" disabled>Remove</button>
+            <a class="btn btn-primary" href="bulk-update-products.html">Add</a>
           </div>
         </div>
 
         <div class="table-toolbar">
           <div class="search-input">
             <span data-icon="search"></span>
-            <input type="text" placeholder="Find resources" data-search-input />
+            <input type="text" placeholder="Search approved and declined products" data-search-input />
           </div>
           <div class="pagination" data-pagination></div>
         </div>
 
         <div class="table-scroll">
-          <table class="data-table" id="approved-table">
+          <table class="data-table" id="managed-table">
             <thead>
               <tr>
-                <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-approved" /></th>
+                <th class="checkbox-col no-sort"><input type="checkbox" id="select-all-managed" /></th>
                 <th data-sort-key="product"><span class="th-inner">Product <span data-icon="externalLink"></span> <span class="sort-icon"></span></span></th>
                 <th data-sort-key="vendor"><span class="th-inner">Vendor <span data-icon="externalLink"></span> <span class="sort-icon"></span></span></th>
                 <th data-sort-key="approvedIn"><span class="th-inner">Approved in <span data-icon="externalLink"></span> <span class="sort-icon"></span></span></th>
+                <th data-sort-key="declinedIn"><span class="th-inner">Declined/blocked in <span data-icon="externalLink"></span> <span class="sort-icon"></span></span></th>
               </tr>
             </thead>
             <tbody></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <div class="tab-panel" data-tab-group="dashboard" data-tab="declined">
-      <div class="table-panel">
-        <div class="table-panel__header">
-          <div class="table-panel__title-group">
-            <h2>Declined/blocked products <span class="table-panel__count">(0)</span></h2>
-            <p class="table-panel__subtitle">Products that have been declined or blocked from your Private Marketplace.</p>
-          </div>
-        </div>
-        <div class="table-scroll">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th class="checkbox-col no-sort"></th>
-                <th class="no-sort">Product</th>
-                <th class="no-sort">Vendor</th>
-                <th class="no-sort">Reason</th>
-              </tr>
-            </thead>
-            <tbody><tr class="empty-row"><td colspan="4"><div class="empty-state">No declined or blocked products</div></td></tr></tbody>
           </table>
         </div>
       </div>
@@ -133,7 +109,7 @@
       <div class="table-panel">
         <div class="table-panel__header">
           <div class="table-panel__title-group">
-            <h2>All AWS Marketplace products <span class="table-panel__count">(0)</span></h2>
+            <h2>All available products <span class="table-panel__count">(0)</span></h2>
             <p class="table-panel__subtitle">Every product currently available on AWS Marketplace.</p>
           </div>
         </div>
